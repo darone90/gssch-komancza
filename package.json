@@ -1,0 +1,19 @@
+{
+  "name": "gssch",
+  "version": "1.0.0",
+  "description": "main page for gssch w komanczy",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Komańcza",
+    "Piekarnia",
+    "Spółdzielnia"
+  ],
+  "author": "Dariusz Pilecki",
+  "license": "SEE LICENSE IN public/license.txt",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
