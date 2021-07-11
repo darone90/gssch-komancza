@@ -1537,13 +1537,13 @@ div.map iframe {
 }
 
 
-div.map {
+div.map.active {
     width: 35%;
     height: 450px;
     animation: contact1 1.2s linear forwards;
 }
 
-div.map iframe {
+div.map.active iframe {
     width: 100%;
     height: 100%;
     animation: contact1 1.2s linear forwards;
