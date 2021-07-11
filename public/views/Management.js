@@ -48,6 +48,7 @@ export default class extends viewModel {
             </div>
         </div>
     </section>
+    
     <div class="bossChangeBtn">
         <div class="moveBtn"><i class="fas fa-chevron-left"></i></div>
         <ul>

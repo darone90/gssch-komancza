@@ -184,16 +184,7 @@ export default class extends viewModel {
             </p>
         </main>
     </aside>
-    <div class="menuShort">
-        <ul>
-            <li>Początki 1945-1960</li>
-            <li>Lata 1961-1989</li>
-            <li>Lata 1990-2000</li>
-            <li>Lata 2000-2015</li>
-            <li>Współcześnie</li>
-        </ul>
-    </div>
-    <button class='moveUp'><i class="fas fa-angle-double-up"></i></button>
+   
         `;
     }
 }

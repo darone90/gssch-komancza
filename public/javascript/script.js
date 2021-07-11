@@ -1,14 +1,6 @@
-///////////////functions///////////////////////////////////////////////////////////////////
-const scrollContent = (e)=> {
-    window.scrollTo({
-        top:e,
-        behavior: 'smooth'
-    });
-};
 ////// main nav menu handler //////////////////////////////////////////////////////////////
 console.log('script menu connected');
 const mainMenuBtns = [...document.querySelectorAll('*>nav.main>ul>li')];
-const views = [];
 
 
 const mainMenuClassCleaner = ()=> {
@@ -22,8 +14,8 @@ const btnClassToggle = (btn)=> {
     btn.classList.add('active');
 }; 
 
-mainMenuBtns.forEach((btn, index)=> {
-    btn.addEventListener('click', ()=> btnClassToggle(btn, index));
+mainMenuBtns.forEach(btn=> {
+    btn.addEventListener('click', ()=> btnClassToggle(btn));
 });
 
 ///////// aditional menu handler/////////////////////////////////////////////////////////////
@@ -124,63 +116,3 @@ aboutBtn.addEventListener('mouseout',thirdMenuDis);
 aboutMenu.addEventListener('mousemove',thirdMenuActive1);
 aboutMenu.addEventListener('mouseleave',thirdMenuDis1);
 
-////////////////////////////////////move up btn //////////////////////////////////////
-const scrollUp = ()=> {
-    scrollContent(0);
-}
-
-document.querySelector('.moveUp').addEventListener('click', scrollUp);
-
-////////////////////////////////////////banner////////////////////////////////////////
-
-const bannerImageBase = ['banner 3.jpg','banner 4.jpg','banner 5.jpg','banner 2.jpg','banner 6.jpg','banner 1.jpg'];
-const bannerTitleBase = ['Piekarnia','Sklep Budowlany','Delikatesy Centrum'];
-const bannerLogoBase = ['logo 2.png','logo 3.jpg','logo 1.jpg'];
-
-const imgBanner = document.querySelector('.banner img');
-const titleBanner = document.querySelector('.banner h1');
-const logoBanner = document.querySelector('.banner div');
-
-let bannerIndex = 0;
-
-const changeBannerImage = ()=> {
-
-    imgBanner.style.animation = "none"
-
-    imgBanner.src = './public/images/'+bannerImageBase[bannerIndex];
-
-    bannerIndex++;
-    
-    if(bannerIndex === bannerImageBase.length) {
-        bannerIndex = 0;
-    }
-    
-    imgBanner.style.animation = "bannerAnimation 10000ms linear infinite";
-}
-changeBannerImage();
-setInterval(changeBannerImage,10000);
-
-let logoIndex = 0;
-
-const changeBannerLogo = ()=> {
-
-    
-
-    titleBanner.style.animation = 'none';
-    logoBanner.style.animation = 'none';
-
-    titleBanner.textContent = bannerTitleBase[logoIndex];
-
-    logoBanner.style.backgroundImage = "url('./public/images/"+bannerLogoBase[logoIndex]+"')";
-    
-    logoIndex++;
-
-    if (logoIndex>=3) {
-        logoIndex = 0;
-    }
-
-    titleBanner.style.animation = 'bannerh1animation 20000ms linear infinite';
-    logoBanner.style.animation = 'bannerh1animation 20000ms linear infinite';
-}
-changeBannerLogo();
-setInterval(changeBannerLogo,20000);
