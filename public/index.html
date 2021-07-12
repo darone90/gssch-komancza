@@ -13,10 +13,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap" rel="stylesheet">    
     <script src="https://kit.fontawesome.com/c353fea5cc.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./public/style/style.css">
+    <link rel="stylesheet" href="./public/style/style.css" type="text/css">
     <link rel="icon" href="./public/favicon.ico" type="image/x-icon"/>
 </head>
-<body id="body">
+<body>
     <div class='topBar'></div>
     <section class='header'>
         <div class='name'>
@@ -45,11 +45,11 @@
     </nav>
     <aside class='menuH'>
         <ul>
-            <li><a>Delikatesy Centrum</a></li>
-            <li><a>Sklepy sprzywczo-przemysłowe</a></li>
-            <li><a>Sklep przemysłowy</a></li>
-            <li><a>Sklep budowlany</a></li>
-            <li><a>Handel obwoźny</a></li>
+            <li><a href="/shops" data-link>Delikatesy Centrum</a></li>
+            <li><a href="/shops" data-link>Sklepy sprzywczo-przemysłowe</a></li>
+            <li><a href="/shops" data-link>Sklep przemysłowy</a></li>
+            <li><a href="/shops" data-link>Sklep budowlany</a></li>
+            <li><a href="/shops" data-link>Handel obwoźny</a></li>
         </ul>
     </aside>
     <div class="menuL">
@@ -63,11 +63,48 @@
     </div>
     <div class="menuShort">
         <ul>
-            <li>Początki 1945-1960</li>
-            <li>Lata 1961-1989</li>
-            <li>Lata 1990-2000</li>
-            <li>Lata 2000-2015</li>
-            <li>Współcześnie</li>
+            <li><a href="/about" data-link>Początki 1945-1960</a></li>
+            <li><a href="/about" data-link>Lata 1961-1989</a></li>
+            <li><a href="/about" data-link>Lata 1990-2000</a></li>
+            <li><a href="/about" data-link>Lata 2000-2015</a></li>
+            <li><a href="/about" data-link>Współcześnie</a></li>
+        </ul>
+    </div>
+    <aside class="timeLaps">
+        <main class='timeLine'>
+            <div class="circleBig">
+                <div class='circle'></div>
+            </div>
+            <div class="column"></div>
+            <div class="circleBig">
+                <div class='circle'></div>
+            </div>
+            <div class="column"></div>
+            <div class="circleBig">
+                <div class='circle'></div>
+            </div>
+            <div class="column"></div>
+            <div class="circleBig">
+                <div class='circle'></div>
+            </div>
+            <div class="column"></div>
+            <div class="circleBig">
+                <div class='circle'></div>
+            </div>
+            <p>
+                <i>1945-1960</i>
+                <i>1961-1989</i>
+                <i>1990-2000</i>
+                <i>2000-2015</i>
+                <i>Współcześnie</i>
+            </p>
+        </main>
+    </aside>
+    <div class="bossChangeBtn">
+        <div class="moveBtn"><i class="fas fa-chevron-left"></i></div>
+        <ul>
+            <li>Zarząd</li>
+            <li>Rada nadzorcza</li>
         </ul>
     </div>
     <div id="app"></div>

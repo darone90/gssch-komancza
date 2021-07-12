@@ -154,37 +154,6 @@ export default class extends viewModel {
             </div>
         </div>
     </section>
-    <aside class="timeLaps">
-        <main class='timeLine'>
-            <div class="circleBig">
-                <div class='circle'></div>
-            </div>
-            <div class="column"></div>
-            <div class="circleBig">
-                <div class='circle'></div>
-            </div>
-            <div class="column"></div>
-            <div class="circleBig">
-                <div class='circle'></div>
-            </div>
-            <div class="column"></div>
-            <div class="circleBig">
-                <div class='circle'></div>
-            </div>
-            <div class="column"></div>
-            <div class="circleBig">
-                <div class='circle'></div>
-            </div>
-            <p>
-                <i>1945-1960</i>
-                <i>1961-1989</i>
-                <i>1990-2000</i>
-                <i>2000-2015</i>
-                <i>Współcześnie</i>
-            </p>
-        </main>
-    </aside>
-   
         `;
     }
 }

@@ -256,6 +256,11 @@ aside.menuH {
     z-index: 5;
 }
 
+aside.menuH ul li a {
+    text-decoration: none;
+    color: black;
+}
+
 @keyframes menuSize {
     0% {
         height: 0;
@@ -448,6 +453,11 @@ div.menuShort li {
     border: 2px solid black;
     transition: 0.4s;
     background-color: white;
+}
+
+div.menuShort li a {
+    text-decoration: none;
+    color: black;
 }
 
 div.menuShort li:hover {
@@ -862,16 +872,17 @@ div.timeBlock {
 }
 
 aside.timeLaps {
-    position: relative;
+    position: absolute;
+    display: none;
     width: 20%;
     height: 600px;
     left: 80%;
-    top: 100px;
+    top: 360px;
     z-index: 3;
     display: none;
 }
 
-aside.timeLaps {
+aside.timeLaps.active {
     display: block;
     z-index: 1;
 }
@@ -1284,17 +1295,17 @@ div.bossChangeBtn ul li {
     }
 }
 
-div.bossChangeBtn {
+div.bossChangeBtn.active {
     display: block;
 }
 
-div.bossChangeBtn.scroll {
+div.bossChangeBtn.active.scroll {
     position: fixed;
     top: 105px;
     opacity: 1;
 }
 
-div.bossCh.scroll.back {
+div.bossChangeBtn.active.scroll.back {
     animation: btnmoveF 0.4s ease forwards;
 }
 
@@ -1537,13 +1548,13 @@ div.map iframe {
 }
 
 
-div.map.active {
+div.map {
     width: 35%;
     height: 450px;
     animation: contact1 1.2s linear forwards;
 }
 
-div.map.active iframe {
+div.map iframe {
     width: 100%;
     height: 100%;
     animation: contact1 1.2s linear forwards;

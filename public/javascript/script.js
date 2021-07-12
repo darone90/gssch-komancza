@@ -6,7 +6,7 @@ const scrollContent = (e)=> {
         behavior: 'smooth'
     });
 }
-//////////////////////////////////////shop view handl//////////////////////////////////////
+//////////////////////////////////////events for dynamic elements//////////////////////////////////////
 function hasClass(elem, className) {
     return elem.classList.contains(className);
 };
@@ -31,18 +31,21 @@ document.addEventListener('click', function (e) {
 }, false);
 
 
-
 ////// main nav menu handler //////////////////////////////////////////////////////////////
 console.log('script menu connected');
 const mainMenuBtns = [...document.querySelectorAll('*>nav.main>ul>li')];
 const scrollValue = [260, 260, 260, 260, 340, 260, 350, 400];
 const menuLong = document.querySelector('.menuL');
+const timeLaps = document.querySelector('.timeLaps');
+const bossMenu = document.querySelector('.bossChangeBtn');
 
 const mainMenuClassCleaner = ()=> {
     mainMenuBtns.forEach((btn)=> {
         btn.classList.remove('active');
         menuLong.classList.remove('active');
-    })
+        timeLaps.classList.remove('active');
+        bossMenu.classList.remove('active');
+    });
 };
 
 const btnClassToggle = (btn, index)=> {
@@ -56,14 +59,26 @@ mainMenuBtns.forEach((btn, index)=> {
 });
 
 const navigation = document.querySelector('.main');
+const shopsnavigation = document.querySelector('.menuH');
+const aboutNavigation = document.querySelector('.menuShort');
 
 const navActive = () => {
     const scrollY = window.scrollY;
     const activHight = 260
                         
     scrollY > activHight ? navigation.classList.add('active'): navigation.classList.remove('active');
-}
+    scrollY > activHight ? shopsnavigation.classList.add('scrolling'):shopsnavigation.classList.remove('scrolling');
+    scrollY > activHight ? aboutNavigation.classList.add('scrolling'):aboutNavigation.classList.remove('scrolling');
+    scrollY > activHight ? timeLaps.classList.add('scroll'): timeLaps.classList.remove('scroll');
+    scrollY > activHight ? bossMenu.classList.add('scroll'): bossMenu.classList.remove('scroll');
+};
 
+mainMenuBtns[3].addEventListener('click', ()=> {
+    timeLaps.classList.add('active');
+});
+mainMenuBtns[6].addEventListener('click', ()=> {
+    bossMenu.classList.add('active');
+})
 ///////// aditional menu handler/////////////////////////////////////////////////////////////
 
 const shopsBtn = mainMenuBtns[1];
@@ -174,15 +189,147 @@ const menuLActive = () => {
 };
 
 const shopsBtns = document.querySelectorAll('.menuL>ul>li');
+const shopsBtnsMenuH = document.querySelectorAll('.menuH>ul>li');
+const aboutBtns = document.querySelectorAll('.menuShort>ul>li');
 
+const lCleaner = ()=> {
+    shopsBtns.forEach((e)=> {
+        e.classList.remove('active');
+    })
+}
+
+const activeShopsClean = () => {
+    const shops = document.querySelectorAll('div.shops');
+    shops.forEach(shop => shop.classList.remove('long') );
+};
+
+shopsBtnsMenuH.forEach((btn, index)=> {
+    btn.addEventListener('click', ()=> {
+        setTimeout(()=> {
+        menuRemover();
+        mainMenuClassCleaner();
+        menuLong.classList.add('active');
+        mainMenuBtns[1].classList.add('active');
+        const shopHigh = document.querySelector('div.shops').clientHeight+125;
+        scrollContent(shopHigh*(index)+ 220);
+        },300);
+    });
+});
+
+aboutBtns.forEach((btn, index)=> {
+    btn.addEventListener('click', ()=> {
+        setTimeout(()=> {
+        menuRemover1();
+        mainMenuClassCleaner();
+        timeLaps.classList.add('active');
+        mainMenuBtns[3].classList.add('active');
+        switch(index) {
+            case 0 : scrollContent(270);
+            break;
+            case 1 : scrollContent(1035);
+            break;
+            case 2 : scrollContent(1760);
+            break;
+            case 3 : scrollContent(2310);
+            break;
+            case 4 : scrollContent(2931);
+            break;
+        };
+        
+        },300);
+    });
+});
 
 shopsBtns.forEach( (btn, index) => {
         btn.addEventListener('click', ()=> {
+            activeShopsClean();
             const shopHigh = document.querySelector('div.shops').clientHeight+125;
             scrollContent(shopHigh*(index)+ 280);
-        })
+        });
 } );
 
+const shopsMenuBtnsActiv = () => {
+    const scrollY = window.scrollY;
+    const shopHigh = document.querySelectorAll('div.shops');
+    let num = 0;
+    let num2 = 0;
+    let num3 = 0;
+    let num4 = 0;
+    const indexArray = [];
+    shopHigh.forEach((shop, index)=> shop.classList.contains('long')? indexArray.push(index):null);
+    for(index of indexArray) {
+        switch(index) {
+            case 0 : num = 380; break;
+            case 1 : num2 = 380; break;
+            case 2 : num3 = 380; break;
+            case 3 : num4 = 380; break;
+        }
+    }
+    if (scrollY < 260) {
+        lCleaner();
+    }
+    else if(scrollY >= 260 && scrollY < 612 + num) {
+        lCleaner();
+        shopsBtns[0].classList.add('active');
+    }
+    else if(scrollY >= 612 + num  && scrollY < 1230 + num + num2 ){
+        lCleaner();
+        shopsBtns[1].classList.add('active');
+    }
+    else if(scrollY >= 1230 + num + num2 && scrollY < 1836 + num + num2 + num3){
+        lCleaner();
+        shopsBtns[2].classList.add('active');
+    }
+    else if(scrollY >= 1836 + num + num2 + num3 && scrollY < 2550 + num + num2 + num3 + num4){
+        lCleaner();
+        shopsBtns[3].classList.add('active');
+    }
+    else {
+        lCleaner();
+        shopsBtns[4].classList.add('active');
+    }
+};
+const circles = document.querySelectorAll('.circle');
+const circlesRemover = () => {
+    circles.forEach(circle => circle.classList.remove('active'));
+}
+const circleActiv = (i) => {
+    circles[i].classList.add('active');
+}
+
+const timeLapsCirlclesActiv = () => {
+    const scrollY = window.scrollY;
+    if (scrollY < 255) {
+        circlesRemover();
+    }
+    else if (scrollY >= 255 && scrollY < 1035) {
+        circlesRemover();
+        circleActiv(0);
+    }
+    else if (scrollY >= 1035 && scrollY < 1760) {
+        circlesRemover();
+        circleActiv(1);
+    }
+    else if (scrollY >= 1760 && scrollY < 2310) {
+        circlesRemover();
+        circleActiv(2);
+    }
+    else if (scrollY >= 2310 && scrollY < 2931) {
+        circlesRemover();
+        circleActiv(3);
+    } 
+    else {
+        circlesRemover();
+        circleActiv(4);
+    }
+
+}
+
+const circleScrollArr = [265, 1037, 1765, 2315, 2935]
+
+circles.forEach((circle, index) => circle.addEventListener('click', ()=> {
+    scrollContent(circleScrollArr[index]);
+}));
 //////////////////////////////////////////move up btn////////////////////////////////////////////
 
 const moveUpBtn = document.querySelector('.moveUp');
@@ -242,9 +389,8 @@ window.addEventListener('scroll', () => {
     moveUpActive();
     navActive();
     menuLActive();
+    shopsMenuBtnsActiv();
+    timeLapsCirlclesActiv();
 })
-
-
-
 
  

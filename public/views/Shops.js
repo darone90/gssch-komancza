@@ -18,9 +18,9 @@ export default class extends viewModel {
             <div class='moreBtn a'><i class="a fas fa-angle-double-up"></i></div>
             <div class='extends'>
                 <div class='adreses'></div>
-                <div class='map'></div>
+                <div class='shopmap'></div>
                 <div class='adreses'></div>
-                <div class='map'></div>
+                <div class='shopmap'></div>
             </div>
         </div>
         <div class="cb shops">
@@ -30,9 +30,9 @@ export default class extends viewModel {
             <div class='moreBtn b'><i class="b fas fa-angle-double-up"></i></div>
             <div class='extends'>
                 <div class='adreses'></div>
-                <div class='map'></div>
+                <div class='shopmap'></div>
                 <div class='adreses'></div>
-                <div class='map'></div>
+                <div class='shopmap'></div>
             </div>
         </div>
         <div class="cc shops">
@@ -42,7 +42,7 @@ export default class extends viewModel {
             <div class='moreBtn c'><i class="c fas fa-angle-double-up"></i></div>
             <div class='extends'>
                 <div class='adreses'></div>
-                <div class='map'></div>
+                <div class='shopmap'></div>
             </div>
         </div>
         <div class="cd shops">
@@ -52,7 +52,7 @@ export default class extends viewModel {
             <div class='moreBtn d'><i class="d fas fa-angle-double-up"></i></div>
             <div class='extends'>
                 <div class='adreses'></div>
-                <div class='map'></div>
+                <div class='shopmap'></div>
             </div>
         </div>
         <div class="shops">
