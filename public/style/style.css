@@ -311,10 +311,16 @@ aside.menuH ul {
 
 
 aside.menuH li {
-    padding: 5px;
     border: 2px solid black;
     transition: 0.5s;
     background-color: white;
+}
+
+aside.menuH li a {
+    display: block;
+    padding: 5px;
+    width: 100%;
+    height: 100%;
 }
 
 aside.menuH li:nth-child(2) {
@@ -449,10 +455,16 @@ div.menuShort.active1 ul {
 }
 
 div.menuShort li {
-    padding: 5px;
     border: 2px solid black;
     transition: 0.4s;
     background-color: white;
+}
+
+div.menuShort li a {
+    display: block;
+    padding: 5px;
+    width: 100%;
+    height: 100%;
 }
 
 div.menuShort li a {
@@ -1368,9 +1380,14 @@ div.bossChangeBtn.scroll.hide.show {
     animation: btnmoveF 0.4s ease forwards;
 }
 
+div.bossChangeBtn.scroll.hide.show div.moveBtn i {
+    transform: rotate(180deg) translate(50%, 50%);
+    display: block;
+    color: white;
+}
+
 div.bossChangeBtn.scroll.hide.show div.moveBtn {
-    background-color: rgba(256, 256, 256, 1);
-    z-index: 3;
+    background-color: cornflowerblue;
 }
 
 div.bossChangeBtn ul li:nth-child(1) {

@@ -210,7 +210,7 @@ shopsBtnsMenuH.forEach((btn, index)=> {
         mainMenuClassCleaner();
         menuLong.classList.add('active');
         mainMenuBtns[1].classList.add('active');
-        const shopHigh = document.querySelector('div.shops').clientHeight+125;
+        const shopHigh = 645
         scrollContent(shopHigh*(index)+ 220);
         },300);
     });
@@ -330,6 +330,63 @@ const circleScrollArr = [265, 1037, 1765, 2315, 2935]
 circles.forEach((circle, index) => circle.addEventListener('click', ()=> {
     scrollContent(circleScrollArr[index]);
 }));
+
+const moveBtn = document.querySelector('.moveBtn');
+const bossMenuBtns = document.querySelectorAll('.bossChangeBtn>ul>li');
+
+const bossMenuBtnshandler = () => {
+    const scrollY = window.scrollY;
+    if(scrollY < 255) {
+        bossMenuBtns.forEach(btn=> btn.classList.remove('active'));
+    }
+    else if(scrollY >= 255 && scrollY < 1340) {
+        bossMenuBtns[0].classList.add('active');
+        bossMenuBtns[1].classList.remove('active');
+    }
+    else {
+        bossMenuBtns[1].classList.add('active');
+        bossMenuBtns[0].classList.remove('active');
+    }
+}
+
+bossMenuBtns.forEach((btn,i)=> {
+    btn.addEventListener('click',() => {
+        scrollContent(i===0?260:1340);
+    } );
+});
+
+
+const bossMenuHandler = () => {
+    const scrollY = window.scrollY;
+    let flag = false;
+    if(scrollY <= 30) {
+        bossMenu.classList.add('show');
+        bossMenu.classList.remove('hide');
+
+    }
+    else if (scrollY < 550 && flag === true) {
+        bossMenu.classList.add('back');
+        flag = false;
+        const r = document.querySelector('.moveBtn i');
+        const a = document.createElement('i');
+        a.classList.add('fas');
+        a.classList.add('fa-chevron-left')
+        moveBtn.replaceChild(a,r);
+    }
+    else if (scrollY < 351) {
+        bossMenu.classList.remove('back');
+    }
+    else {
+        bossMenu.classList.remove('show');
+        bossMenu.classList.add('hide');
+        flag = true;
+    }
+}
+
+moveBtn.addEventListener('click', ()=> {
+    bossMenu.classList.toggle('show');
+
+})
 //////////////////////////////////////////move up btn////////////////////////////////////////////
 
 const moveUpBtn = document.querySelector('.moveUp');
@@ -391,6 +448,8 @@ window.addEventListener('scroll', () => {
     menuLActive();
     shopsMenuBtnsActiv();
     timeLapsCirlclesActiv();
+    bossMenuHandler();
+    bossMenuBtnshandler();
 })
 
  
