@@ -403,40 +403,98 @@ const moveUpActive = () => {
 
 /////////////////////////////////////banner///////////////////////////////////////////////////////
 
-const bannerImageBase = ['banner 3.jpg','banner 4.jpg','banner 5.jpg','banner 2.jpg','banner 6.jpg','banner 1.jpg'];
+const bannerImageBase = ['banner 2.jpg','banner 3.jpg','banner 4.jpg','banner 5.jpg','banner 6.jpg','banner 1.jpg'];
 const bannerTitleBase = ['Piekarnia','Sklep Budowlany','Delikatesy Centrum'];
+const slogans = ['Codziennie świerze pieczywo...', 'Niezbędne materiały blisko ciebie...', 'Najlepszy sklep spżywczy w twojej okolicy'];
 const bannerLogoBase = ['logo 2.png','logo 3.jpg','logo 1.jpg'];
 
-const imgBanner = document.querySelector('.banner img');
-const titleBanner = document.querySelector('.banner h1');
-const logoBanner = document.querySelector('.banner div');
-
+const banner = document.querySelector('.banner');
 let bannerIndex = 0;
-
-const changeBannerImage = ()=> {
-    imgBanner.src = './public/images/'+bannerImageBase[bannerIndex];
-
-    bannerIndex++;
-    if(bannerIndex === bannerImageBase.length) {
-        bannerIndex = 0;
-    }
-}
-changeBannerImage();
-setInterval(changeBannerImage,10000);
-
 let logoIndex = 0;
 
+const bannerRemover = ()=> {
+        banner.removeChild(document.querySelector('.banner img'));
+};
+
+const bannerTitleRemover = () => {
+    banner.removeChild(document.querySelector('.bannerLogo'));
+    banner.removeChild(document.querySelector('.banner h1'));
+    banner.removeChild(document.querySelector('.banner h2'));
+};
+
 const changeBannerLogo = ()=> {
-    titleBanner.textContent = bannerTitleBase[logoIndex];
-    logoBanner.style.backgroundImage = "url('./public/images/"+bannerLogoBase[logoIndex]+"')";
+    const bannerLogo = document.createElement('div');
+    bannerLogo.classList.add('bannerLogo');
+    banner.appendChild(bannerLogo);
+    bannerLogo.style.backgroundImage = "url('./public/images/"+bannerLogoBase[logoIndex]+"')";
+
+
+    const bannerTitle = document.createElement('h1');
+    banner.appendChild(bannerTitle);
+    bannerTitle.textContent = bannerTitleBase[logoIndex];
+
+    const bannerDes = document.createElement('h2');
+    banner.appendChild(bannerDes);
+    bannerDes.textContent = slogans[logoIndex];
+    
     logoIndex++;
 
     if (logoIndex >= 3) {
         logoIndex = 0;
     };
 };
-changeBannerLogo();
-setInterval(changeBannerLogo,20000);
+
+const changeBannerImage = ()=> {
+    
+    const img = document.createElement('img');
+    banner.appendChild(img);
+    img.src = './public/images/'+bannerImageBase[bannerIndex];
+    
+    bannerIndex++;
+    if(bannerIndex === bannerImageBase.length) {
+        bannerIndex = 0;
+    }
+    
+}
+
+
+setTimeout(()=> {
+    bannerRemover();
+    changeBannerImage();
+},10000);
+
+    changeBannerImage();
+    changeBannerLogo();
+setInterval(()=> {
+    bannerRemover();
+    changeBannerImage()
+    bannerTitleRemover();
+    changeBannerLogo();
+    setTimeout(()=>{
+        bannerRemover();
+        changeBannerImage()
+    },10000);
+},20000);
+///////////////////////////////////////////site loading/////////////////////////////////////////////
+
+const loadText = document.querySelector('.load h1');
+const loadDots = ['Ładowanie.', 'Ładowanie..','Ładowanie...'];
+let dotIndex = 0;
+
+function dotChange () {
+    loadText.innerText = loadDots[dotIndex];
+    dotIndex++;
+    if(dotIndex > 2) {
+        dotIndex = 0;
+    }
+}
+setInterval(dotChange, 500);
+
+function loadEnd () {
+    document.querySelector('div.load').classList.remove('visible');
+}
+
+window.onload = loadEnd();
 
 
 

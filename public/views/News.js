@@ -13,7 +13,7 @@ export default class extends viewModel {
             <div class='infoLeft'>
                 <div class='description'>
                     <h1 class='date'>5 Listopada 2020</h1>
-                    <h2 class='title'>Nagroda ZPP  DOBRA FIRMA</h2>
+                    <h2 class='title'>Nagroda Z P P  Dobra Firma</h2>
                     <h3 class='text'>5 listopada 2020 roku odbyła się uroczysta Gala rozdania nagród Dobra Firma województwa
                      Podkarpackiego organizowana przez Związek Przedsiębiorców i Pracodawców. Impreza odbyłą się 
                      patronatem Wojewody Urzędu Marszałkowskiego oraz Prezydenta Miasta Rzeszów.
