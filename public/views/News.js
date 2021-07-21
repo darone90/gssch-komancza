@@ -24,7 +24,7 @@ export default class extends viewModel {
                 <div class='imageInfo'>
                 <img src="./public/images/DFnagroda.png" alt="Nagroda w konkursie Dobra Firma">
                 </div>
-                <button>Czytaj więcej</button>
+                <button class='moreNews' data-index='1'><a href="/news" data-link>Czytaj więcej</a></button>
             </div>
             <div class='infoRight'>
                 <div class='description'>
@@ -42,7 +42,7 @@ export default class extends viewModel {
                 <div class='imageInfo'>
                 <img src="./public/images/fotowoltaika.png" alt="instalacja fotowoltaiczna">
                 </div>
-                <button>Czytaj więcej</button>
+                <button class='moreNews' data-index='2'><a href="/news" data-link>Czytaj więcej</a></button>
             </div>
         </div>
     </section>

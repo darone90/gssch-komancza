@@ -289,13 +289,19 @@ aside.menuH {
     display: none;
     width: calc(100% / 8);
     max-width: calc(1530px / 8);
-    left: 30.5%;
-    transform: translateX(-149%);
+    left: calc(100% / 8);
     top: 293px;
-    margin: 30px 10px;
+    margin: 30px 0px;
     z-index: 5;
 }
 
+@media (min-width: 1560px) {
+    aside.menuH {
+        left: calc((100vw - 1530px) / 2 + 1530px / 8);
+        transform: translateX(-4%);
+
+    }
+}
 aside.menuH ul li a {
     text-decoration: none;
     color: black;
@@ -454,10 +460,17 @@ div.menuShort {
     display: none;
     width: calc(100% / 8);
     max-width: calc(1530px / 8);
-    left: 46.7%;
-    transform: translateX(-73%);
+    left: calc((100% / 8) * 3);
     top: 323px;
     z-index: 11;
+}
+
+@media (min-width: 1560px) {
+    div.menuShort {
+        left: calc((100vw - 1530px) / 2 + 1530px / 8 * 3);
+        transform: translateX(-4%);
+
+    }
 }
 
 @keyframes menuSizeShort {
@@ -567,9 +580,8 @@ div.news {
 div.infoLeft,
 div.infoRight {
     display: block;
-    width: 60%;
+    width: 65%;
     min-width: 850px;
-    height: auto;
     background-color: rgba(256, 256, 256, 0.5);
     z-index: 0;
     margin: 80px auto;
@@ -577,12 +589,12 @@ div.infoRight {
     padding: 10px;
     border-bottom: 4px solid black;
     opacity: 0;
+    height: 340px;
 }
 
 div.infoRight {
-    height: 240px;
     background-color: rgba(256, 256, 256, 0.5);
-    left: 150px;
+    left: 250px;
 }
 
 section.content div div.infoLeft {
@@ -630,7 +642,7 @@ section.content div div.infoRight {
 }
 div.infoLeft div.description,
 div.infoRight div.description {
-    height: 167px;
+    height: 257px;
     width: 60%;
     overflow: hidden;
     border-bottom: 2px solid black;
@@ -655,8 +667,8 @@ div.infoRight h1 {
     display: block;
     position: relative;
     font-family: 'roboto', serif;
-    font-size: 20px;
-    margin: 5px 5px 10px 5px;
+    font-size: 26px;
+    margin: 5px 5px 30px 5px;
 }
 
 div.infoLeft h2,
@@ -664,9 +676,9 @@ div.infoRight h2 {
     display: block;
     position: relative;
     font-family: 'Playfair Display', serif;
-    font-size: 25px;
+    font-size: 30px;
     text-decoration: bold;
-    margin: 0 0 10px 5px;
+    margin: 0 0 20px 5px;
 }
 
 div.infoLeft h3,
@@ -681,7 +693,7 @@ div.infoRight h3 {
 div.infoLeft div.imageInfo,
 div.infoRight div.imageInfo {
     width: 250px;
-    height: 220px;
+    height: 257px;
     position: absolute;
     right: 0;
     top: 0;
@@ -690,11 +702,13 @@ div.infoRight div.imageInfo {
 
 .infoLeft img {
     height: 100%;
+    max-width: 100%;
 }
 
 .infoRight img {
     height: 100%;
-    width: 100%;
+    max-width: 100%;
+
 }
 
 div.infoRight div.imageInfo {
@@ -1781,4 +1795,73 @@ div.bar:nth-child(3) {
     left: 45%;
     animation: bardance 1.5s ease infinite;
     animation-delay: 2s;
+}
+/*/////////////////////////////////Popup////////////////////popup///////////////////////////*/
+
+div.popup {
+    width: 100vw;
+    height: 200vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 5px solid black;
+    box-shadow: 5px 10px 10px black;
+}
+
+div.close {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: orangered;
+    position: absolute;
+    top: 370px;
+    right: 70px;
+    border: 1px solid black;
+    transition: 0.4s;
+}
+
+div.close a {
+    width: 100%;
+    height: 100%;
+    line-height: 50px;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+div.close:hover {
+    transform: rotate(360deg) scale(1.1);
+    cursor: pointer;
+}
+
+button.next,
+button.perview {
+    width: 150px;
+    height: 50px;
+    background-color: orangered;
+    color: white;
+    font-family: sans-serif;
+    position: absolute;
+    top: 85vh;
+    line-height: 50px;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 5%;
+    transition: 0.4s;
+}
+
+button.next {
+    right: 50px;
+}
+
+button.perview {
+    left: 50px;
+}
+
+button.next:hover,
+button.perview:hover {
+    cursor: pointer;
+    transform: scale(1.1);
 }

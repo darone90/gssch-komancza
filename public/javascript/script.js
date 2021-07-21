@@ -28,6 +28,7 @@ document.addEventListener('click', function (e) {
         document.querySelector('.d').classList.toggle('active');
         document.querySelector('.cd').classList.toggle('long');
     }
+    
 }, false);
 
 
@@ -495,8 +496,6 @@ function loadEnd () {
 }
 
 window.onload = loadEnd();
-
-
 
 //////////////////////////////////////scroll events//////////////////////////////////////////////
 

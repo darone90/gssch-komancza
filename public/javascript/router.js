@@ -6,6 +6,7 @@ import Management from "../views/Management.js";
 import Contact from "../views/Contact.js";
 import Bakery from "../views/Bakery.js";
 import Announcements from "../views/Announcements.js";
+import Popup from "../views/Popup.js";
 
 const navigateTo = url => {
     history.pushState(null, null, url);
@@ -15,6 +16,7 @@ const navigateTo = url => {
 const router = async () => {
     const routes = [
         {path: '/', view: News},
+        {path: '/news', view: Popup},
         {path: '/shops', view: Shops},
         {path: '/bakery', view: Bakery},
         {path: '/about', view: About},
