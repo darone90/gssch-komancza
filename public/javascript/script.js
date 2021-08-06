@@ -28,6 +28,15 @@ document.addEventListener('click', function (e) {
         document.querySelector('.d').classList.toggle('active');
         document.querySelector('.cd').classList.toggle('long');
     }
+   else if (hasClass(e.target, 'moreNews')) {
+       if(e.target.dataset.index === '1') {
+           document.querySelector('div.popup').classList.add('active');
+           document.querySelector('div.infodots div').classList.add('active');
+       }
+   }
+   else if (hasClass(e.target, 'close')) {
+        document.querySelector('div.popup').classList.remove('active')
+   }
     
 }, false);
 
@@ -38,14 +47,14 @@ const mainMenuBtns = [...document.querySelectorAll('*>nav.main>ul>li')];
 const scrollValue = [260, 260, 260, 260, 340, 260, 350, 400];
 const menuLong = document.querySelector('.menuL');
 const timeLaps = document.querySelector('.timeLaps');
-const bossMenu = document.querySelector('.bossChangeBtn');
+
 
 const mainMenuClassCleaner = ()=> {
     mainMenuBtns.forEach((btn)=> {
         btn.classList.remove('active');
         menuLong.classList.remove('active');
         timeLaps.classList.remove('active');
-        bossMenu.classList.remove('active');
+
     });
 };
 
@@ -71,15 +80,12 @@ const navActive = () => {
     scrollY > activHight ? shopsnavigation.classList.add('scrolling'):shopsnavigation.classList.remove('scrolling');
     scrollY > activHight ? aboutNavigation.classList.add('scrolling'):aboutNavigation.classList.remove('scrolling');
     scrollY > activHight ? timeLaps.classList.add('scroll'): timeLaps.classList.remove('scroll');
-    scrollY > activHight ? bossMenu.classList.add('scroll'): bossMenu.classList.remove('scroll');
 };
 
 mainMenuBtns[3].addEventListener('click', ()=> {
     timeLaps.classList.add('active');
 });
-mainMenuBtns[6].addEventListener('click', ()=> {
-    bossMenu.classList.add('active');
-})
+
 ///////// aditional menu handler/////////////////////////////////////////////////////////////
 
 const shopsBtn = mainMenuBtns[1];
@@ -333,61 +339,9 @@ circles.forEach((circle, index) => circle.addEventListener('click', ()=> {
 }));
 
 const moveBtn = document.querySelector('.moveBtn');
-const bossMenuBtns = document.querySelectorAll('.bossChangeBtn>ul>li');
-
-const bossMenuBtnshandler = () => {
-    const scrollY = window.scrollY;
-    if(scrollY < 255) {
-        bossMenuBtns.forEach(btn=> btn.classList.remove('active'));
-    }
-    else if(scrollY >= 255 && scrollY < 1340) {
-        bossMenuBtns[0].classList.add('active');
-        bossMenuBtns[1].classList.remove('active');
-    }
-    else {
-        bossMenuBtns[1].classList.add('active');
-        bossMenuBtns[0].classList.remove('active');
-    }
-}
-
-bossMenuBtns.forEach((btn,i)=> {
-    btn.addEventListener('click',() => {
-        scrollContent(i===0?260:1340);
-    } );
-});
 
 
-const bossMenuHandler = () => {
-    const scrollY = window.scrollY;
-    let flag = false;
-    if(scrollY <= 30) {
-        bossMenu.classList.add('show');
-        bossMenu.classList.remove('hide');
 
-    }
-    else if (scrollY < 550 && flag === true) {
-        bossMenu.classList.add('back');
-        flag = false;
-        const r = document.querySelector('.moveBtn i');
-        const a = document.createElement('i');
-        a.classList.add('fas');
-        a.classList.add('fa-chevron-left')
-        moveBtn.replaceChild(a,r);
-    }
-    else if (scrollY < 351) {
-        bossMenu.classList.remove('back');
-    }
-    else {
-        bossMenu.classList.remove('show');
-        bossMenu.classList.add('hide');
-        flag = true;
-    }
-}
-
-moveBtn.addEventListener('click', ()=> {
-    bossMenu.classList.toggle('show');
-
-})
 //////////////////////////////////////////move up btn////////////////////////////////////////////
 
 const moveUpBtn = document.querySelector('.moveUp');
@@ -505,8 +459,6 @@ window.addEventListener('scroll', () => {
     menuLActive();
     shopsMenuBtnsActiv();
     timeLapsCirlclesActiv();
-    bossMenuHandler();
-    bossMenuBtnshandler();
 })
 
  

@@ -19,13 +19,13 @@ export default class extends viewModel {
                 Narodowej w Komańczy. Głównym Księgowym Spółdzielni został Michał Krasulak z Turzańska, członkami 5-cio
                 osobowego Zarządu zostali: Eliasz Czurma, Stanisław Kasiewicz, Dołżycki Tymoteusz i Władysław Zieliński –
                 wszyscy z Komańczy. Powołano też kilku osobową Radę Nadzorczą.</p>
-                <div class='beginFoto'><i>Przykładowa fotografia</i></div>
+                <div class='beginFoto'><i>ks. S. Porębski założyciel Spółdzielni </i></div>
                 <p>Biura Spółdzielni usytuowane były początkowo w dzierżawionych budynkach prywatnych.
                 Podobnie nowo powstałe sklepy i gospoda „ Myśliwska „. Spółdzielnia wypełniła pustkę po przedwojennych
                 sklepach, najczęściej żydowskich, zaopatrując w podstawowe artykuły żywnościowe (sól, cukier, mąki, kasze,
                 tłuszcze i marmolady oraz art.przemysłowe: węgiel, koks, naftę, benzynę i oleje silnikowe - robotników
                 sezonowych Nadleśnictwa i mieszkańców niemal całej Gminy.</p>
-                
+                <div class='beginFoto2'><i>Wagonik handlowy</i></div> <br>
                 <p> W bieszczadzkich warunkach start spółdzielni odbywał się w o wiele w trudniejszych sytuacjach niż w
                 innych regionach kraju. Pierwsze towary zakupione zostały za pieniądze pożyczone od Parafii i od paru osób
                 prywatnych. Tylko zaangażowanie i duże poświęcenie jej pierwszych zarządów i członków pozwoliło przetrwać a następnie stopniowo rozwijać się spółdzielni. Ludzie pracowali często za minimalne wynagrodzenie lub tzw. deputat żywnościowy.
@@ -34,7 +34,8 @@ export default class extends viewModel {
                 Michowa i Nowy Łupków odbywało się za pomocą sprzedaży objazdowej z wagonika (tzw. KDX) kolejki leśnej i
                 wynajętej drezyny z OTL Sanok. Zakładano też stacjonarne punkty sprzedaży tzw. PSP. Zaopatrzenie całej
                 ludności wymagało dużo wysiłku organizacyjnego, a ze względu na koszty obsługi handlowej drugiej co do
-                wielkości obszarowej gminy w kraju, spółdzielnia nie osiągała znaczących zysków i często była dotowana przez nadrzędne władze spółdzielczości samopomocowej</p></main>
+                wielkości obszarowej gminy w kraju, spółdzielnia nie osiągała znaczących zysków i często była dotowana przez nadrzędne władze spółdzielczości samopomocowej</p>
+                </main>
             </div>
             <div class="past"><main><h1>W latach 1961-1980...</h1>
                 <p>spółdzielnia korzystając z tzw. Uchwały Bieszczadzkiej osiągnęła najwyższy
@@ -44,7 +45,7 @@ export default class extends viewModel {
                 Obsługiwała znacznie większą ilość ludności ze względu na rozwijające się PGR-y i Zakłady Karne. Dysponowała:</p>
                 <p> 1 samochodem towarowo osobowym, 5 samochodami dostawczymi w tym Robur przystosowany do transportu pieczywa, 2 samochodami
                 ciężarowymi, koparką, ciągnikiem z pełnym osprzętem do prac załadunkowych i rozładunkowych oraz do prac ziemnych.</p>
-                <div class="pastFoto"><i>Przykładowa fotografia</i></div>
+                <div class="pastFoto"><i>Restauracja "Pod Kominkiem"</i></div>
                 <p>Sieć handlową stanowiły: sklepy spożywczo-przemysłowe lub tzw.PSP w każdej miejscowości gminy Komańcza i 1
                 sklep z Zahutyniu (gmina Zagórz), działalność gastronomiczną prowadzono w: restauracji „ pod Kominkiem „ w
                 Komańczy, barze „ Pod Sosną „ w Nowym Łupkowie, barze „ Wisłok „ w Wisłoku Wielkim i bufecie pracowniczym
@@ -80,7 +81,7 @@ export default class extends viewModel {
                     potknięć była systematycznie wdrażana i to otworzyło dostęp do środków unijnych. Zmodernizowano część sieci
                     handlowej i piekarnię. Nawiązano ścisłą współpracę franczyzową z ogólnopolską siecią handlową „ EUROCASH”
                     tworząc sklepy o nazwie „Delikatesy Centrum” w Rzepedzi i Komańczy co ustabilizowało rentowność spółdzielni.</p>
-                    <div class='past3Foto'><i>Przykładowa fotografia</i></div>
+                    
                 <p>Z inicjatywy Władz samorządowych miasta i Gminy Medzilaborce ze strony słowackiej i Gminy Komańcza
                     z polskiej strony, spóldzielnia uruchomiła pod patronatem i przy pomocy Eurocashu duży sklep „ Delikatesy
                     Centrum „ w Medzilaborcach. Inicjatywa ta spotkała się jednak z ogromnym sprzeciwem miejscowych posiadaczy

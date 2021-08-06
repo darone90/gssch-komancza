@@ -24,7 +24,7 @@ export default class extends viewModel {
                 <div class='imageInfo'>
                 <img src="./public/images/DFnagroda.png" alt="Nagroda w konkursie Dobra Firma">
                 </div>
-                <button class='moreNews' data-index='1'><a href="/news" data-link>Czytaj więcej</a></button>
+                <button class='moreNews' data-index='1'>Czytaj więcej</button>
             </div>
             <div class='infoRight'>
                 <div class='description'>
@@ -42,9 +42,38 @@ export default class extends viewModel {
                 <div class='imageInfo'>
                 <img src="./public/images/fotowoltaika.png" alt="instalacja fotowoltaiczna">
                 </div>
-                <button class='moreNews' data-index='2'><a href="/news" data-link>Czytaj więcej</a></button>
+                <button class='moreNews' data-index='2'>Czytaj więcej</button>
             </div>
         </div>
+        <div class='popup'>
+            <article class='fullsize'>
+                <h1 class='date'>5 Listopada 2020</h1>
+                <h2 class='title'>Nagroda Z P P  Dobra Firma</h2>
+                <p class='content'>5 listopada 2020 roku odbyła się uroczysta Gala rozdania nagród Dobra Firma województwa
+                Podkarpackiego organizowana przez Związek Przedsiębiorców i Pracodawców. Impreza odbyłą się 
+                patronatem Wojewody Urzędu Marszałkowskiego oraz Prezydenta Miasta Rzeszów.
+                </p>
+                <p class='content'>Nasza Spółdzielnia znalazła się w elitarnym gronie zwycięzców firm w ogólnopolskim rankingu oraz
+                została laureatem konkursu jako najbardziej efektywna Firma Województwa Podkarpackiego w kategorii 
+                Mała Firma</p>
+                <div class='fullSizeImg' data-id='1'>
+                    <img src='./public/images/DFnagroda.png'>
+                </div>
+            </article>
+            
+            <button class='next'>Następny >></button>
+            <button class='perview'><< Poprzedni</button>
+            <div class='infodots'>
+                <div><div></div></div>
+                <div><div></div></div>
+            </div>
+            <div class='close'>X</div>
+            <div class='imgpopup'>
+                <div class='close'><a>X</a></div>
+                <img src='./public/images/fullsize/Nagroda_dobra_firma.jpg'>
+            </div>
+        </div>
+       
     </section>
         `;
     }

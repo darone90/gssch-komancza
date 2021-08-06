@@ -8,9 +8,8 @@ export default class extends viewModel {
 
     async getHtml() {
         return `
-        <section>
-        <h1>Strona w budowie</h1>
-        <h2>Comming soon</h2>
+        <section class='anno'>
+        <h1>Aktualnie brak ogłoszeń</h1>
         </section>
         `;
     }
