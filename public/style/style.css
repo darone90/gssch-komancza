@@ -206,7 +206,7 @@ nav.main {
 
 nav.main.active {
     position: fixed;
-    z-index: 3;
+    z-index: 33;
     transform: translateX(-50%);
     left: 50%;
     background-color: darkkhaki;
@@ -267,7 +267,7 @@ footer {
     height: 20px;
     font-family: 'roboto', serif;
     color: white;
-    z-index: 2;
+    z-index: 222;
 }
 
 footer h1 {
@@ -806,10 +806,13 @@ div.shopBanner {
     display: block;
     width: 410px;
     height: 370px;
-    background-color: springgreen;
     margin: 10px;
     left: 61%;
     top: -390px;
+}
+
+div.shopBanner.bakery {
+    background-image: url(../images/fullsize/bagiet.jpg);
 }
 
 div.shops h1 {
@@ -906,16 +909,90 @@ div.moreBtn.active {
     }
 }
 
+div.shops div.extends p {
+    display: none;
+    font-family: 'roboto', sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    opacity: 0;
+    animation: opac 2s ease forwards;
+}
 div.shops.long div.extends {
     position: relative;
     display: block;
     width: 88%;
     animation-delay: 0.5s;
     animation: ext 0.5s ease forwards;
-    background-color: violet;
     z-index: 5;
     left: 80px;
     top: -390px
+}
+div.shops div.adreses a {
+    display: none;
+}
+
+div.shops div.shopmap {
+    display: none;
+}
+
+div.shops.long div.adreses {
+    width: 50%;
+    height: 100%;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    box-shadow: 2px 5px 5px black;
+
+}
+
+div.shops.long div.shopmap {
+    border: 2px solid black;
+    display: block;
+    position: relative;
+    height: 200%;
+    width: 45%;
+    float: right;
+    top: -102%;
+    margin-left: 5px;
+    opacity: 0;
+    animation: opac 2s ease forwards;
+}
+
+div.shops.long div.adreses a {
+    display: block;
+    font-family: 'roboto', sans-serif;
+    font-size: 20px;
+    opacity: 0;
+    animation: opac 2s ease forwards;
+}
+
+div.shops.long div.adreses a i {
+    background-color: darkblue;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    line-height: 50px;
+    text-align: center;
+    color: white;
+    margin: 10px 20px 10px 10px;
+}
+
+
+div.shops.long div.extends p {
+    display: block;
+    margin-left: 10px;
+}
+
+div.ca.shops div.extends div.adreses {
+    height: 90%;
+    margin: 10px;
+}
+
+div.ca.shops div.extends div.shopmap {
+    height: 90%;
+    width: 30%;
+    top: -98%;
+    left: -10%;
+    overflow: hidden;
 }
 
 /*///////////////////////about///////////////////////////*/
@@ -1247,12 +1324,36 @@ section.management {
     position: absolute;
     font-family: 'roboto',
     sans-serif;
-}
+    padding-bottom: 40px;
+    }
 
-section.management h1 {
-    font-size: 35px;
-}
+    div.bosses h1,
+    div.directors h1 {
+        position: relative;
+        left: 50vw;
+        transform: translateX(-50%);
+        padding: 20px 5px 20px 40px;
+        font-size: 28px;
+        width: 100%;
+        margin-top: 40px;
+        border-bottom: 5px solid black;
+        box-shadow: 15px 5px 15px black;
+    }
 
+    div.bosses ul,
+    div.directors ul {
+        position: relative;
+        left: 50vw;
+        transform: translateX(-50%);
+        list-style: none;
+        font-size: 25px;
+        margin-top: 30px;
+    }
+
+    div.bosses ul li,
+    div.directors ul li {
+        margin: 5px;
+    }
 /* contacts ////////////////////////////////////////////////////////////////////////////////////// */
 
 section.contact {
@@ -1490,7 +1591,7 @@ div.popup {
     position: absolute;
     left: 0;
     top: 260px;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.7);
     display: none;
     width: 100vw;
     height: 120vh;
@@ -1511,7 +1612,7 @@ div.close {
     background-color: orangered;
     position: absolute;
     top: 20px;
-    right: 370px;
+    right: 390px;
     border: 1px solid black;
     transition: 0.4s;
     text-align: center;
@@ -1617,58 +1718,14 @@ div.infodots {
 
 div.fullSizeImg {
     position: relative;
-    height: 300px;
-    width: 300px;
+    height: 50%;
+    width: 30%;
     left: 60%;
-    bottom: 50%;
+    top: -370px;
     cursor: pointer;
-}
-
-div.imgpopup {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 200%;
-    background-color: rgba(0, 0, 0, 0.9);
-    z-index: 33;
-}
-
-div.imgpopup div.close {
-    right: 5%;
-    top: 5%;
-}
-
-div.infodots div {
-    display: inline-block;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    border: 1px solid black;
-    margin: 20px 10px;
-    cursor: pointer;
-    transition: .3s;
-}
-
-div.infodots div:hover {
-    transform: scale(1.2);
-}
-
-div.infodots div div {
-    display: none;
-}
-
-div.infodots div.active div {
-    display: block;
-    height: 20px;
-    width: 20px;
-    position: relative;
-    top: -5px;
-    left: -5.5px;
-    background-color: cadetblue;
-    border-radius: 50%;
-    transform: translateY(-50%);
+    background-image: url(../images/fullsize/Nagroda_dobra_firma.jpg);
+    background-position: center;
+    background-size: cover;
 }
 
 /*//////////////////////////////////////////////////Annoucemenets/////////////////////////*/

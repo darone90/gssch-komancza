@@ -28,12 +28,17 @@ document.addEventListener('click', function (e) {
         document.querySelector('.d').classList.toggle('active');
         document.querySelector('.cd').classList.toggle('long');
     }
+    else if (hasClass(e.target, 'e')) {
+        document.querySelector('.e').classList.toggle('active');
+        document.querySelector('.ce').classList.toggle('long');
+    }
    else if (hasClass(e.target, 'moreNews')) {
        if(e.target.dataset.index === '1') {
            document.querySelector('div.popup').classList.add('active');
            document.querySelector('div.infodots div').classList.add('active');
        }
    }
+   
    else if (hasClass(e.target, 'close')) {
         document.querySelector('div.popup').classList.remove('active')
    }

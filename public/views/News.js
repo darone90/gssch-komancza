@@ -56,22 +56,14 @@ export default class extends viewModel {
                 <p class='content'>Nasza Spółdzielnia znalazła się w elitarnym gronie zwycięzców firm w ogólnopolskim rankingu oraz
                 została laureatem konkursu jako najbardziej efektywna Firma Województwa Podkarpackiego w kategorii 
                 Mała Firma</p>
-                <div class='fullSizeImg' data-id='1'>
-                    <img src='./public/images/DFnagroda.png'>
-                </div>
+                <div class='fullSizeImg' data-id='1'></div>
             </article>
             
             <button class='next'>Następny >></button>
             <button class='perview'><< Poprzedni</button>
-            <div class='infodots'>
-                <div><div></div></div>
-                <div><div></div></div>
-            </div>
+            
             <div class='close'>X</div>
-            <div class='imgpopup'>
-                <div class='close'><a>X</a></div>
-                <img src='./public/images/fullsize/Nagroda_dobra_firma.jpg'>
-            </div>
+           
         </div>
        
     </section>
