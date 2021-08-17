@@ -49,14 +49,14 @@ export default class extends viewModel {
             <article class='fullsize'>
                 <h1 class='date'>5 Listopada 2020</h1>
                 <h2 class='title'>Nagroda Z P P  Dobra Firma</h2>
-                <p class='content'>5 listopada 2020 roku odbyła się uroczysta Gala rozdania nagród Dobra Firma województwa
+                <p class='content first'>5 listopada 2020 roku odbyła się uroczysta Gala rozdania nagród Dobra Firma województwa
                 Podkarpackiego organizowana przez Związek Przedsiębiorców i Pracodawców. Impreza odbyłą się 
                 patronatem Wojewody Urzędu Marszałkowskiego oraz Prezydenta Miasta Rzeszów.
                 </p>
-                <p class='content'>Nasza Spółdzielnia znalazła się w elitarnym gronie zwycięzców firm w ogólnopolskim rankingu oraz
+                <p class='content second'>Nasza Spółdzielnia znalazła się w elitarnym gronie zwycięzców firm w ogólnopolskim rankingu oraz
                 została laureatem konkursu jako najbardziej efektywna Firma Województwa Podkarpackiego w kategorii 
                 Mała Firma</p>
-                <div class='fullSizeImg' data-id='1'></div>
+                <div class='fullSizeImg'></div>
             </article>
             
             <button class='next'>Następny >></button>

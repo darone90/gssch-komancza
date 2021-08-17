@@ -1723,10 +1723,12 @@ div.fullSizeImg {
     left: 60%;
     top: -370px;
     cursor: pointer;
-    background-image: url(../images/fullsize/Nagroda_dobra_firma.jpg);
+    background-image: url("../images/fullsize/NagrodaDobraFirma.jpg");
     background-position: center;
     background-size: cover;
 }
+
+
 
 /*//////////////////////////////////////////////////Annoucemenets/////////////////////////*/
 
