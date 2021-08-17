@@ -268,6 +268,7 @@ footer {
     font-family: 'roboto', serif;
     color: white;
     z-index: 222;
+    max-width: 1530px;
 }
 
 footer h1 {
@@ -551,7 +552,7 @@ button.moveUp {
     cursor: pointer;
     position: fixed;
     top: 80vh;
-    right: 1vw;
+    right: 5vw;
     opacity: 0;
     transition: 0.7s;
 }
@@ -791,6 +792,16 @@ div.shops.long {
     }
 }
 
+@keyframes long2 {
+    0% {
+        height: 450px;
+    }
+
+    100% {
+        height: 800px;
+    }
+}
+
 @keyframes longRevers {
     0% {
         height: 920px;
@@ -798,6 +809,15 @@ div.shops.long {
 
     100% {
         height: 520px;
+    }
+}
+@keyframes longRevers2 {
+    0% {
+        height: 800px;
+    }
+
+    100% {
+        height: 450px;
     }
 }
 
@@ -1043,7 +1063,7 @@ div.today {
     margin: 0 0 50px 50px;
     padding: 40px;
     position: relative;
-    width: 1000px;
+    width: 90%;
     height: auto;
     box-shadow: 0 5px 5px grey;
 }
@@ -1385,14 +1405,15 @@ section.contact {
 }
 
 div.map {
-    width: 0;
-    height: 0;
     background-color: white;
     float: left;
     position: relative;
     left: 100px;
     top: 70px;
     opacity: 0;
+    width: 35%;
+    height: 450px;
+    animation: contact1 1.2s linear forwards;
 }
 
 div.map iframe {
@@ -1400,14 +1421,6 @@ div.map iframe {
     height: 0;
     opacity: 0;
 }
-
-
-div.map {
-    width: 35%;
-    height: 450px;
-    animation: contact1 1.2s linear forwards;
-}
-
 div.map iframe {
     width: 100%;
     height: 100%;
@@ -1706,16 +1719,6 @@ article.fullsize p {
     text-align: justify;
     margin: 20px 0;
 }
-
-div.infodots {
-    position: absolute;
-    height: 100px;
-    width: 300px;
-    bottom: 20%;
-    left: 65%;
-
-}
-
 div.fullSizeImg {
     position: relative;
     height: 50%;
@@ -1743,4 +1746,251 @@ section.anno h1 {
     text-align: center;
     font-size: 40px;
     font-family: 'roboto', sans-serif;
+}
+/*//////////////////////////////////////////////responsivity////////////////////////////////////////*/
+
+@media (max-width: 1400px) {
+    div.bannerLogo {
+        top: 150px;
+    }
+
+    div.fullSizeImg {
+        height: 30vh;
+    }
+
+    div.timeBlock {
+        width: 70%;
+    }
+
+    div.shops {
+        width: 1000px;
+        left: 40px
+    }
+
+    div.shops:nth-child(even) {
+        left: 40px;
+    }
+
+    div.shopBanner {
+        width: 350px;
+        height: 310px;
+        top: -350px;
+    }
+
+    div.shops main {
+        height: 310px;
+        font-size: 15px;
+        line-height: 20px;
+    }
+
+
+
+    div.shops h2,
+    div.shops h3 {
+        font-size: 15px;
+
+    }
+
+    div.moreBtn {
+        top: -310px;
+    }
+
+    aside.menuH ul {
+        font-size: 10px;
+    }
+
+    div.shops.long div.adreses {
+        margin-top: 80px;
+
+    }
+
+    div.shops.long div.shopmap {
+        overflow: hidden;
+    }
+
+    article.fullsize {
+        height: 50%;
+    }
+}
+
+@media (max-width: 1200px) {
+
+    button.next,
+    button.perview {
+        top: 23%;
+    }
+
+    nav.main a {
+        font-size: 19px;
+    }
+
+    nav.main a:hover {
+        font-size: 22px;
+    }
+
+    div.waysTo ul {
+        font-size: 20px;
+    }
+
+    div.waysTo i {
+        height: 40px;
+        width: 40px;
+        line-height: 40px;
+    }
+
+    div.map {
+        height: 350px;
+    }
+
+    article.fullsize p {
+        font-size: 20px;
+    }
+
+    div.fullSizeImg {
+        height: 30vh;
+    }
+
+    div.close {
+        right: 290px;
+    }
+
+    aside.menuH li {
+        display: none;
+    }
+
+    div.menuShort ul {
+        font-size: 12px;
+    }
+
+    div.menuShort li:hover {
+        font-size: 15px;
+    }
+
+    div.shops {
+        left: 0px;
+        margin-left: 10px;
+    }
+
+    div.shops:nth-child(even) {
+        left: 0px;
+    }
+
+}
+
+@media (max-width: 1000px) {
+    section.header {
+        height: 180px;
+    }
+
+    div.name {
+        padding-top: 40px;
+    }
+
+    div.logo {
+        width: 190px;
+        background-size: cover;
+    }
+
+    div.banner h1 {
+        font-size: 28px;
+    }
+
+    div.banner h2 {
+        font-size: 20px;
+    }
+
+    div.bannerLogo {
+        width: 80px;
+        height: 80px;
+        top: 120px;
+    }
+
+    button.next,
+    button.perview {
+        width: 130px;
+        height: 35px;
+        top: 20%;
+        font-size: 15px;
+        line-height: 35px;
+    }
+
+    article.fullsize p {
+        font-size: 15px;
+    }
+
+    div.fullSizeImg {
+        height: 25vh;
+        top: -170px;
+    }
+
+    article.fullsize h2 {
+        font-size: 22px;
+    }
+
+    article.fullsize h1 {
+        font-size: 12px;
+    }
+
+    div.close {
+        width: 30px;
+        height: 30px;
+        right: 220px;
+        line-height: 30px;
+        font-size: 20px;
+    }
+
+    article.fullsize {
+        height: 38%;
+    }
+
+    nav.main a {
+        font-size: 15px;
+    }
+
+    nav.main a:hover {
+        font-size: 19px;
+    }
+
+    div.menuShort.active,
+    div.menuShort.active1 {
+        display: none;
+    }
+
+    div.infoRight {
+        left: 0;
+    }
+
+    div.shops {
+        width: 800px;
+        margin-left: 80px;
+        animation: longRevers2 0.4s ease forwards;
+    }
+
+    div.shops main {
+        height: 270px;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+
+
+    div.shops h2,
+    div.shops h3 {
+        font-size: 12px;
+
+    }
+
+    div.shopBanner {
+        width: 290px;
+        height: 290px;
+        top: -310px;
+    }
+
+    div.shops.long {
+        animation: long2 0.4s ease forwards;
+    }
+
+    div.shops.long div.shopmap {
+        height: 170%;
+    }
 }

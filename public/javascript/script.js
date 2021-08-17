@@ -112,7 +112,7 @@ document.addEventListener('click', function (e) {
 ////// main nav menu handler //////////////////////////////////////////////////////////////
 console.log('script menu connected');
 const mainMenuBtns = [...document.querySelectorAll('*>nav.main>ul>li')];
-const scrollValue = [260, 260, 260, 260, 340, 260, 350, 400];
+const scrollValue = [260, 260, 260, 260, 340, 260, 260, 400];
 const menuLong = document.querySelector('.menuL');
 const timeLaps = document.querySelector('.timeLaps');
 
