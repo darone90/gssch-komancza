@@ -441,6 +441,20 @@ div.menuL li {
     }
 }
 
+@keyframes menuLActiveSmall {
+    0% {
+        font-size: 0;
+        line-height: 0;
+        opacity: 0;
+    }
+
+    100% {
+        font-size: 12px;
+        line-height: 24px;
+        opacity: 1;
+    }
+}
+
 div.menuL.active li {
     animation: menuLActive 0.5s ease forwards;
 }
@@ -1461,41 +1475,54 @@ div.waysTo li {
     }
 }
 
-div.waysTo li:nth-child(1) {
+@keyframes waysToSmall {
+    0% {
+        left: 300px;
+    }
+
+    100% {
+        left: -120px;
+    }
+}
+
+@keyframes waysToSmall2 {
+    0% {
+        left: 300px;
+    }
+
+    100% {
+        left: -260px;
+    }
+}
+
+div.waysTo li {
     animation: waysTo 1.2s ease forwards;
 }
 
 div.waysTo li:nth-child(2) {
-    animation: waysTo 1.2s ease forwards;
     animation-delay: 0.5s;
 }
 
 div.waysTo li:nth-child(3) {
-    animation: waysTo 1.2s ease forwards;
     animation-delay: 0.7s;
 }
 
 div.waysTo li:nth-child(4) {
-    animation: waysTo 1.2s ease forwards;
     animation-delay: 0.9s;
 }
 
 div.waysTo li:nth-child(5) {
-    animation: waysTo 1.2s ease forwards;
     animation-delay: 1.1s;
 }
 div.waysTo li:nth-child(6) {
-    animation: waysTo 1.2s ease forwards;
     animation-delay: 1.2s;
 }
 
 div.waysTo li:nth-child(7) {
-    animation: waysTo 1.2s ease forwards;
     animation-delay: 1.3s;
 }
 
 div.waysTo li:nth-child(8) {
-    animation: waysTo 1.2s ease forwards;
     animation-delay: 1.4s;
 }
 
@@ -1750,12 +1777,21 @@ section.anno h1 {
 /*//////////////////////////////////////////////responsivity////////////////////////////////////////*/
 
 @media (max-width: 1400px) {
+    button.next,
+    button.perview {
+        top: 300px;
+    }
+
+    div.close {
+        right: 300px;
+    }
+
     div.bannerLogo {
         top: 150px;
     }
 
     div.fullSizeImg {
-        height: 30vh;
+        height: 420px;
     }
 
     div.timeBlock {
@@ -1809,7 +1845,7 @@ section.anno h1 {
     }
 
     article.fullsize {
-        height: 50%;
+        height: 850px;
     }
 }
 
@@ -1817,7 +1853,7 @@ section.anno h1 {
 
     button.next,
     button.perview {
-        top: 23%;
+        top: 300px;
     }
 
     nav.main a {
@@ -1841,17 +1877,21 @@ section.anno h1 {
     div.map {
         height: 350px;
     }
+    article.fullsize {
+        height: 700px;
+    }
 
     article.fullsize p {
         font-size: 20px;
     }
 
     div.fullSizeImg {
-        height: 30vh;
+        height: 360px;
+        top: -250px
     }
 
     div.close {
-        right: 290px;
+        right: 270px;
     }
 
     aside.menuH li {
@@ -1878,6 +1918,9 @@ section.anno h1 {
 }
 
 @media (max-width: 1000px) {
+    div.shops.cb h1 {
+        font-size: 25px;
+    }
     section.header {
         height: 180px;
     }
@@ -1909,7 +1952,7 @@ section.anno h1 {
     button.perview {
         width: 130px;
         height: 35px;
-        top: 20%;
+        top: 220px;
         font-size: 15px;
         line-height: 35px;
     }
@@ -1919,7 +1962,7 @@ section.anno h1 {
     }
 
     div.fullSizeImg {
-        height: 25vh;
+        height: 300px;
         top: -170px;
     }
 
@@ -1940,7 +1983,7 @@ section.anno h1 {
     }
 
     article.fullsize {
-        height: 38%;
+        height: 600px;
     }
 
     nav.main a {
@@ -1993,4 +2036,229 @@ section.anno h1 {
     div.shops.long div.shopmap {
         height: 170%;
     }
+    div.menuL.active li {
+        animation: menuLActiveSmall 0.5s ease forwards;
+    }
+
+    div.menuL {
+        top: 290px;
+    }
+
+    div.shops.long div.double div.adreses {
+        margin-top: 50px;
+        height: 80%;
+    }
+
+    div.shops.long div.double div.adreses p {
+        font-size: 20px;
+
+    }
+
+    div.shops.long div.double div.adreses a {
+        font-size: 15px;
+
+    }
+
+    div.ca.shops.long div.double div.shopmap {
+        height: 80%;
+        top: -86%;
+    }
+
+    aside.timeLaps {
+        left: 75%;
+    }
+
+    div.waysTo li {
+        animation: waysToSmall 1.2s ease forwards;
+    }
+    }
+
+    @media (max-width: 800px) {
+        div.logo {
+            display: none;
+        }
+
+        div.name {
+            font-size: 12px;
+        }
+
+        div.banner {
+            width: 70%;
+            right: 0%;
+
+        }
+
+        section.header {
+            height: 170px;
+        }
+
+        nav.main {
+
+            top: -8px;
+
+        }
+
+        nav.main li {
+            height: 48px;
+        }
+
+        nav.main a {
+            line-height: 48px;
+        }
+
+        nav.main a:hover,
+        nav.main li.active {
+            font-size: 16px;
+        }
+
+        div.infoLeft div.description {
+            margin-left: 30px;
+        }
+
+        div.infoLeft div.imageInfo {
+            right: 20px;
+        }
+
+        div.infoLeft button,
+        div.infoRight button {
+            margin: 10px 0 10px 30px;
+        }
+
+        div.infoRight button {
+            right: 100px;
+        }
+
+        button.next,
+        button.perview {
+            width: 100px;
+            height: 28px;
+            top: 200px;
+            font-size: 12px;
+            line-height: 28px;
+        }
+
+        div.close {
+            right: 180px;
+        }
+
+        div.fullSizeImg {
+            height: 240px;
+            top: -210px;
+        }
+
+        div.menuL.active {
+            display: none;
+        }
+
+        div.shops {
+            width: 700px;
+            margin-left: 0px;
+        }
+
+        section.trading {
+            top: 270px;
+        }
+
+        div.shops.long div.double div.adreses a i {
+            height: 30px;
+            width: 30px;
+            line-height: 30px;
+            margin: 20px 5px 10px 10px;
+        }
+
+        div.shops.long div.adreses {
+            margin-top: 120px;
+            width: 55%;
+        }
+
+        div.shops.long div.shopmap {
+            height: 130%;
+            margin-right: 10px;
+            left: 50px
+        }
+
+        div.shops.long div.adreses a {
+            font-size: 15px;
+        }
+
+        div.shops.long div.adreses a i {
+            height: 35px;
+            width: 35px;
+            line-height: 35px;
+            margin: 10px 10px 10px 10px;
+        }
+
+        div.shops.long div.extends {
+            left: 20px;
+        }
+
+        div.shops.ce main {
+            height: 280px;
+        }
+
+        div.shopBanner {
+            width: 245px;
+            height: 300px;
+            top: -320px;
+        }
+
+        div.moreBtn.e {
+            top: -320px;
+        }
+
+        div.shops.ce {
+            left: 50px;
+        }
+
+        div.shops.cb h1 {
+            font-size: 22px;
+        }
+
+        div.begin h1,
+        div.past h1,
+        div.past2 h1,
+        div.past3 h1,
+        div.today h1 {
+            font-size: 30px;
+        }
+
+        div.begin main,
+        div.past main,
+        div.past2 main,
+        div.past3 main,
+        div.today main {
+            font-size: 15px;
+        }
+
+        div.timeBlock {
+            width: 82%;
+        }
+
+        aside.timeLaps.active {
+            display: none;
+        }
+
+        div.map {
+            left: 20px;
+            top: 10px;
+        }
+
+        section.contact {
+            top: 300px;
+        }
+
+        div.waysTo ul {
+            font-size: 18px;
+        }
+
+        div.waysTo i {
+            height: 35px;
+            width: 35px;
+            line-height: 35px;
+        }
+
+        div.waysTo li {
+            animation: waysToSmall2 1.2s ease forwards;
+        }
+
 }

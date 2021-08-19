@@ -15,7 +15,7 @@ export default class extends viewModel {
             <main> Zakładka w budowie</main>
             <div class='shopBanner'></div>
             <div class='moreBtn a'><i class="a fas fa-angle-double-up"></i></div>
-            <div class='extends'>
+            <div class='extends double'>
                 <div class='adreses'>
                 <p>Delikatesy Centrum Komańcza</p>
                 <a><i class="fas fa-phone-square-alt"></i> Telefon: 13 46 77 008</a>
@@ -31,7 +31,7 @@ export default class extends viewModel {
             </div>
         </div>
         <div class="cb shops">
-            <h1> Sklepy spożywczo-przemysłowe </h1>
+            <h1> Sklep spożywczo-przemysłowe </h1>
             <main>Zakładka w budowie</main>
             <div class='shopBanner'></div>
             <div class='moreBtn b'><i class="b fas fa-angle-double-up"></i></div>
