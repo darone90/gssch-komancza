@@ -8,7 +8,7 @@ export default class extends viewModel {
 
     async getHtml() {
         return `
-        <div class="shops ce">
+        <div class="shops cf">
         <h1> Piekarnia i ciastkarnia</h1>
         <main> Piekarnia i cistkarnia Gminnej Spółdzielni "SCH" w Komańczy posiada wyremontowany zakład, spełniający wszystkie wymogi Unii Europejskiej w zakresie produkcji spożywczej. W wypiekane u nas znakomitej jakości pieczywo oraz wyroby ciastkarskie zaopatruje się wiele sklepów. W swoim asortymencie posiadamy:
             <ul>

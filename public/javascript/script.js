@@ -38,7 +38,7 @@ document.addEventListener('click', function (e) {
     }
     else if (hasClass(e.target, 'e')) {
         document.querySelector('.e').classList.toggle('active');
-        document.querySelector('.ce').classList.toggle('long');
+        document.querySelector('.cf').classList.toggle('long');
     }
    else if (hasClass(e.target, 'moreNews')) {
     const date = document.querySelector('article h1.date');

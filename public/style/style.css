@@ -8,6 +8,10 @@ html {
     font-size: 15px;
 }
 
+body {
+    height: auto;
+}
+
 
 /* header ///////////////////////////////////////////////////////////////////////////////////////*/
 
@@ -1149,7 +1153,8 @@ div.beginFoto2 i {
 }
 
 div.beginFoto {
-    background-image: url(../images/fullsize/ksPorebski.jpg);
+    background-image: url("../images/fullsize/ks S porebski.jpg");
+    background-size: cover;
 }
 
 div.beginFoto2 {
@@ -2191,6 +2196,9 @@ section.anno h1 {
         div.shops.long div.extends {
             left: 20px;
         }
+        div.shops.long div.extends.double {
+            left: 60px;
+        }
 
         div.shops.ce main {
             height: 280px;
@@ -2260,5 +2268,363 @@ section.anno h1 {
         div.waysTo li {
             animation: waysToSmall2 1.2s ease forwards;
         }
+        div.shops.long div.double div.adreses {
+            margin: 50px 5px 10px 60px;
+        }
+
+        div.ca.shops.long div.double div.shopmap {
+            left: 30px;
+        }
+
+        }
+
+        @media (max-width: 600px) {
+            nav.main {
+                top: 0px;
+                left: 0;
+                width: calc(100%/6);
+                margin: 0 0;
+                z-index: 20;
+            }
+
+            nav.main.active {
+                transform: translateX(0);
+                left: 0;
+                top: 220px;
+            }
+
+            nav.main ul {
+                flex-direction: column;
+            }
+
+            nav.main li {
+                border-right: 3px solid black;
+                width: 100%;
+            }
+
+            nav.main li:nth-child(1) {
+                border-left: none;
+            }
+
+            nav.main li:nth-last-child(1) {
+                border-right: 3px solid black;
+            }
+
+            nav.main a {
+                line-height: 60px;
+                font-size: 15px;
+            }
+
+            nav.main a:hover,
+            nav.main li.active {
+                font-size: 16px;
+            }
+
+            div.logo {
+                width: 238px;
+                height: 50%;
+                top: 216px;
+                display: block;
+                right: 0;
+                box-shadow: 0 5px 5px black;
+                border-bottom: 3px solid black;
+
+            }
+
+            div.banner {
+                width: 100%;
+                height: 217px;
+                top: 0px;
+                right: 0;
+                z-index: 5;
+            }
+
+            section.header {
+                height: 440px;
+            }
+
+            div.name {
+                width: 60%;
+                height: 40%;
+                position: absolute;
+                top: 180px;
+                font-size: 17px;
+                padding-top: 80px;
+                border-bottom: 3px solid black;
+                box-shadow: 0 5px 5px black;
+            }
+
+            div.name h2 {
+                line-height: 55px;
+            }
+
+            section.content {
+                position: absolute;
+                top: 440px
+            }
+
+            div.infoLeft,
+            div.infoRight {
+                left: 100px;
+                width: 100%;
+                min-width: 0;
+            }
+
+            div.infoLeft div.description {
+                width: 100%;
+            }
+
+            div.infoRight div.description {
+                width: 100%;
+                left: 30px;
+            }
+
+            div.infoRight button {
+                left: 0;
+            }
+
+            div.imageInfo {
+                display: none;
+            }
+
+            div.text {
+                width: 200px;
+            }
+
+            div.infoLeft h1,
+            div.infoRight h1 {
+                font-size: 20px;
+            }
+
+            div.infoLeft h2,
+            div.infoRight h2 {
+                font-size: 24px;
+            }
+
+            div.infoLeft h3,
+            div.infoRight h3 {
+                font-size: 16px;
+            }
+
+            div.popup {
+                top: 22px;
+            }
+
+            div.close {
+                right: 100px;
+            }
+
+            article.fullsize {
+                width: 80%;
+                left: 10%;
+
+            }
+
+            button.next,
+            button.perview {
+                width: 60px;
+                height: 25px;
+                top: 150px;
+                line-height: 25px;
+                font-size: 8px;
+
+            }
+
+            button.next {
+                right: 18%;
+            }
+
+            button.perview {
+                left: 18%;
+            }
+
+            div.ca.shops {
+                margin-top: 220px;
+            }
+
+            div.shops {
+                margin-left: 100px;
+                margin-bottom: 60px;
+                width: 420px;
+            }
+
+            div.shopBanner {
+                display: none;
+            }
+
+            div.shops h1 {
+                width: 90%;
+            }
+
+            div.shops main {
+                width: 90%;
+            }
+
+            div.moreBtn {
+                top: 0;
+            }
+
+            div.ca.shops.long div.extends {
+                top: -40px;
+            }
+
+            div.shops.long div.extends.double {
+                left: 0;
+            }
+
+            div.shops.long div.double div.adreses a i {
+                height: 20px;
+                width: 20px;
+                line-height: 20px;
+                margin: 5px 2px 6px 6px;
+            }
+
+            div.shops.long div.double div.adreses a {
+                font-size: 10px;
+            }
+
+            div.shops.long div.double div.adreses p {
+                font-size: 16px;
+            }
+
+            div.shops.long div.double div.adreses {
+                height: 60%;
+                margin-bottom: 30px;
+                margin-left: 10px;
+            }
+
+            div.ca.shops.long div.adreses {
+                width: 62%;
+                height: 60%;
+            }
+
+            div.ca.shops div.extends div.shopmap {
+                width: 40%;
+            }
+
+            div.ca.shops.long div.double div.shopmap {
+                left: 40px
+            }
+
+            div.shops.long div.adreses {
+                margin-top: 50px;
+                height: 60%;
+            }
+
+            div.shops div.extends p {
+                font-size: 18px;
+            }
+
+            div.shops.long div.adreses a {
+                font-size: 10px;
+            }
+
+            div.shops.long div.adreses a i {
+                height: 28px;
+                width: 28px;
+                line-height: 28px;
+            }
+
+            div.cb.shops.long div.shopmap,
+            div.cc.shops.long div.shopmap,
+            div.cd.shops.long div.shopmap,
+            div.ce.shops.long div.shopmap,
+            div.cf.shops.long div.shopmap {
+                float: none;
+                top: 20px;
+                width: 80%;
+                height: 90%;
+                left: 40px;
+            }
+
+            div.shops.long div.extends {
+                top: -40px;
+            }
+
+            button.moveUp {
+                display: none;
+            }
+
+            div.shops.cf {
+                top: -400px;
+                left: 15px;
+            }
+
+            div.shops.cf main {
+                height: 290px;
+            }
+
+            div.moreBtn.e {
+                top: -15px;
+            }
+
+            div.begin,
+            div.past,
+            div.past2,
+            div.past3,
+            div.today {
+                margin: 0 0 50px 100px;
+                width: 85%;
+            }
+
+            section.about {
+                top: 440px;
+            }
+
+            div.activity {
+                top: 470px;
+                width: 80%;
+                left: 58%;
+            }
+
+            section.anno {
+                position: absolute;
+                top: 460px;
+            }
+
+            section.anno h1 {
+                font-size: 25px;
+                display: block;
+                margin-left: 120px;
+            }
+
+            section.management {
+                top: 460px;
+            }
+
+            div.bosses h1,
+            div.directors h1 {
+                width: 70%;
+                margin-left: 50px;
+            }
+
+            div.bosses ul,
+            div.directors ul {
+                width: 70%;
+                margin-left: 50px;
+            }
+
+            section.contact {
+                top: 460px;
+                height: 900px;
+            }
+
+            div.waysTo {
+                float: none;
+                width: 80%;
+            }
+
+            div.map {
+                margin-top: 30px;
+                width: 350px;
+                margin-left: 100px;
+                opacity: 1;
+                animation: none;
+            }
+
+            div.map iframe {
+                opacity: 1;
+                animation: none;
+            }
 
 }

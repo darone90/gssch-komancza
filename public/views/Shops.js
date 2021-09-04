@@ -69,7 +69,7 @@ export default class extends viewModel {
                 <div class='shopmap'></div>
             </div>
         </div>
-        <div class="shops">
+        <div class=" ce shops">
             <h1> Handel obwoźny</h1>
             <main>Zakładka w budowie</main>
             <div class='shopBanner'></div>
