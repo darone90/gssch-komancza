@@ -13,6 +13,7 @@
   "author": "Dariusz Pilecki",
   "license": "SEE LICENSE IN public/license.txt",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^6.0.4"
   }
 }
