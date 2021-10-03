@@ -1667,6 +1667,7 @@ div.close {
     font-weight: bold;
     font-family: 'roboto',
     sans-serif;
+    z-index: 10;
 
 }
 div.close:hover {
@@ -1745,7 +1746,7 @@ article.fullsize p {
     width: 50%;
     height: auto;
     left: 5%;
-    top: 130px;
+    top: -230px;
     font-family: 'roboto', sans-serif;
     font-size: 25px;
     text-align: justify;
@@ -1756,9 +1757,8 @@ div.fullSizeImg {
     height: 50%;
     width: 30%;
     left: 60%;
-    top: -370px;
+    top: 0px;
     cursor: pointer;
-    background-image: url("../images/fullsize/NagrodaDobraFirma.jpg");
     background-position: center;
     background-size: cover;
 }
@@ -1773,11 +1773,33 @@ section.anno {
     width: 100%;
     height: auto;
 }
+div.annocontent {
+    width: 80%;
+    position: relative;
+    box-shadow: -10px 10px 10px black;
+    margin-top: 50px;
+    transform: translateX(-50%);
+    left: 50%;
+    margin-bottom: 80px;
+}
 
 section.anno h1 {
     text-align: center;
-    font-size: 40px;
+    font-size: 35px;
     font-family: 'roboto', sans-serif;
+}
+
+section.anno h2 {
+    text-align: right;
+    font-size: 28px;
+    font-family: 'roboto', sans-serif;
+}
+
+div.annocontent div {
+    text-align: center;
+    font-size: 30px;
+    font-family: 'roboto', sans-serif;
+    margin-top: 30px;
 }
 /*//////////////////////////////////////////////responsivity////////////////////////////////////////*/
 

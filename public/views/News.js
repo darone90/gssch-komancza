@@ -17,24 +17,18 @@ export default class extends viewModel {
         news.classList.add('news');
         const popup = document.createElement('div');
         popup.classList.add('popup');
-        popup.innerHTML = `<article class='fullsize'>
-                            <h1 class='date'>5 Listopada 2020</h1>
-                            <h2 class='title'>Nagroda Z P P  Dobra Firma</h2>
-                            <p class='content first'>5 listopada 2020 roku odbyła się uroczysta Gala rozdania nagród Dobra Firma województwa
-                            Podkarpackiego organizowana przez Związek Przedsiębiorców i Pracodawców. Impreza odbyłą się 
-                            patronatem Wojewody Urzędu Marszałkowskiego oraz Prezydenta Miasta Rzeszów.
-                            </p>
-                            <p class='content second'>Nasza Spółdzielnia znalazła się w elitarnym gronie zwycięzców firm w ogólnopolskim rankingu oraz
-                            została laureatem konkursu jako najbardziej efektywna Firma Województwa Podkarpackiego w kategorii 
-                            Mała Firma</p>
-                            <div class='fullSizeImg'></div>
-                            </article>
-    
-                            <button class='next'>Następny >></button>
+        const article = document.createElement('article');
+        article.classList.add('fullsize');
+        article.innerHTML = `
+                            <h1 class='date'></h1>
+                            <h2 class='title'></h2>
+                            <div class='fullSizeImg'></div>`;
+                            
+        popup.innerHTML =   `<button class='next'>Następny >></button>
                             <button class='perview'><< Poprzedni</button>
-    
-                            <div class='close'>X</div>
-                            `;
+                            <div class='close'>X</div>`;
+        
+        popup.appendChild(article);
         for(let i = 1; i <= length; i++ ){
             const index = i-1;
             const article = document.createElement('div');
@@ -45,16 +39,17 @@ export default class extends viewModel {
                 articleClass = 'infoRight';
             };
             article.classList.add(articleClass);
-            const { title, date, description } = data[index];
+            const { title, date, description, foto} = data[index];
+            const {p1} = description;
             article.innerHTML = `<div class='description'>
                                 <h1 class='date'>${date}</h1>
                                 <h2 class='title'>${title}</h2>
-                                <h3 class='text'>${description}</h3> 
+                                <h3 class='text'>${p1}</h3> 
                                 </div>
                                 <div class='imageInfo'>
-                                <img src="./public/images/DFnagroda.png" alt="Nagroda w konkursie Dobra Firma">
+                                <img src="data:image/jpg;base64,${foto}" alt="Nagroda w konkursie Dobra Firma">
                                 </div>
-                                <button class='moreNews' data-index='1'>Czytaj więcej</button>
+                                <button class='moreNews ${index}'>Czytaj więcej</button>
                                 </div>`;
             news.appendChild(article);
         }
@@ -62,10 +57,9 @@ export default class extends viewModel {
         section.appendChild(popup);
         wrap.appendChild(section);
         
-    
         return (wrap.innerHTML).toString();
     }
-    async getHtml () {
+    getHtml () {
         
         return fetch('/newsdata', {
             method: 'GET',

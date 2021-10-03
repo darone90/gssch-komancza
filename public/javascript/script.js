@@ -1,11 +1,79 @@
-////////////////////////temporary database//////////////////////////////////////////////
-const articlesTitles = ['Nagroda Z P P  Dobra Firma','Fotowoltaika - na miare współczesności'];
-const articlesDates = ['5 Listopada 2020', 'Wiosna 2021'];
-const articlesP1 = ['5 listopada 2020 roku odbyła się uroczysta Gala rozdania nagród Dobra Firma województwa Podkarpackiego organizowana przez Związek Przedsiębiorców i Pracodawców. Impreza odbyłą się patronatem Wojewody Urzędu Marszałkowskiego oraz Prezydenta Miasta Rzeszów.', 'Gminna Spółdzielnia przystapiła do montażu instalacji fotowoltaicznych, które będą produkować prąd na potrzeby naszego obiektu handlowego gdzie znajduja się Delikatesy Centrum w Komańczy jak również jest to siedziba Spółdzielni. Jest to idealne połączenie nowoczesnej technologii, oszczędności i ekologii.'];
-const articlesP2 = ['Nasza Spółdzielnia znalazła się w elitarnym gronie zwycięzców firm w ogólnopolskim rankingu oraz została laureatem konkursu jako najbardziej efektywna Firma Województwa Podkarpackiego w kategorii Mała Firma','Fotowoltaika to inwestycja korzystna na wielu płaszczyznach. Pozwala znacząco ograniczyć koszty zakupu energii elektrycznej, w znacznym stopniu uniezależnić się od dostawcy energii i jego cen, a tym samym widocznie zmniejszyć wydatki firmy. Fotowoltaika to idealne połączenie nowoczesnej technologii, oszczędności i ekologii.'];
-const articlesImages = ['NagrodaDobraFirma.jpg', 'fotowol.jpg']
+////////////////////////database//////////////////////////////////////////////
+let database;
+fetch('/newsdata', {
+    method: 'GET',
+}).then(res => res.json()).then(data => {
+    database = data;
+});
 /////////////////////////////////global functions/////////////////////////////////////////
-
+function next(i, n) {
+    const nextbtn = document.querySelector('button.next');
+    const pervbtn = document.querySelector('button.perview');
+    const article = document.querySelector('article.fullsize');
+    const articleDate = document.querySelector('article h1.date');
+    const articleTitle = document.querySelector('article h2.title');
+    console.log(i);
+    console.log(n);
+    index = i;
+    const noArticles = n;
+    if (index < noArticles) {
+        const {description, title, date} = database[i];
+        articleDate.innerText = date;
+        articleTitle.innerText = title;
+        const paragraphs = Object.values(description);
+        const oldParagraphs = document.querySelectorAll('article.fullsize p');
+        if(oldParagraphs) {
+            oldParagraphs.forEach(paragraph => {
+                paragraph.remove()
+            });
+        };
+        paragraphs.forEach(paragraph => {
+        const html = document.createElement('p');
+        html.innerText = paragraph;
+        article.appendChild(html);
+        if (index < noArticles){
+        index++;
+        }
+    })};  
+    if (index === noArticles )
+    nextbtn.disabled = true;
+    pervbtn.disabled = false;
+    console.log(index);
+    
+};
+function perview(i, n) {
+    const nextbtn = document.querySelector('button.next');
+    const pervbtn = document.querySelector('button.perview');
+    const article = document.querySelector('article.fullsize');
+    const articleDate = document.querySelector('article h1.date');
+    const articleTitle = document.querySelector('article h2.title');
+    console.log(i);
+    console.log(n);
+    index = i;
+    if (index > 1) {
+        const {description, title, date} = database[i-2];
+        articleDate.innerText = date;
+        articleTitle.innerText = title;
+        const paragraphs = Object.values(description);
+        const oldParagraphs = document.querySelectorAll('article.fullsize p');
+        if(oldParagraphs) {
+            oldParagraphs.forEach(paragraph => {
+                paragraph.remove()
+            });
+        };
+        paragraphs.forEach(paragraph => {
+        const html = document.createElement('p');
+        html.innerText = paragraph;
+        article.appendChild(html);
+        if(index > 1) {
+        index--;
+        }
+    })};  
+    if (index === 1 )
+    nextbtn.disabled = false;
+    pervbtn.disabled = true;
+    console.log(index);
+};
 const scrollContent = (e)=> {
     window.scrollTo({
         top:e,
@@ -17,7 +85,8 @@ function hasClass(elem, className) {
     return elem.classList.contains(className);
 };
 //////////////////////////////////////events for dynamic elements//////////////////////////////////////
-
+let index;
+let articlesNumbers;
 
 document.addEventListener('click', function (e) {
     if (hasClass(e.target, 'a')) {
@@ -40,77 +109,70 @@ document.addEventListener('click', function (e) {
         document.querySelector('.e').classList.toggle('active');
         document.querySelector('.cf').classList.toggle('long');
     }
-   else if (hasClass(e.target, 'moreNews')) {
-    const date = document.querySelector('article h1.date');
-    const title = document.querySelector('article h2.title');
-    const parag1 = document.querySelector('p.first');
-    const parag2 = document.querySelector('p.second');
-    const imagear = document.querySelector('div.fullSizeImg');
+    else if (hasClass(e.target, 'next')) {
+        
+        next(index, articlesNumbers);
+    }
+    else if(hasClass(e.target, 'perview')){
+        
+        perview(index, articlesNumbers);
+    }
+    else if (hasClass(e.target, 'moreNews')) {
+    const moreButtons = document.querySelectorAll('.moreNews');
+    const iterration = moreButtons.length;
+    const article = document.querySelector('article.fullsize');
+    const articleDate = document.querySelector('article h1.date');
+    const articleTitle = document.querySelector('article h2.title');
     const nextbtn = document.querySelector('button.next');
     const pervbtn = document.querySelector('button.perview');
-    let index = 0;
+    const newsImage = document.querySelector('div.fullSizeImg');
 
-       if(e.target.dataset.index === '1') {
-           date.innerText = articlesDates[0];
-           title.innerText = articlesTitles[0];
-           parag1.innerText = articlesP1[0];
-           parag2.innerText = articlesP2[0];
-           imagear.style.backgroundImage = "url('./public/images/fullsize/"+articlesImages[0]+"')";
-           index = 0;
-           pervbtn.disabled = true;
-           nextbtn.disabled = false;
-       }
-       if(e.target.dataset.index === '2') {
-        date.innerText = articlesDates[1];
-        title.innerText = articlesTitles[1];
-        parag1.innerText = articlesP1[1];
-        parag2.innerText = articlesP2[1];
-        imagear.style.backgroundImage = "url('./public/images/fullsize/"+articlesImages[1]+"')";
-        index = 1;
-        nextbtn.disabled = true;
-        pervbtn.disabled = false;
-       }
-        document.querySelector('div.popup').classList.add('active');
-
-        function next() {
-            console.log(index)
-            if (index === 0) {
-                date.innerText = articlesDates[1];
-                title.innerText = articlesTitles[1];
-                parag1.innerText = articlesP1[1];
-                parag2.innerText = articlesP2[1];
-                imagear.style.backgroundImage = "url('./public/images/fullsize/"+articlesImages[1]+"')";
+    for(let i = 1; i<=iterration; i++){
+        if(e.target.classList.contains(`${i-1}`)){
+            index = i;
+            articlesNumbers = iterration;
+            const {description, title, date} = database[i-1];
+            const paragraphs = Object.values(description);
+            const oldParagraphs = document.querySelectorAll('article.fullsize p');
+            if(oldParagraphs) {
+                oldParagraphs.forEach(paragraph => {
+                    paragraph.remove()
+                });
+            };
+            paragraphs.forEach(paragraph => {
+                const html = document.createElement('p');
+                html.innerText = paragraph;
+                article.appendChild(html);
+            })
+            articleDate.innerText = date;
+            articleTitle.innerText = title;
+            newsImage.style.backgroundImage = 'url(../public/images/fullsize/NagrodaDobraFirma.jpg)';
+            if(i === 1) {
+                pervbtn.disabled = true;
+                nextbtn.disabled = false;
+            } else if(i === iterration) {
                 nextbtn.disabled = true;
                 pervbtn.disabled = false;
-                index = 1;
-            };  
-        };
-        function perview() {
-            if (index === 1) {
-                date.innerText = articlesDates[0];
-                title.innerText = articlesTitles[0];
-                parag1.innerText = articlesP1[0];
-                parag2.innerText = articlesP2[0];
-                imagear.style.backgroundImage = "url('./public/images/fullsize/"+articlesImages[0]+"')";
+            } else {
                 nextbtn.disabled = false;
-                pervbtn.disabled = true;
-                index = 0;
+                pervbtn.disabled = false;
             };
-        };
 
-        nextbtn.addEventListener('click', next);
-        pervbtn.addEventListener('click', perview);
+        }
+    };
+    document.querySelector('div.popup').classList.add('active');
+
    }
    
    if (hasClass(e.target, 'close')) {
         document.querySelector('div.popup').classList.remove('active')
+
    }
     
 }, false);
 
 
 ////// main nav menu handler //////////////////////////////////////////////////////////////
-console.log('script menu connected');
 const mainMenuBtns = [...document.querySelectorAll('*>nav.main>ul>li')];
 const scrollValue = [260, 260, 260, 260, 340, 260, 260, 400];
 const menuLong = document.querySelector('.menuL');
