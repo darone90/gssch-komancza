@@ -15,6 +15,9 @@
     <script src="https://kit.fontawesome.com/c353fea5cc.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./public/style/style.css" type="text/css">
     <link rel="icon" href="./public/favicon.ico" type="image/x-icon"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Explora&display=swap" rel="stylesheet"> 
 </head>
 <body>
     <div class="load visible">
@@ -24,6 +27,15 @@
             <div class="bar"></div>
         </div>
         <h1>Ładowanie</h1>
+    </div>
+    <div class="databaseload">
+        <h1>Ładowanie</h1>
+        <div class='lamps'>
+            <div class="point"></div>
+            <div class="point"></div>
+            <div class="point"></div>
+            <div class="point"></div>
+        </div>
     </div>
     <div class='topBar'></div>
     <section class='header'>
@@ -105,10 +117,12 @@
             </p>
         </main>
     </aside>
-    
+
     <div id="app"></div>
     <button class='moveUp'><i class="fas fa-angle-double-up"></i></button>
+    <button class='login' onclick="window.location.href='/login'"><i class="fas fa-sign-in-alt"></i></a></button>
     <footer><h1>Gminna spółdzielnia ,,SCh'' Komańcza wszystkie prawa zastrzeżone</h1><h2>Made by Dariusz Pilecki</h2></footer>
+
     <script type="module" src="./public/javascript/router.js"></script>
     <script src="./public/javascript/script.js"></script>
 </body>

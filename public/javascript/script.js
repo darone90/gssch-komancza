@@ -1,3 +1,4 @@
+
 ////////////////////////database//////////////////////////////////////////////
 let database;
 fetch('/newsdata', {
@@ -12,14 +13,15 @@ function next(i, n) {
     const article = document.querySelector('article.fullsize');
     const articleDate = document.querySelector('article h1.date');
     const articleTitle = document.querySelector('article h2.title');
-    console.log(i);
-    console.log(n);
+    const img = document.querySelector('img.popupimg');
+
     index = i;
     const noArticles = n;
     if (index < noArticles) {
-        const {description, title, date} = database[i];
+        const {description, title, date, foto} = database[i];
         articleDate.innerText = date;
         articleTitle.innerText = title;
+        img.src = `data:image/jpg;base64,${foto}`;
         const paragraphs = Object.values(description);
         const oldParagraphs = document.querySelectorAll('article.fullsize p');
         if(oldParagraphs) {
@@ -47,13 +49,14 @@ function perview(i, n) {
     const article = document.querySelector('article.fullsize');
     const articleDate = document.querySelector('article h1.date');
     const articleTitle = document.querySelector('article h2.title');
-    console.log(i);
-    console.log(n);
+    const img = document.querySelector('img.popupimg');
+
     index = i;
     if (index > 1) {
-        const {description, title, date} = database[i-2];
+        const {description, title, date, foto} = database[i-2];
         articleDate.innerText = date;
         articleTitle.innerText = title;
+        img.src = `data:image/jpg;base64,${foto}`;
         const paragraphs = Object.values(description);
         const oldParagraphs = document.querySelectorAll('article.fullsize p');
         if(oldParagraphs) {
@@ -125,13 +128,13 @@ document.addEventListener('click', function (e) {
     const articleTitle = document.querySelector('article h2.title');
     const nextbtn = document.querySelector('button.next');
     const pervbtn = document.querySelector('button.perview');
-    const newsImage = document.querySelector('div.fullSizeImg');
+    const img = document.querySelector('img.popupimg');
 
     for(let i = 1; i<=iterration; i++){
         if(e.target.classList.contains(`${i-1}`)){
             index = i;
             articlesNumbers = iterration;
-            const {description, title, date} = database[i-1];
+            const {description, title, date, foto} = database[i-1];
             const paragraphs = Object.values(description);
             const oldParagraphs = document.querySelectorAll('article.fullsize p');
             if(oldParagraphs) {
@@ -146,7 +149,8 @@ document.addEventListener('click', function (e) {
             })
             articleDate.innerText = date;
             articleTitle.innerText = title;
-            newsImage.style.backgroundImage = 'url(../public/images/fullsize/NagrodaDobraFirma.jpg)';
+            img.src = `data:image/jpg;base64,${foto}`;
+
             if(i === 1) {
                 pervbtn.disabled = true;
                 nextbtn.disabled = false;
@@ -168,13 +172,106 @@ document.addEventListener('click', function (e) {
         document.querySelector('div.popup').classList.remove('active')
 
    }
+   if (hasClass(e.target, 'waytoForm')) {
+       scrollContent(940);
+   }
+   if (hasClass(e.target, 'toassortment')) {
+       scrollContent(800)
+   }
+
+   if (hasClass(e.target, 'clearForm')) {
+    const labelname = document.querySelector('label.name');
+    const info = document.querySelector('h1.postInformation');
+    const name = document.querySelector('#name');
+    const subject = document.querySelector('#subject');
+    const content = document.querySelector('#content');
+    const labelcontent = document.querySelector('label.content');
+    const contact = document.querySelector('#contact');
+
+    name.value = '';
+    subject.value = '';
+    content.value = '';
+    contact.value = '';
+    labelname.innerText = 'Imię';
+    labelname.style.color = 'black';
+    labelcontent.innerText = 'Treść wiadomości';
+    labelcontent.style.color = 'black';
+    info.innerText = 'Prosimy wypełnić formularz kontaktowy';
+    info.style.color = 'black';
+
+
+   }
+
+   if(hasClass(e.target, 'send')) {
+      e.preventDefault();
+      const labelname = document.querySelector('label.name');
+      const info = document.querySelector('h1.postInformation');
+      const name = document.querySelector('#name').value
+      const subject = document.querySelector('#subject').value;
+      const content = document.querySelector('#content').value;
+      const labelcontent = document.querySelector('label.content');
+      const contact = document.querySelector('#contact').value;
+
+      labelname.innerText = 'Imię';
+      labelname.style.color = 'black';
+      labelcontent.innerText = 'Treść wiadomości';
+      labelcontent.style.color = 'black';
+      info.innerText = 'Prosimy wypełnić formularz kontaktowy';
+      info.style.color = 'black';
+
+      if(name === '' || content === '') {
+        if (name === '') {
+        labelname.innerText = "Imię (POLE OBOWIĄZKOWE)";
+        labelname.style.color = 'red';
+
+        info.innerText = "Proszę uzupełnić wymagane pola formularza";
+        info.style.color = 'red';
+        }
+        if(content === ''){
+        
+            labelcontent.innerText = "Treść wiadomości (POLE OBOWIĄZKOWE)";
+            labelcontent.style.color = 'red';
+    
+            info.innerText = "Proszę uzupełnić wymagane pola formularza";
+            info.style.color = 'red';
+          }
+        return;
+      }
+
+      const data = {
+          name,
+          subject,
+          content,
+          contact,
+      }
+      fetch('/sendmessage', {
+          method: 'POST',
+          headers: {'Content-Type' : 'application/json'},
+          body: JSON.stringify(data),
+      }).then(res => res.json()).then(data => {
+          console.log(data.sucess);
+          console.log(data);
+          const backInfo = data.sucess;
+          name.value = '';
+          subject.value = '';
+          content.value = '';
+          contact.value = '';
+          if(backInfo === 'true') {
+              info.innerText = 'Wiadomośc została wysłana poprawnie';
+              info.style.color = 'green';
+          } else {
+            info.innerText = 'Wystąpił błąd podczas wysyłania wiadomości, spróbuj ponownie za chwilę';
+            info.style.color = 'red';
+          }
+      })
+   }
     
 }, false);
 
 
 ////// main nav menu handler //////////////////////////////////////////////////////////////
 const mainMenuBtns = [...document.querySelectorAll('*>nav.main>ul>li')];
-const scrollValue = [260, 260, 260, 260, 340, 260, 260, 400];
+const scrollValue = [260, 260, 260, 260, 340, 260, 260, 320];
 const menuLong = document.querySelector('.menuL');
 const timeLaps = document.querySelector('.timeLaps');
 
@@ -222,6 +319,7 @@ const shopsBtn = mainMenuBtns[1];
 const aboutBtn = mainMenuBtns[3];
 const shopsMenu = document.querySelector('.menuH');
 const aboutMenu = document.querySelector('.menuShort');
+
 
 const menuRemover = ()=> {
     shopsMenu.classList.remove('active');

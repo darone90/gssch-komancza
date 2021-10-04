@@ -260,7 +260,7 @@ nav.main li.active {
     cursor: pointer;
 }
 
-/* stopka ///////////////////////////////////////////////////////////////////////////////*/
+/* footer ///////////////////////////////////////////////////////////////////////////////*/
 
 footer {
     position: fixed;
@@ -286,7 +286,27 @@ footer h2 {
     right: 5px;
     top: 0;
 }
+button.login {
+    position: fixed;
+    z-index: 300;
+    background-color: white;
+    height: 20px;
+    bottom: 0;
+    right: 180px;
+    width: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
+button.login:hover {
+    background-color: darkcyan;
+    color: white;
+}
+
+button.login a {
+    width: 100%;
+    height: 100%;
+}
 /*//////////////////////////////////////////////aditional menus////////////////////////*/
 
 aside.menuH {
@@ -719,15 +739,10 @@ div.infoRight div.imageInfo {
     margin: 10px 10px;
 }
 
-.infoLeft img {
-    height: 100%;
-    max-width: 100%;
-}
-
+.infoLeft img,
 .infoRight img {
     height: 100%;
     max-width: 100%;
-
 }
 
 div.infoRight div.imageInfo {
@@ -848,11 +863,6 @@ div.shopBanner {
     left: 61%;
     top: -390px;
 }
-
-div.shopBanner.bakery {
-    background-image: url(../images/fullsize/bagiet.jpg);
-}
-
 div.shops h1 {
     width: 50%;
     height: 50px;
@@ -1032,7 +1042,90 @@ div.ca.shops div.extends div.shopmap {
     left: -10%;
     overflow: hidden;
 }
+/*/////////////////////////////////bakrey////////////////////////////////*/
 
+div.shopBanner.bakery {
+    background-image: url(../images/fullsize/bagiet.jpg);
+}
+
+div.assortment {
+
+    position: relative;
+    left: 8%;
+    width: 80%;
+    border: 2px solid grey;
+    margin-bottom: 40px;
+}
+
+div.assortment h1 {
+    width: 40%;
+    background-color: grey;
+    color: white;
+    font-family: 'Explora', sans-serif;
+    font-size: 50px;
+}
+
+div.assortment article {
+
+    margin: 60px 0 0 20px;
+    font-size: 20px;
+    font-family: 'roboto', sans-serif;
+    max-width: 40%;
+}
+
+div.assortmentFoto {
+    position: relative;
+    margin: 10px;
+    left: 60%;
+    top: -50px;
+}
+
+div.wall {
+    display: none;
+}
+
+div.wall.active {
+    display: block;
+    position: relative;
+    left: 8%;
+    width: 80%;
+    height: 50px;
+    background-color: grey;
+    color: white;
+    margin-bottom: 25px;
+}
+
+div.wall h1 {
+    font-family: 'roboto', sans-serif;
+    width: 100%;
+    text-align: center;
+    line-height: 50px;
+}
+
+button.toassortment {
+    display: none;
+}
+
+button.toassortment.active {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px 10px 0 0;
+    width: 150px;
+    height: 50px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 17px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button.toassortment.active:hover {
+    background-color: cadetblue;
+    color: white;
+}
 /*///////////////////////about///////////////////////////*/
 
 section.about {
@@ -1418,7 +1511,7 @@ section.contact {
 
 section.contact {
     width: 80%;
-    height: 640px;
+    height: 1400px;
     display: block;
     animation: contact1 1.2s linear forwards;
 }
@@ -1459,7 +1552,8 @@ div.waysTo {
 }
 div.waysTo ul {
     font-size: 25px;
-    font-family: 'roboto', serif;
+    font-family: 'roboto',
+    sans-serif;
     line-height: 60px;
     list-style: none;
 }
@@ -1540,6 +1634,109 @@ div.waysTo i {
     text-align: center;
     color: white;
     margin: 10px 20px 10px 10px;
+}
+
+button.waytoForm {
+    position: absolute;
+    left: 8%;
+    top: -10px;
+    width: 150px;
+    height: 50px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    font-family: 'roboto', sans-serif;
+    transition: 0.3s;
+}
+
+button.waytoForm:hover {
+    background-color: cornflowerblue;
+    color: white;
+}
+
+form.contactForm {
+    position: absolute;
+    top: 650px;
+    left: 10%;
+    width: 400px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+}
+
+div.formInfo {
+    position: absolute;
+    top: 800px;
+    left: 50%;
+    width: 500px;
+    height: 80px;
+}
+
+button.clearForm {
+    width: 150px;
+    height: 50px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    font-family: 'roboto', sans-serif;
+    transition: 0.3s;
+    margin-bottom: 40px;
+}
+
+button.clearForm:hover {
+    background-color: cornflowerblue;
+    color: white;
+}
+
+form.contactForm h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid black;
+}
+
+form.contactForm label {
+    font-family: 'roboto', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 2px 2px 8px black;
+    margin-bottom: 10px;
+}
+
+form.contactForm input {
+    margin-bottom: 20px;
+}
+
+input#name,
+input#subject,
+input#contact {
+    height: 40px;
+    font-size: 15px;
+}
+
+textarea#content {
+    font-size: 15px;
+    height: 200px;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+input.send {
+    height: 50px;
+    font-size: 20px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+input.send:hover {
+    background-color: cornflowerblue;
+    color: white;
 }
 
 /*////////////////////////////////////////////////loading//////////////////////////////////////////////////////*/
@@ -1630,6 +1827,95 @@ div.bar:nth-child(3) {
     animation: bardance 1.5s ease infinite;
     animation-delay: 2s;
 }
+div.databaseload {
+    display: none;
+}
+
+div.databaseload.progress {
+    display: block;
+    z-index: 500;
+    position: absolute;
+    width: 30%;
+    height: 30%;
+    left: 50%;
+    top: 68%;
+    transform: translate(-50%, -50%);
+    background-color: cornsilk;
+    border: 2px solid black;
+    box-shadow: 5px 5px 15px black;
+}
+
+div.databaseload.progress h1 {
+    font-family: 'roboto', sans-serif;
+    text-align: center;
+    text-shadow: 5px 5px 20px black;
+    margin-top: 20px;
+}
+
+div.lamps {
+    position: relative;
+    width: 80%;
+    height: 30%;
+    left: 10%;
+    top: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+div.point {
+    width: 35px;
+    height: 35px;
+    border: 2px solid black;
+    margin-top: 10px;
+    box-shadow: 10px 10px 15px black;
+    background-color: white;
+
+}
+
+div.point:nth-child(1) {
+    animation: lamps 2s linear infinite;
+}
+
+div.point:nth-child(2) {
+    animation: lamps 2s 0.3s linear infinite;
+}
+
+div.point:nth-child(3) {
+    animation: lamps 2s 0.6s linear infinite;
+}
+
+div.point:nth-child(4) {
+    animation: lamps 2s 0.9s linear infinite;
+}
+
+@keyframes lamps {
+    0% {
+        box-shadow: 10px 10px 15px black;
+        background-color: white;
+    }
+
+    25% {
+        box-shadow: 10px -10px 15px black;
+        background-color: blue;
+    }
+
+    50% {
+        box-shadow: -10px -10px 15px black;
+        background-color: white;
+    }
+
+    75% {
+        box-shadow: -10px 10px 15px black;
+        background-color: blue;
+    }
+
+    100% {
+        box-shadow: 10px 10px 15px black;
+        background-color: white;
+    }
+}
+
 /*/////////////////////////////////Popup////////////////////popup///////////////////////////*/
 
 div.popup {
@@ -1759,10 +2045,13 @@ div.fullSizeImg {
     left: 60%;
     top: 0px;
     cursor: pointer;
-    background-position: center;
-    background-size: cover;
 }
 
+img.popupimg {
+    position: relative;
+    height: 50%;
+    width: 30%;
+}
 
 
 /*//////////////////////////////////////////////////Annoucemenets/////////////////////////*/
@@ -1799,7 +2088,8 @@ div.annocontent div {
     text-align: center;
     font-size: 30px;
     font-family: 'roboto', sans-serif;
-    margin-top: 30px;
+    margin-top: 50px;
+    margin-bottom: 80px;
 }
 /*//////////////////////////////////////////////responsivity////////////////////////////////////////*/
 

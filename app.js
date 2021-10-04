@@ -3,8 +3,10 @@ const path = require('path');
 const mongoose = require('mongoose');
 const config = require('./config');
 const News = require('./public/models/newsDB.js');
-// const {readFile} = require('fs').promises;
+const {readFile} = require('fs').promises;
 const Anno = require('./public/models/annoucementsDB.js');
+const Message = require('./public/models/messageDB.js');
+const Asso = require('./public/models/assortmentDB');
 
 mongoose.connect(config.db, {
     useNewUrlParser: true,
@@ -14,13 +16,16 @@ mongoose.connect(config.db, {
 const database = mongoose.connection;
 database.on('error', () => {console.error('database connection error')});
 database.once('open', () => {
-    console.log('database MongoDB is connected');
+console.log('database MongoDB is connected');
 });
 
 
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use('/public', express.static(path.resolve(__dirname, 'public')));
+
 
 app.get('/newsdata', (req,res) => {
     News.find({}, (err, data)=> {
@@ -36,6 +41,24 @@ app.get('/newsdata', (req,res) => {
     });
    
 });
+// app.get('/assoadd', async (req,res) => {
+//     const foto = await readFile('../public/images/fullsize/bagiet.jpg', 'base64');
+
+//     const assoInfo = {
+//         title : 'Nowy zajebisty bagiet',
+//         description : 'Przykładowy opis zajebistego bagieta którego nikt jeszcze nie produkuje chociaż może warto zacząć czy coś takiego, no musi być jakiś opis tego gówna na próbę', 
+//         foto : foto,
+//     };
+
+//     const asso = new Asso(assoInfo);
+//     asso.save((err)=> {
+//         if(err) throw new Error
+//         else console.log('poszło');
+//     });
+
+//     res.redirect('/');
+
+// });
 // app.get('/addnews', async (req, res) => {
 //     const foto = await readFile('../public/images/fullsize/fotowol.jpg', 'base64');
 //     const newsInfo = {
@@ -52,21 +75,27 @@ app.get('/newsdata', (req,res) => {
 //         console.log('poszło')
 //     });
 //     res.redirect('/')
-// })
-app.get('/addanno', (req, res) => {
-    const annoData = {
-        title: 'Przykładowe ogłoszenie',
-        date: 'dzisiaj wieczorem',
-        description: 'Jakieś tam będzie ważne ogłoszenie na pół jebanej strony w chuj, będą jakieś głupoty tu wypisywać ble ble i bka ka chuja dupa nie widziła'
-    }
-    const annoToSend = new Anno(annoData);
-    annoToSend.save(err => {
-        if(err) throw new Error;
-        console.log('ogłoszenie wysłane');
-    })
-    res.redirect('/');
-});
+// });
 
+// app.get('/addanno', (req, res) => {
+//     const annoData = {
+//         title: 'Przykładowe ogłoszenie',
+//         date: 'dzisiaj wieczorem',
+//         description: 'Jakieś tam będzie ważne ogłoszenie na pół jebanej strony w chuj, będą jakieś głupoty tu wypisywać ble ble i bka ka chuja dupa nie widziła'
+//     }
+//     const annoToSend = new Anno(annoData);
+//     annoToSend.save(err => {
+//         if(err) throw new Error;
+//         console.log('ogłoszenie wysłane');
+//     })
+//     res.redirect('/');
+// });
+app.get('/assortmentdata', (req, res) => {
+    Asso.find({}, (err, data) => {
+        if(err) throw new Error
+        else res.json(data);
+    })
+})
 app.get('/readanno', (req,res) => {
     Anno.find({}, (err,data) => {
         if ( err ) {
@@ -76,14 +105,32 @@ app.get('/readanno', (req,res) => {
         };
     })
 })
+app.post('/sendmessage',  (req, res) => {
+    const data = req.body;
+    const newMessage = new Message(data);
+
+    newMessage.save(err => {
+        if(err) throw new Error
+        else console.log('Wiadomość wysłana poprawnie');
+    });
+    res.json({
+        sucess: 'true',
+    });
+});
 
 app.get('/error', (req,res) => {
     res.sendFile(path.resolve(__dirname, 'public', 'error.html'))
 });
 
+app.get('/login', (req,res) => {
+    res.sendFile(path.resolve(__dirname, 'public', 'login.html' ))
+});
+
 app.get('/*', (req, res)=> {
     res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
+
+
 
 
 module.exports = app;

@@ -6,15 +6,16 @@ export default class extends viewModel {
         this.setTitle('GS SCH Komańcza Ogłoszenia');
     }
     getAnno(data) {
+        const loading = document.querySelector('div.databaseload');
+        const section = document.querySelector('.anno');
         const length = data.length;
+        
         if (length === 0) {
-            return (
-                `<section class='anno'><h1>Aktualnie brak ogłoszeń</h1></section>`
-            )
+
+             section.innerHTML = `<h1>Aktualnie brak ogłoszeń</h1>`
+            
         } else {
-            const wrapp = document.createElement('div');
-            const section = document.createElement('section');
-            section.classList.add('anno');
+
             const dataArr = Object.values(data);
             dataArr.forEach(anno => {
                 const {title, date, description} = anno;
@@ -26,15 +27,20 @@ export default class extends viewModel {
                                         `;
                 section.appendChild(annoucement);
             });
-            wrapp.appendChild(section);
-            return (wrapp.innerHTML).toString()
+            
         }
+        loading.classList.remove('progress');
     }
 
     getHtml() {
-        return fetch('/readanno', {
+        const loading = document.querySelector('div.databaseload');
+        loading.classList.add('progress');
+
+        fetch('/readanno', {
             method: "GET",
-        }).then(res => res.json()).then(data => { return (this.getAnno(data))});
+        }).then(res => res.json()).then(data => this.getAnno(data));
+
+        return `<section class='anno'></section>`
     };
     
 };
