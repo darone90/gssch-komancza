@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./public/favicon.ico" type="image/x-icon"/>
+    <title>GSSCH Zarządzanie treścią</title>
+</head>
+<body>
+    <header>
+        <div class='logo'></div>
+        <div class='title'></div>
+        <div class='logedUser'></div>
+        <button><a href="/admin/userdatachange" data-link>Zmiana danych konta</a></button>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/admin/messages" data-link>Odebrane wiadomości</a></li>
+            <li><a href="/admin/articles" data-link>Artykuły</a></li>
+            <li><a href="/admin/info" data-link>Ogłoszenia</a></li>
+            <li><a href="/admin/assortment" data-link>Piekarnia</a></li>
+        </ul>
+    </nav>
+    <div id="app"></div>
+    <button class='loguot'><a href="/logout">Wyloguj</a></button>
+    <button><a href="/admin/accounts">Zarządzanie użytkownikami</a></button>
+    <script type="module" src="./public/javascript/adminRouter.js"></script>
+</body>
+</html>

@@ -46,6 +46,7 @@ div.loginfo h1 {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    top: -30px;
 }
 
 form.login label {

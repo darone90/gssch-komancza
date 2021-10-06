@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zarządzanie kontami</title>
+</head>
+<body>
+    <div class="header">
+        <h1>Only for masters</h1>
+        <div class="logo"></div>
+        <button class='logout'><a href="/logout">Wyloguj</a></button>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/admin/accounts/add" data-link>Dodawanie</a></li>
+            <li><a href="/admin/accounts/edit" data-link>Edytuj istniejące</a></li>
+            <li><a href="/admin/accounts/remove" data-link>Usuń</a></li>
+        </ul>
+        <div id="app"></div>
+    </nav>
+    <script type="module" src="../public/javascript/accountRouter.js"></script>
+</body>
+</html>
