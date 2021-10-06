@@ -6,13 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./public/favicon.ico" type="image/x-icon"/>
     <title>GSSCH Zarządzanie treścią</title>
+    <link rel="stylesheet" href="./public/style/admin.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet"> 
 </head>
 <body>
     <header>
         <div class='logo'></div>
-        <div class='title'></div>
-        <div class='logedUser'></div>
-        <button><a href="/admin/userdatachange" data-link>Zmiana danych konta</a></button>
+        <div class='title'><h1>Panel administratora GSSCH w Komańczy</h1></div>
+        <div class='logedUser'><h2>Zalogowany użytkownik:</h2><h2>Pzrykładowy</h2></div>
+        <button class='accountChanges'><a href="/admin/userdatachange" data-link>Zmiana danych konta</a></button>
     </header>
     <nav>
         <ul>
@@ -23,8 +29,11 @@
         </ul>
     </nav>
     <div id="app"></div>
+    <footer>
     <button class='loguot'><a href="/logout">Wyloguj</a></button>
     <button><a href="/admin/accounts">Zarządzanie użytkownikami</a></button>
+    </footer>
+    
     <script type="module" src="./public/javascript/adminRouter.js"></script>
 </body>
 </html>

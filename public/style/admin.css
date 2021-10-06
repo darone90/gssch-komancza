@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: 'roboto', sans-serif;
+    font-size: 15px;
+}
+
+body {
+    height: auto;
+}
+
+header {
+    width: 100%;
+    height: 200px;
+    background-color: yellow;
+}
+
+div.logo {
+    position: relative;
+    height: 100%;
+    width: 220px;
+    right: -100%;
+    background-color: blue;
+    transform: translateX(-100%);
+}
+
+div.title {
+    position: relative;
+    background-color: red;
+    width: 55%;
+    font-size: 18px;
+    top: -75%;
+    margin-left: 80px;
+    font-family: 'Acme', sans-serif;
+}
+
+div.logedUser {
+    background-color: saddlebrown;
+    position: relative;
+    font-family: 'Acme', sans-serif;
+    width: 30%;
+    margin-left: 80px;
+    top: -60%;
+}
+
+button.accountChanges {
+    position: relative;
+    background-color: white;
+    width: 140px;
+    height: 50px;
+    border: 2 px solid black;
+    left: 40%;
+    top: -70%;
+}
+
+button.accountChanges a {
+    text-decoration: none;
+    color: black;
+    width: 100%;
+    height: 100%;
+}
