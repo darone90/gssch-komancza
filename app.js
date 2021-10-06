@@ -12,7 +12,8 @@ const cookieSession = require('cookie-session');
 
 
 const loginRouter = require('./routers/login.js');
-const adminRouter = require('./routers/admin.js')
+const adminRouter = require('./routers/admin.js');
+const accountRouter = require('./routers/account.js');
 
 mongoose.connect(config.db, {
     useNewUrlParser: true,
@@ -40,16 +41,12 @@ app.use(cookieSession({
 
 app.use('/login', loginRouter);
 app.use('/admin', adminRouter);
+app.use('/accounts', accountRouter);
 
 app.use('/public', express.static(path.resolve(__dirname, 'public')));
 
 app.get('/error', (req,res) => {
     res.sendFile(path.resolve(__dirname, 'public', 'error.html'))
-});
-
-
-app.get('/', (req, res)=> {
-    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
 
 app.get('/newsdata', (req,res) => {
@@ -103,7 +100,11 @@ app.post('/sendmessage',  (req, res) => {
 app.get('/logout', (req, res) => {
     req.session = null;
     res.redirect('/');
-})
+});
+
+app.get('/*', (req, res)=> {
+    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
 
 // app.get('/assoadd', async (req,res) => {
 //     const foto = await readFile('../public/images/fullsize/bagiet.jpg', 'base64');

@@ -5,10 +5,10 @@ import Invitation from "../views/accounts/invitation.js";
 
 const router = async () => {
     const routes = [
-        {path: '/admin/accounts/', view : Invitation},
-        {path: '/admin/accounts/add', view: Add},
-        {path: '/admin/accounts/edit', view: Edit},
-        {path: '/admin/accounts/remove', view: Remove},
+        {path: '/accounts/', view : Invitation},
+        {path: '/accounts/add', view: Add},
+        {path: '/accounts/edit', view: Edit},
+        {path: '/accounts/remove', view: Remove},
     ];
 
     const isMatch = routes.map( route => {

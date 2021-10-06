@@ -10,17 +10,9 @@ router.all('*', (req,res,next) => {
     next();
 })
 
-router.get('/', (req,res) => {
+router.get('/*', (req,res) => {
 
     res.sendFile(path.resolve('../public/admin.html'));
-})
-
-router.get('/accounts', (req, res) => {
-    if(!req.session.master) {
-        res.send('Niestety nie posiadasz wystraczających uprawnień aby zobczyć stronę, dostęp nie został przyznany');
-    } else {
-        res.sendFile(path.resolve('../public/accounts.html'))
-    }
-})
+});
 
 module.exports = router;
