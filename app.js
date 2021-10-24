@@ -3,14 +3,14 @@ const path = require('path');
 const mongoose = require('mongoose');
 const config = require('./config');
 const News = require('./public/models/newsDB.js');
-const {readFile} = require('fs').promises;
+// const {readFile} = require('fs').promises;
 const Anno = require('./public/models/annoucementsDB.js');
 const Message = require('./public/models/messageDB.js');
 const Asso = require('./public/models/assortmentDB');
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
 
-
+// rate limitera dodać
 const loginRouter = require('./routers/login.js');
 const adminRouter = require('./routers/admin.js');
 const accountRouter = require('./routers/account.js');
@@ -99,7 +99,9 @@ app.post('/sendmessage',  (req, res) => {
 
 app.get('/logout', (req, res) => {
     req.session = null;
-    res.redirect('/');
+    res
+        .clearCookie('user-name')
+        .redirect('/');
 });
 
 app.get('/*', (req, res)=> {

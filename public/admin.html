@@ -16,8 +16,8 @@
 <body>
     <header>
         <div class='logo'></div>
-        <div class='title'><h1>Panel administratora GSSCH w Komańczy</h1></div>
-        <div class='logedUser'><h2>Zalogowany użytkownik:</h2><h2>Pzrykładowy</h2></div>
+        <div class='title'><h1>Panel administratorski strony internetowej GSSCH w Komańczy</h1></div>
+        <div class='logedUser'><h2>Zalogowany użytkownik:</h2><h2 class="nameFromCookie"></h2></div>
         <button class='accountChanges'><a href="/admin/userdatachange" data-link>Zmiana danych konta</a></button>
     </header>
     <nav>
@@ -28,12 +28,16 @@
             <li><a href="/admin/assortment" data-link>Piekarnia</a></li>
         </ul>
     </nav>
+    <div class="loadingBox">Ładowanie...</div>
     <div id="app"></div>
     <footer>
-    <button class='loguot'><a href="/logout">Wyloguj</a></button>
-    <button><a href="/accounts">Zarządzanie użytkownikami</a></button>
+        <p>Made by Dariusz Pilecki</p>
+        <button class='accountMenager'><a href="/accounts">Zarządzanie użytkownikami</a></button>
+        <button class='logout'><a href="/logout">Wyloguj</a></button>
+    
     </footer>
     
     <script type="module" src="../public/javascript/adminRouter.js"></script>
+    <script src="../public/javascript/adminscript.js"></script>
 </body>
 </html>

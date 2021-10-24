@@ -14,8 +14,9 @@ body {
 
 header {
     width: 100%;
-    height: 200px;
-    background-color: yellow;
+    height: 220px;
+    border-bottom: 4px solid black;
+    box-shadow: 0 10px 10px black;
 }
 
 div.logo {
@@ -25,25 +26,29 @@ div.logo {
     right: -100%;
     background-color: blue;
     transform: translateX(-100%);
+    background-image: url('../images/GS logo.png');
+    border-left: 2px solid black;
 }
 
 div.title {
     position: relative;
-    background-color: red;
     width: 55%;
     font-size: 18px;
-    top: -75%;
+    top: -95%;
     margin-left: 80px;
     font-family: 'Acme', sans-serif;
+    border-bottom: 2px solid black;
+    box-shadow: 2px 2px 10px black;
+    padding-left: 10px;
 }
 
 div.logedUser {
-    background-color: saddlebrown;
+    line-height: 2.5rem;
     position: relative;
     font-family: 'Acme', sans-serif;
     width: 30%;
     margin-left: 80px;
-    top: -60%;
+    top: -85%;
 }
 
 button.accountChanges {
@@ -51,14 +56,376 @@ button.accountChanges {
     background-color: white;
     width: 140px;
     height: 50px;
-    border: 2 px solid black;
-    left: 40%;
-    top: -70%;
+    left: 22%;
+    top: -110%;
+    border-radius: 5px;
 }
 
 button.accountChanges a {
     text-decoration: none;
     color: black;
+    display: inline-block;
     width: 100%;
     height: 100%;
-}
+    line-height: 50px;
+    border: 3 px solid black;
+    text-shadow: 2px 2px 2px grey;
+    box-shadow: 4px 4px 2px black;
+    border-bottom: 5px;
+    transition: 0.3s;
+    }
+
+    button.accountChanges a:hover {
+        box-shadow: 8px 8px 5px grey;
+        text-shadow: 4px 4px 4px black;
+    }
+
+    ul {
+        position: absolute;
+        margin-top: 10px;
+    }
+
+    ul li {
+        height: 5rem;
+        width: 15rem;
+        margin: 10px;
+        list-style: none;
+    }
+
+    ul li a {
+        text-decoration: none;
+        line-height: 5rem;
+        text-align: center;
+        font-family: 'roboto', sans-serif;
+        font-size: 2rem;
+        display: inline-block;
+        width: 100%;
+        border: 2px solid black;
+        box-shadow: 2px 4px 4px grey;
+        color: black;
+        text-shadow: 3px 3px 5px grey;
+        border-radius: 5px;
+        transition: 0.2s;
+    }
+
+    ul li a:hover {
+        text-shadow: 8px 8px 8px black;
+    }
+
+    ul li:nth-child(1) a {
+        font-size: 1rem;
+    }
+
+    div#app {
+        position: absolute;
+        left: 17rem;
+        min-height: 25rem;
+        margin-top: 20px;
+        width: 80%;
+        border: 2px solid black;
+        box-shadow: 5px 5px 5px black;
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: 1.5rem;
+        width: 100%;
+        background-color: grey;
+    }
+
+    footer p {
+        float: right;
+        line-height: 1.5rem;
+        margin-right: 10px;
+    }
+
+    footer button {
+        float: right;
+        margin-right: 10px;
+        border: 1px solid black;
+        height: 95%;
+        padding: 0 5px;
+        border-radius: 5px;
+        transition: 0.3s;
+    }
+
+    footer button a {
+        text-decoration: none;
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        line-height: 1.4rem;
+        color: black;
+        font-size: 1rem;
+    }
+
+    footer button.logout {
+        float: left;
+        margin-left: 10px;
+    }
+
+    footer button:hover {
+        background-color: black;
+    }
+
+    footer button:hover a {
+        color: blanchedalmond;
+        font-size: 1.2rem;
+    }
+
+    @keyframes textAppear {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    h2.welcom {
+        font-family: 'roboto', sans-serif;
+        line-height: 4rem;
+        text-align: center;
+        font-size: 2rem;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        opacity: 0;
+        animation: textAppear 0.8s ease forwards;
+    }
+
+    div#app p {
+        text-align: justify;
+        margin-left: 20px;
+        margin-right: 20px;
+        line-height: 30px;
+        opacity: 0;
+        animation: textAppear 0.8s ease forwards;
+        animation-delay: 0.4s;
+    }
+
+    div.loadingBox {
+        display: none;
+        position: absolute;
+        left: 17rem;
+        min-height: 25rem;
+        margin-top: 20px;
+        width: 80%;
+        border: 2px solid black;
+        box-shadow: 5px 5px 5px black;
+        z-index: 12;
+        text-align: center;
+        line-height: 25rem;
+        font-size: 5rem;
+    }
+
+    div.loadingBox.onload {
+        display: block;
+    }
+
+    div.unreadedBox,
+    div.readedBox {
+        margin: 10px 15px 25px 15px;
+        border: 2px solid black;
+        text-align: left;
+    }
+
+    div.unreaded,
+    div.readed {
+        text-align: center;
+    }
+
+    div.unreaded.hide,
+    div.readed.hide {
+        display: none;
+    }
+
+    div.unreaded h1,
+    div.readed h1 {
+        font-family: 'roboto', sans-serif;
+        margin: 15px 0;
+    }
+
+    div.unreadedBox h3,
+    div.readedBox h3 {
+        margin: 10px 0 10px 10px;
+        text-shadow: 3px 3px 5px black;
+        font-size: 1.5rem;
+    }
+
+    div.unreadedBox h4,
+    div.readedBox h4 {
+        margin: 10px 0 10px 10px;
+        font-size: 1.2rem;
+    }
+
+    div.unreadedBox p,
+    div.readedBox p {
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    button.read,
+    button.delete {
+        background-color: white;
+        border: 2px solid black;
+        font-size: 1.3em;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: 0.4s;
+    }
+
+    button.read:hover,
+    button.delete:hover {
+        box-shadow: 5px 5px 10px black;
+    }
+
+    button.read {
+        position: relative;
+        bottom: 10px;
+        left: 55%;
+        bottom: 12em;
+    }
+
+    button.delete {
+        position: relative;
+        margin-bottom: 10px;
+        right: 5em;
+    }
+
+    button.delete.onreaded {
+        left: 1em;
+    }
+
+    h2.nomessage {
+        margin-bottom: 40px;
+    }
+
+    button.showReaded,
+    button.showUnreaded,
+    button.addAnno,
+    button.showAnno {
+        background-color: white;
+        border: 2px solid black;
+        font-size: 1.3em;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 4px;
+        margin: 10px 0 0 10px;
+        transition: 0.4s;
+    }
+
+    button.showReaded.active,
+    button.showUnreaded.active,
+    button.addAnno.active,
+    button.showAnno.active,
+    button.showReaded:hover,
+    button.showUnreaded:hover,
+    button.addAnno:hover,
+    button.showAnno:hover {
+        color: white;
+        background-color: blue;
+    }
+
+    div.replace,
+    div.remove {
+        position: relative;
+        left: 30%;
+        bottom: 190px;
+        color: green;
+        font-size: 1.5rem;
+    }
+
+    div.remove {
+        color: red
+    }
+
+    div.addingAnno.hide,
+    div.actualAnno.hide {
+        display: none;
+    }
+
+    div.addingAnno form {
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+        margin-bottom: 40px;
+        align-items: center;
+    }
+
+    div.addingAnno form label {
+        font-size: 1.5rem;
+        margin: 15px 0 20px 10px;
+    }
+
+    div.addingAnno form input {
+        width: 40%;
+        font-size: 1.2rem;
+    }
+
+    div.addingAnno form textarea {
+        width: 60%;
+        font-size: 1.2rem;
+    }
+
+    div.addingAnno form button {
+        height: 2rem;
+        font-size: 1.4rem;
+        background-color: white;
+        border: 2px solid black;
+        border-radius: 5px;
+        padding: 0 8px;
+        margin-top: 10px;
+        cursor: pointer;
+        box-shadow: 2px 2px 5px black;
+        transition: 0.3s;
+    }
+
+    div.addingAnno form button:hover {
+        box-shadow: 5px 5px 10px black;
+    }
+
+    button.clear {
+        position: absolute;
+        right: 7rem;
+        top: 10rem;
+    }
+
+    div.infoBox {
+        position: absolute;
+        top: 9rem;
+        left: 2rem;
+        width: 20rem;
+        font-size: 2rem;
+        border: 2px solid black;
+        text-align: center;
+        box-shadow: 4px 4px 5px black;
+        color: green;
+        padding: 5px 0;
+    }
+
+    div.infoBox.hide {
+        display: none;
+    }
+
+    div.actualAnno h1 {
+        margin: 10px 0 20px 10px
+    }
+
+    div.annoucement {
+        position: relative;
+        border: 2px solid black;
+        width: 70%;
+        margin: 10px 0 20px 10px;
+        box-shadow: 4px 4px 5px black;
+    }
+
+    div.annoucement h2 {
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
