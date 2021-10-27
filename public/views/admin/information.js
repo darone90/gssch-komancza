@@ -16,14 +16,15 @@ export default class extends viewModel {
 
             const anno = document.createElement('div');
             anno.classList.add('annoucement');
+            anno.classList.add(`${data[i]._id}`);
 
             anno.innerHTML = `
                 <h1>${data[i].title}</h1>
                 <h2>${data[i].date}</h2>
                 <p>${data[i].description}</p>
                 <p>Utworzono dnia ${new Date(Number(data[i].created)).toISOString().slice(0,10)}</p>
-                <button class='editAnno'>Edytuj</button>
-                <button class='deleteAnno'>Usuń</button>
+                <button class='editAnno ${data[i]._id}' id='${data[i]._id}'>Edytuj</button>
+                <button class='deleteAnno ${data[i]._id}'>Usuń</button>
             `;
 
             annoBox.appendChild(anno);
@@ -75,6 +76,19 @@ export default class extends viewModel {
             <div class='actualAnno hide'>
                 <h1>Aktualnie zamieszczone ogłoszenia: </h1>
             </div>
+            <div class='popupForm hide'>
+                    <form>
+                        <label for="titleEdit" id='forTitleEdit'>Tytuł ogłoszenia</label>
+                        <input type="text" id='titleEdit'>
+                        <label for="dateEdit" id='forDateEdit'>Data</label>
+                        <input type="date" id="dateEdit">
+                        <label for="descriptionEdit" id='forDescriptionEdit'>Treść ogłoszenia</label>
+                        <textarea id="descriptionEdit" cols="30" rows="10"></textarea>
+                        <button class="publicEdit">Zapisz zmiany</button>
+                        <button class='close'>Zamknij edytor</button>
+                    </form>
+                    <div class='infoBoxEdit hide'></div>
+                </div>
         </div>
         `
     };

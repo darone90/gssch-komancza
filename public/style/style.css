@@ -1991,6 +1991,10 @@ button.perview:hover {
     transform: scale(1.1);
 }
 
+button.next.disable,
+button.perview.disable {
+    background-color: grey;
+}
 article.fullsize {
     border-left: 3px solid black;
     border-bottom: 3px solid black;

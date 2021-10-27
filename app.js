@@ -10,6 +10,8 @@ const Asso = require('./public/models/assortmentDB');
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
 
+
+
 // rate limitera dodać
 const loginRouter = require('./routers/login.js');
 const adminRouter = require('./routers/admin.js');
@@ -30,6 +32,7 @@ console.log('database MongoDB is connected');
 
 const app = express();
 
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -38,6 +41,7 @@ app.use(cookieSession({
     keys: config.keySession,
     maxAge: config.maxAgeSession
 }));
+
 
 app.use('/login', loginRouter);
 app.use('/admin', adminRouter);
@@ -143,20 +147,5 @@ app.get('/*', (req, res)=> {
 //     });
 //     res.redirect('/')
 // });
-
-// app.get('/addanno', (req, res) => {
-//     const annoData = {
-//         title: 'Przykładowe ogłoszenie',
-//         date: 'dzisiaj wieczorem',
-//         description: 'Jakieś tam będzie ważne ogłoszenie na pół jebanej strony w chuj, będą jakieś głupoty tu wypisywać ble ble i bka ka chuja dupa nie widziła'
-//     }
-//     const annoToSend = new Anno(annoData);
-//     annoToSend.save(err => {
-//         if(err) throw new Error;
-//         console.log('ogłoszenie wysłane');
-//     })
-//     res.redirect('/');
-// });
-
 
 module.exports = app;

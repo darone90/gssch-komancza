@@ -25,7 +25,7 @@ export default class extends viewModel {
                                         <h1>${title}</h1>    
                                         <div>${description}</div>
                                         `;
-                section.appendChild(annoucement);
+                section.prepend(annoucement);
             });
             
         }

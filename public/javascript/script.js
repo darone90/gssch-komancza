@@ -5,45 +5,48 @@ fetch('/newsdata', {
     method: 'GET',
 }).then(res => res.json()).then(data => {
     database = data;
+    database.reverse();
 });
 /////////////////////////////////global functions/////////////////////////////////////////
-function next(i, n) {
+function next(i, l) {
     const nextbtn = document.querySelector('button.next');
     const pervbtn = document.querySelector('button.perview');
     const article = document.querySelector('article.fullsize');
     const articleDate = document.querySelector('article h1.date');
     const articleTitle = document.querySelector('article h2.title');
     const img = document.querySelector('img.popupimg');
+    
+    if (i <= l - 1) {
 
-    index = i;
-    const noArticles = n;
-    if (index < noArticles) {
+        const oldParagraphs = document.querySelectorAll('article.fullsize p');
+        if(oldParagraphs) {
+            oldParagraphs.forEach(paragraph => {
+                paragraph.remove()
+            });
+        };
+
         const {description, title, date, foto} = database[i];
         articleDate.innerText = date;
         articleTitle.innerText = title;
-        img.src = `data:image/jpg;base64,${foto}`;
-        const paragraphs = Object.values(description);
-        const oldParagraphs = document.querySelectorAll('article.fullsize p');
-        if(oldParagraphs) {
-            oldParagraphs.forEach(paragraph => {
-                paragraph.remove()
-            });
-        };
-        paragraphs.forEach(paragraph => {
+        img.src = `./public/images/imagesDB/${foto}`;
+
+        description.forEach(paragraph => {
         const html = document.createElement('p');
         html.innerText = paragraph;
         article.appendChild(html);
-        if (index < noArticles){
-        index++;
-        }
-    })};  
-    if (index === noArticles )
-    nextbtn.disabled = true;
-    pervbtn.disabled = false;
-    console.log(index);
-    
+    });
+
+    if(i === l-1) { 
+        nextbtn.disabled = true;
+        nextbtn.classList.add('disable');
+    };
+        pervbtn.disabled = false;
+        pervbtn.classList.remove('disable');
+};  
+    index++;
 };
-function perview(i, n) {
+function perview(i) {
+    
     const nextbtn = document.querySelector('button.next');
     const pervbtn = document.querySelector('button.perview');
     const article = document.querySelector('article.fullsize');
@@ -51,30 +54,37 @@ function perview(i, n) {
     const articleTitle = document.querySelector('article h2.title');
     const img = document.querySelector('img.popupimg');
 
-    index = i;
-    if (index > 1) {
-        const {description, title, date, foto} = database[i-2];
-        articleDate.innerText = date;
-        articleTitle.innerText = title;
-        img.src = `data:image/jpg;base64,${foto}`;
-        const paragraphs = Object.values(description);
+    if (i >= 0) {
+
         const oldParagraphs = document.querySelectorAll('article.fullsize p');
+
         if(oldParagraphs) {
             oldParagraphs.forEach(paragraph => {
                 paragraph.remove()
             });
         };
-        paragraphs.forEach(paragraph => {
+
+        const {description, title, date, foto} = database[i];
+        articleDate.innerText = date;
+        articleTitle.innerText = title;
+        img.src = `./public/images/imagesDB/${foto}`;
+        
+        description.forEach(paragraph => {
         const html = document.createElement('p');
         html.innerText = paragraph;
         article.appendChild(html);
-        if(index > 1) {
-        index--;
-        }
-    })};  
-    if (index === 1 )
-    nextbtn.disabled = false;
-    pervbtn.disabled = true;
+        });
+        
+        if(i === 0){
+            pervbtn.disabled = true;
+            pervbtn.classList.add('disable');
+        };
+        nextbtn.disabled = false;
+        nextbtn.classList.remove('disable');
+        
+    };
+
+    index--;
     console.log(index);
 };
 const scrollContent = (e)=> {
@@ -89,7 +99,6 @@ function hasClass(elem, className) {
 };
 //////////////////////////////////////events for dynamic elements//////////////////////////////////////
 let index;
-let articlesNumbers;
 
 document.addEventListener('click', function (e) {
     if (hasClass(e.target, 'a')) {
@@ -114,59 +123,64 @@ document.addEventListener('click', function (e) {
     }
     else if (hasClass(e.target, 'next')) {
         
-        next(index, articlesNumbers);
+        next(index+1, database.length);
     }
     else if(hasClass(e.target, 'perview')){
         
-        perview(index, articlesNumbers);
+        perview(index-1);
     }
     else if (hasClass(e.target, 'moreNews')) {
-    const moreButtons = document.querySelectorAll('.moreNews');
-    const iterration = moreButtons.length;
+
+    const id = e.target.classList[1];
+
     const article = document.querySelector('article.fullsize');
     const articleDate = document.querySelector('article h1.date');
     const articleTitle = document.querySelector('article h2.title');
     const nextbtn = document.querySelector('button.next');
     const pervbtn = document.querySelector('button.perview');
     const img = document.querySelector('img.popupimg');
-
-    for(let i = 1; i<=iterration; i++){
-        if(e.target.classList.contains(`${i-1}`)){
-            index = i;
-            articlesNumbers = iterration;
-            const {description, title, date, foto} = database[i-1];
-            const paragraphs = Object.values(description);
-            const oldParagraphs = document.querySelectorAll('article.fullsize p');
-            if(oldParagraphs) {
-                oldParagraphs.forEach(paragraph => {
-                    paragraph.remove()
-                });
-            };
-            paragraphs.forEach(paragraph => {
-                const html = document.createElement('p');
-                html.innerText = paragraph;
-                article.appendChild(html);
-            })
-            articleDate.innerText = date;
-            articleTitle.innerText = title;
-            img.src = `data:image/jpg;base64,${foto}`;
-
-            if(i === 1) {
-                pervbtn.disabled = true;
-                nextbtn.disabled = false;
-            } else if(i === iterration) {
-                nextbtn.disabled = true;
-                pervbtn.disabled = false;
-            } else {
-                nextbtn.disabled = false;
-                pervbtn.disabled = false;
-            };
-
-        }
+    
+    const oldParagraphs = document.querySelectorAll('article.fullsize p');
+    if(oldParagraphs) {
+        oldParagraphs.forEach(paragraph => {
+            paragraph.remove()
+        });
     };
-    document.querySelector('div.popup').classList.add('active');
 
-   }
+    index = database.findIndex(art => art._id === id)
+    const foundedArticle = database.find(art => art._id === id);
+    const {title, date, description, foto} = foundedArticle;
+
+    articleTitle.innerText = title;
+    articleDate.innerText = date;
+    img.src = `./public/images/imagesDB/${foto}`;
+
+    description.forEach(p => {
+        const parag = document.createElement('p');
+        parag.innerText = p;
+        article.appendChild(parag);
+    })
+
+    document.querySelector('div.popup').classList.add('active');
+    scrollContent(260);
+
+    if(index === 0) {
+        pervbtn.disabled = true;
+        pervbtn.classList.add('disable');
+        nextbtn.disabled = false;
+        nextbtn.classList.remove('disable');
+    } else if(index === database.length - 1) {
+        pervbtn.disabled = false;
+        pervbtn.classList.remove('disable');
+        nextbtn.disabled = true;
+        nextbtn.classList.add('disable');
+    } else {
+        pervbtn.disabled = false;
+        pervbtn.classList.remove('disable');
+        nextbtn.disabled = false;
+        nextbtn.classList.remove('disable');
+    };
+   };
    
    if (hasClass(e.target, 'close')) {
         document.querySelector('div.popup').classList.remove('active')

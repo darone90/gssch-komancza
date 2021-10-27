@@ -210,11 +210,12 @@ button.accountChanges a {
         display: none;
         position: absolute;
         left: 17rem;
-        min-height: 25rem;
+        height: 40rem;
         margin-top: 20px;
         width: 80%;
         border: 2px solid black;
         box-shadow: 5px 5px 5px black;
+        background-color: white;
         z-index: 12;
         text-align: center;
         line-height: 25rem;
@@ -268,7 +269,9 @@ button.accountChanges a {
     }
 
     button.read,
-    button.delete {
+    button.delete,
+    button.editArticle,
+    button.removeArticle {
         background-color: white;
         border: 2px solid black;
         font-size: 1.3em;
@@ -279,7 +282,9 @@ button.accountChanges a {
     }
 
     button.read:hover,
-    button.delete:hover {
+    button.delete:hover,
+    button.editArticle:hover,
+    button.removeArticle:hover {
         box-shadow: 5px 5px 10px black;
     }
 
@@ -307,7 +312,10 @@ button.accountChanges a {
     button.showReaded,
     button.showUnreaded,
     button.addAnno,
-    button.showAnno {
+    button.showAnno,
+    button.addArticle,
+    button.showArticles,
+    button.clearArt {
         background-color: white;
         border: 2px solid black;
         font-size: 1.3em;
@@ -322,10 +330,15 @@ button.accountChanges a {
     button.showUnreaded.active,
     button.addAnno.active,
     button.showAnno.active,
+    button.addArticle.active,
+    button.showArticles.active,
     button.showReaded:hover,
     button.showUnreaded:hover,
     button.addAnno:hover,
-    button.showAnno:hover {
+    button.showAnno:hover,
+    button.addArticle:hover,
+    button.showArticles:hover,
+    button.clearArt:hover {
         color: white;
         background-color: blue;
     }
@@ -344,11 +357,18 @@ button.accountChanges a {
     }
 
     div.addingAnno.hide,
-    div.actualAnno.hide {
+    div.actualAnno.hide,
+    div.popupForm.hide,
+    div.addingArticle.hide,
+    div.actualArticles.hide,
+    div.popupFormNews.hide,
+    button.removeParagraph.hide {
         display: none;
     }
 
-    div.addingAnno form {
+    div.addingAnno form,
+    div.popupForm form,
+    div.addingArticle form {
         display: flex;
         flex-direction: column;
         margin-top: 30px;
@@ -356,22 +376,29 @@ button.accountChanges a {
         align-items: center;
     }
 
-    div.addingAnno form label {
+    div.addingAnno form label,
+    div.popupForm form label,
+    div.addingArticle form label {
         font-size: 1.5rem;
         margin: 15px 0 20px 10px;
     }
 
-    div.addingAnno form input {
+    div.addingAnno form input,
+    div.popupForm form input,
+    div.addingArticle form input {
         width: 40%;
         font-size: 1.2rem;
     }
 
-    div.addingAnno form textarea {
+    div.addingAnno form textarea,
+    div.popupForm form textarea {
         width: 60%;
         font-size: 1.2rem;
     }
 
-    div.addingAnno form button {
+    div.addingAnno form button,
+    div.popupForm form button,
+    div.addingArticle form button {
         height: 2rem;
         font-size: 1.4rem;
         background-color: white;
@@ -384,17 +411,22 @@ button.accountChanges a {
         transition: 0.3s;
     }
 
-    div.addingAnno form button:hover {
+    div.addingAnno form button:hover,
+    div.popupForm form button:hover,
+    div.addingArticle form button:hover {
         box-shadow: 5px 5px 10px black;
     }
 
-    button.clear {
+    button.clear,
+    button.close {
         position: absolute;
         right: 7rem;
         top: 10rem;
     }
 
-    div.infoBox {
+    div.infoBox,
+    div.infoBoxEdit,
+    div.infoBoxArticle {
         position: absolute;
         top: 9rem;
         left: 2rem;
@@ -407,7 +439,9 @@ button.accountChanges a {
         padding: 5px 0;
     }
 
-    div.infoBox.hide {
+    div.infoBox.hide,
+    div.infoBoxEdit.hide,
+    div.infoBoxArticle.hide {
         display: none;
     }
 
@@ -426,6 +460,66 @@ button.accountChanges a {
     div.annoucement h2 {
         display: inline-block;
         position: absolute;
-        right: 0;
-        top: 0;
+        right: 10px;
+        top: 10px;
+        }
+
+        div.annoucement p {
+            margin: 2.5rem 0 1rem 20px;
+        }
+
+        div.annoucement button {
+            height: 2rem;
+            background-color: white;
+            text-shadow: 2px 2px 5px black;
+            box-shadow: 2px 2px 5px black;
+            padding: 0 8px;
+            margin: 10px;
+            cursor: pointer;
+            transition: 0.4s;
+        }
+
+        div.annoucement button:hover {
+            box-shadow: 5px 5px 10px black;
+        }
+
+        div.annoucement button.deleteAnno {
+            float: right;
+        }
+
+        button.addParagraph {
+            position: absolute;
+            right: 20rem;
+            top: 16.5rem
+        }
+
+        div.addingArticle form textarea {
+            margin-top: 30px;
+            width: 55rem;
+            height: 5rem;
+        }
+
+        div.paragraphBox {
+            width: 55rem;
+        }
+
+        div.articleShort {
+            border: 2px solid black;
+            margin: 20px 10px 15px 10px;
+            padding: 10px;
+            box-shadow: 5px 5px 8px black;
+        }
+
+        div.actualArticles h1 {
+            margin: 20px 0 10px 10px;
+        }
+
+        div.articleShort h1 {
+            font-size: 1.5rem;
+        }
+
+        button.clearArt {
+            position: absolute;
+            left: 5rem;
+            top: 15rem;
     }

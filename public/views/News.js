@@ -22,7 +22,7 @@ export default class extends viewModel {
 
         const dataArr = Object.values(data);
         let flag = true;
-        let index = 0;
+
 
         dataArr.forEach( news => {
             const newsElement = document.querySelector('.news');
@@ -36,21 +36,21 @@ export default class extends viewModel {
                 flag = true;
             };
 
-            const { title, date, description, foto} = news;
-            const {p1} = description;
+            const { title, date, description, foto, _id} = news;
+            const {0:par} = description;
 
             article.innerHTML = `<div class='description'>
                                 <h1 class='date'>${date}</h1>
                                 <h2 class='title'>${title}</h2>
-                                <h3 class='text'>${p1}</h3> 
+                                <h3 class='text'>${par}</h3> 
                                 </div>
                                 <div class='imageInfo'>
-                                <img src="data:image/jpg;base64,${foto}">
+                                <img src="./public/images/imagesDB/${foto}">
                                 </div>
-                                <button class='moreNews ${index}'>Czytaj więcej</button>
+                                <button class='moreNews ${_id}'>Czytaj więcej</button>
                                 </div>`;
-            index ++;
-            newsElement.appendChild(article);
+            index --;
+            newsElement.prepend(article);
             loading.classList.remove('progress');
         });
     };
