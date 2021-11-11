@@ -88,15 +88,17 @@ export default class extends viewModel {
                         <h1>Paragrafy artykułu</h1>
                         <div class='paragrapfBoxEdit'>
                             <button class="addParagrapfEdit">Dodaj paragraf</button>
+                            <button class='removeParagraphEdit'>Usuń paragraf</button>
                         </div>
                         <label for="fileInput">Zmień zdjęcie</label>
-                        <input type="file" id="fileInput" accept=".jpg,.png">
-                        <button class='sendArticle'>Wprowadź zmiany</button>
+                        <input type="file" id="fileInputEdit" accept=".jpg,.png">
+                        <button class='editArticleSend'>Wprowadź zmiany</button>
                         <button class='closeEditor'>Zamknij edytor</button>
                     </form>
-                    <div class='img>
-                        <h1>Zdjęcie aktualne</h1>
-                    </div>
+                        <h1 class='fotoTitle'>Zdjęcie aktualne: </h1>
+                        <img class='img' src="">
+                        <h1 class='articleId'></h1>
+                        <button class='removeFoto'>Usuń zdjęcie</button>
                     <div class='infoBoxEdit hide'></div>
                 </div>
         </div>

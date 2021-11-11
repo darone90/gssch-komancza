@@ -1080,6 +1080,10 @@ div.assortmentFoto {
     top: -50px;
 }
 
+div.nofoto {
+    display: none;
+}
+
 div.wall {
     display: none;
 }
@@ -1925,11 +1929,9 @@ div.popup {
     background-color: rgba(0, 0, 0, 0.7);
     display: none;
     width: 100vw;
-    height: 120vh;
     border: 5px solid black;
     box-shadow: 5px 10px 10px black;
     z-index: 20;
-    overflow: hidden;
     }
 
     div.popup.active {
@@ -1968,8 +1970,8 @@ button.perview {
     background-color: orangered;
     color: white;
     font-family: sans-serif;
-    position: absolute;
-    top: 35%;
+    position: fixed;
+    top: 40%;
     line-height: 50px;
     font-size: 20px;
     text-align: center;
@@ -2000,10 +2002,10 @@ article.fullsize {
     border-bottom: 3px solid black;
     box-shadow: 5px 15px 25px black;
     width: 60%;
-    height: 100%;
     position: relative;
     left: 20%;
     margin-bottom: 10px;
+    padding-bottom: 30px;
     background-color: rgba(256, 256, 256, 1);
 }
 
@@ -2036,27 +2038,30 @@ article.fullsize p {
     width: 50%;
     height: auto;
     left: 5%;
-    top: -230px;
+    top: 7rem;
     font-family: 'roboto', sans-serif;
     font-size: 25px;
     text-align: justify;
-    margin: 20px 0;
+    margin: 40px 0;
 }
-div.fullSizeImg {
-    position: relative;
-    height: 50%;
-    width: 30%;
-    left: 60%;
-    top: 0px;
+div.fullsizeImg {
+    position: absolute;
+    height: 15rem;
+    width: 12rem;
+    right: 14rem;
+    top: 14rem;
     cursor: pointer;
 }
 
 img.popupimg {
     position: relative;
-    height: 50%;
-    width: 30%;
+    height: 30em;
+    width: 25em;
 }
 
+article.fullsize p:last-child {
+    margin-bottom: 100px;
+}
 
 /*//////////////////////////////////////////////////Annoucemenets/////////////////////////*/
 

@@ -1,0 +1,21 @@
+dodać nagłówki dla wyszukiwarek
+
+zrobić ładowanie przy logowaniu 
+
+dodoać middleware do ograniczenia liczby zapytań
+
+dodać wersję artykułow bez zdjęcia
+
+podkreślniki w menu admin zrobić 
+
+ładowanie dodać przy zapisie bądz edycji artykułu
+
+w news wystylować h1 ze brak ogłoszeń
+
+dodać jakiś bajer przy zaniku neta żeby się nie ładowało w nieskończoność 
+
+na pm2 lub serwerze zrobić coś co  będzie restartowało appkę 
+
+sprawdzić czy w cookiesesion da się ustawic żeby czas wygasńiecia był zależny od ostatniej aktywności
+
+ostylować bagietę z większą ilością tekstu

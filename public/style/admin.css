@@ -239,7 +239,8 @@ button.accountChanges a {
     }
 
     div.unreaded.hide,
-    div.readed.hide {
+    div.readed.hide,
+    div.actualProducts.hide {
         display: none;
     }
 
@@ -271,7 +272,10 @@ button.accountChanges a {
     button.read,
     button.delete,
     button.editArticle,
-    button.removeArticle {
+    button.removeArticle,
+    button.clearArtAsso,
+    button.editProduct,
+    button.removeProduct {
         background-color: white;
         border: 2px solid black;
         font-size: 1.3em;
@@ -284,7 +288,10 @@ button.accountChanges a {
     button.read:hover,
     button.delete:hover,
     button.editArticle:hover,
-    button.removeArticle:hover {
+    button.removeArticle:hover,
+    button.clearArtAsso:hover,
+    button.editProduct:hover,
+    button.removeProduct:hover {
         box-shadow: 5px 5px 10px black;
     }
 
@@ -315,7 +322,10 @@ button.accountChanges a {
     button.showAnno,
     button.addArticle,
     button.showArticles,
-    button.clearArt {
+    button.clearArt,
+    button.addProduct,
+    button.showProducts,
+    button.closeEditProduct {
         background-color: white;
         border: 2px solid black;
         font-size: 1.3em;
@@ -332,13 +342,19 @@ button.accountChanges a {
     button.showAnno.active,
     button.addArticle.active,
     button.showArticles.active,
+    button.addProduct.active,
+    button.showProducts.active,
+    button.closeEditProduct.active,
     button.showReaded:hover,
     button.showUnreaded:hover,
     button.addAnno:hover,
     button.showAnno:hover,
     button.addArticle:hover,
     button.showArticles:hover,
-    button.clearArt:hover {
+    button.clearArt:hover,
+    button.addProduct:hover,
+    button.showProducts:hover,
+    button.closeEditProduct:hover {
         color: white;
         background-color: blue;
     }
@@ -362,13 +378,17 @@ button.accountChanges a {
     div.addingArticle.hide,
     div.actualArticles.hide,
     div.popupFormNews.hide,
-    button.removeParagraph.hide {
+    button.removeParagraph.hide,
+    button.removeParagraphEdit.hide,
+    div.editArticle.hide {
         display: none;
     }
 
     div.addingAnno form,
     div.popupForm form,
-    div.addingArticle form {
+    div.addingArticle form,
+    div.popupFormNews form,
+    div.editArticle form {
         display: flex;
         flex-direction: column;
         margin-top: 30px;
@@ -376,29 +396,47 @@ button.accountChanges a {
         align-items: center;
     }
 
+
+
     div.addingAnno form label,
     div.popupForm form label,
-    div.addingArticle form label {
+    div.addingArticle form label,
+    div.popupFormNews form label,
+    div.editArticle form label {
         font-size: 1.5rem;
         margin: 15px 0 20px 10px;
     }
 
     div.addingAnno form input,
     div.popupForm form input,
-    div.addingArticle form input {
+    div.addingArticle form input,
+    div.popupFormNews form input,
+    div.editArticle form input {
         width: 40%;
         font-size: 1.2rem;
     }
 
     div.addingAnno form textarea,
-    div.popupForm form textarea {
+    div.popupForm form textarea,
+    div.editArticle form textarea {
         width: 60%;
+        font-size: 1.2rem;
+    }
+
+    div.popupFormNews form textarea {
+        width: 100%;
+        height: 10rem;
+        margin: 20px 0;
         font-size: 1.2rem;
     }
 
     div.addingAnno form button,
     div.popupForm form button,
-    div.addingArticle form button {
+    div.addingArticle form button,
+    div.popupFormNews form button,
+    button.removeFoto,
+    button.editSendProduct,
+    button.removeProductFoto {
         height: 2rem;
         font-size: 1.4rem;
         background-color: white;
@@ -413,7 +451,11 @@ button.accountChanges a {
 
     div.addingAnno form button:hover,
     div.popupForm form button:hover,
-    div.addingArticle form button:hover {
+    div.addingArticle form button:hover,
+    div.popupFormNews form button:hover,
+    button.removeFoto:hover,
+    button.editSendProduct:hover,
+    button.removeProductFoto:hover {
         box-shadow: 5px 5px 10px black;
     }
 
@@ -522,4 +564,98 @@ button.accountChanges a {
             position: absolute;
             left: 5rem;
             top: 15rem;
+    }
+
+    img.img {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 15rem;
+        height: 20rem;
+        margin: 10px 10px 0 0;
+    }
+
+    h1.fotoTitle {
+        position: absolute;
+        top: 0;
+        right: 18rem;
+    }
+
+    button.removeFoto {
+        position: absolute;
+        top: 3rem;
+        right: 18rem;
+    }
+
+    button.closeEditor {
+        position: absolute;
+        top: 6rem;
+        left: 8rem;
+    }
+
+    h1.articleId {
+        position: absolute;
+        bottom: 5rem;
+        right: 5rem;
+        font-size: 1rem;
+    }
+
+    button.clearArtAsso {
+        position: absolute;
+        left: 5rem;
+        top: 5rem;
+    }
+
+    div.productShort {
+        border: 2px solid black;
+        padding: 10px;
+        margin: 20px 0 20px 10px;
+        box-shadow: 0 -5px 5px black;
+        position: relative;
+
+    }
+
+    div.productShort:last-child {
+        margin-bottom: 50px;
+    }
+
+    div.actualProducts h1 {
+        margin: 20px 0 20px 20px;
+    }
+
+    div.productShort img {
+        position: relative;
+        left: 70%;
+        bottom: 5rem;
+        width: 20rem;
+        height: 18rem;
+    }
+
+    div.productShort img.hide {
+        display: none;
+    }
+
+    button.closeEditProduct {
+        position: absolute;
+        left: 0;
+        top: 14rem;
+    }
+
+    h1.labelToFoto {
+        position: absolute;
+        right: 18rem;
+        top: 2rem;
+    }
+
+    button.removeProductFoto {
+        position: absolute;
+        top: 21rem;
+        right: 5rem;
+    }
+
+    h1.idBox {
+        position: absolute;
+        right: 4rem;
+        top: 35rem;
+        font-size: 1rem;
     }

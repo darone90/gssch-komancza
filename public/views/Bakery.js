@@ -23,12 +23,13 @@ export default class extends viewModel {
             const article = document.createElement('div');
             article.classList.add('assortment');
             const {title, description, foto} = asso;
+            console.log(foto);
 
             article.innerHTML = `
                                     <h1>${title}</h1>
                                     <article>${description}</article>
-                                    <div class='assortmentFoto'>
-                                    <img src="data:image/jpg;base64,${foto}">
+                                    <div class='assortmentFoto ${foto ? '' : 'nofoto'}'>
+                                    <img src="./public/images/imagesDB/${foto}">
                                     </div>
                                     `;
             app.appendChild(article);

@@ -18,6 +18,7 @@ export default class extends viewModel {
             information.classList.add('noArticles');
             information.innerText = 'Aktualnie brak wiadomości';
             newsElement.appendChild(information);
+            loading.classList.remove('progress');
         };
 
         const dataArr = Object.values(data);
@@ -44,7 +45,7 @@ export default class extends viewModel {
                                 <h2 class='title'>${title}</h2>
                                 <h3 class='text'>${par}</h3> 
                                 </div>
-                                <div class='imageInfo'>
+                                <div class='imageInfo ${foto ? '' : 'nofoto'}'>
                                 <img src="./public/images/imagesDB/${foto}">
                                 </div>
                                 <button class='moreNews ${_id}'>Czytaj więcej</button>

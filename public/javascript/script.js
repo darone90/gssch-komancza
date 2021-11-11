@@ -15,7 +15,7 @@ function next(i, l) {
     const articleDate = document.querySelector('article h1.date');
     const articleTitle = document.querySelector('article h2.title');
     const img = document.querySelector('img.popupimg');
-    
+
     if (i <= l - 1) {
 
         const oldParagraphs = document.querySelectorAll('article.fullsize p');
@@ -44,6 +44,7 @@ function next(i, l) {
         pervbtn.classList.remove('disable');
 };  
     index++;
+    scrollContent(260)
 };
 function perview(i) {
     
@@ -85,7 +86,7 @@ function perview(i) {
     };
 
     index--;
-    console.log(index);
+    scrollContent(260);
 };
 const scrollContent = (e)=> {
     window.scrollTo({
