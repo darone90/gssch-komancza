@@ -15,9 +15,19 @@ const storage = multer.diskStorage({
     filename : function(req, file, cb) {
         cb(null, Date.now() + path.extname(file.originalname))
     } 
-})
+});
+
+const attachementStorage = multer.diskStorage({
+    destination : function(req, file, cb) {
+        cb(null, '../public/attachement');
+    },
+    filename : function(req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+});
 
 const upload = multer({storage : storage});
+const uploadAttachement = multer({storage : attachementStorage});
 
 
 router.all('*', (req,res,next) => {
@@ -296,19 +306,37 @@ router.post('/delete', async(req, res) => {
     res.json({ok : true});
 })
 
-router.post('/add-annoucement', (req,res) => {
+router.post('/add-annoucement', uploadAttachement.array('attachements',8), (req,res) => {
 
-    const data = req.body;
+    const attachements = [];
+    req.files.forEach(el => {
+        const newName = el.filename;
+        const oldName = el.originalname.split('.')[0];
+        const objToPush = {
+            newName,
+            oldName
+        };
+        attachements.push(objToPush);
+    });
+    const {title, date, description} = req.body;
+    console.log(attachements);
+    const data = {
+        title,
+        date,
+        description,
+        attachements,
+    };
 
     const toSend = new Anno(data);
-    toSend.save(err => {
-        if (err) {
-            throw new Error;
-            res.json({ok: false});
-        } else {
-            res.json({ok:true});
-        };   
-    });  
+    // toSend.save(err => {
+    //     if (err) {
+    //         throw new Error;
+    //         res.json({ok: false});
+    //     } else {
+    //         res.json({ok:true});
+    //     };   
+    // });  
+    res.json({ok: true});
 });
 
 router.post('/anno-find', (req, res) => {

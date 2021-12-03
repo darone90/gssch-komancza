@@ -131,31 +131,88 @@ document.addEventListener('click', (e) => {
 
             if(hasClass(e.target, 'addAnno')) {
                 
-                const oppositeBtn = document.querySelector('.showAnno');
-                oppositeBtn.classList.remove('active');
+                const oppositeBtns = [document.querySelector('.showAnno'), document.querySelector('.archivedAnno')];
+                oppositeBtns.forEach(btn => btn.classList.remove('active'));
                 e.target.classList.add('active');
 
-                const addingForm = document.querySelector('.addingAnno');
-                addingForm.classList.remove('hide');
-                const showingAnno =  document.querySelector('.actualAnno');
-                showingAnno.classList.add('hide');
-                const popup = document.querySelector('.popupForm');
-                popup.classList.add('hide');
+                document.querySelector('.addingAnno').classList.remove('hide');
+                document.querySelector('.actualAnno').classList.add('hide');
+                document.querySelector('.popupForm').classList.add('hide');
+                document.querySelector('.archiveAnno').classList.add('hide');
 
             };
 
             if(hasClass(e.target, 'showAnno')) {
                 
-                const oppositeBtn = document.querySelector('.addAnno');
-                oppositeBtn.classList.remove('active');
+                const oppositeBtns = [document.querySelector('.addAnno'), document.querySelector('.archivedAnno')];
+                oppositeBtns.forEach(btn => btn.classList.remove('active'));
                 e.target.classList.add('active');
 
-                const addingForm = document.querySelector('.addingAnno');
-                addingForm.classList.add('hide');
-                const showingAnno =  document.querySelector('.actualAnno');
-                showingAnno.classList.remove('hide');
-                const popup = document.querySelector('.popupForm');
-                popup.classList.add('hide');
+                document.querySelector('.actualAnno').classList.remove('hide');
+                document.querySelector('.addingAnno').classList.add('hide');
+                document.querySelector('.popupForm').classList.add('hide');
+                document.querySelector('.archiveAnno').classList.add('hide');
+
+            };
+
+            if(hasClass(e.target, 'archivedAnno')) {
+                
+                const oppositeBtns = [document.querySelector('.addAnno'), document.querySelector('.showAnno')];
+                oppositeBtns.forEach(btn => btn.classList.remove('active'));
+                e.target.classList.add('active');
+
+                document.querySelector('.archiveAnno').classList.remove('hide');
+                document.querySelector('.addingAnno').classList.add('hide');
+                document.querySelector('.popupForm').classList.add('hide');
+                document.querySelector('.actualAnno').classList.add('hide');
+
+            };
+
+            if(hasClass(e.target, 'addAtachement')) {
+                e.preventDefault();
+
+                const form = document.querySelector('.addingAnno form');
+                const pubBtn = document.querySelector('.public');
+                const index = document.querySelectorAll('.attBox').length;
+
+                if(index < 8) {
+                const add = document.createElement('input');
+                add.type = 'file';
+                add.accept = '.pdf, .doc, .docx, .odt';
+                add.classList.add('attachementInput');
+                const remBtn = document.createElement('button'); 
+                remBtn.classList.add(`removeAttachement`);
+                remBtn.classList.add(`${index}`);
+                remBtn.innerText = 'Usuń załącznik';
+                const attBox = document.createElement('div');
+                attBox.classList.add('attBox');
+                attBox.classList.add(`${index}`);
+                attBox.appendChild(add);
+                attBox.appendChild(remBtn);
+                form.insertBefore(attBox, pubBtn);
+                } else {
+                    const warning = document.createElement('h1');
+                    warning.innerText = 'Nie można dodać więcej załączników';
+                    warning.classList.add('warning');
+                    warning.style.color = 'red';
+                    e.target.disabled = true;
+                    form.insertBefore(warning, pubBtn);
+                };
+            };
+
+            if(hasClass(e.target, 'removeAttachement')) {
+                e.preventDefault();
+
+                const all = [...document.querySelectorAll('.attBox')];
+                const index = e.target.classList[1];
+                const elToRem = all.find(el => el.classList.contains(index));
+                elToRem.remove();
+
+                const addBtn = document.querySelector('.addAtachement');
+                if(addBtn.disabled === true) {
+                    addBtn.disabled = false;
+                    document.querySelector('.warning').remove();
+                };
 
             };
 
@@ -197,16 +254,25 @@ document.addEventListener('click', (e) => {
                 } else {
 
                     if(window.confirm('Ogłoszenie przygotowane do wysłania. Opublikować?')){
-                        const dataToSend = {
-                            title,
-                            date,
-                            description,
-                        };
+
+                        const attachements = [...document.querySelectorAll('.attachementInput')];
+
+                        const formData = new FormData();
+                        
+                        formData.append("title" , title);
+                        formData.append('date', date);
+                        formData.append('description', description);
+                        attachements.forEach(el => {
+                            if(el.files[0] !== undefined) {
+                            formData.append('attachements', el.files[0]);
+                            };
+                        });
+                        
+
 
                         fetch('/admin/add-annoucement', {
                             method: 'POST',
-                            headers: {'Content-Type' : 'application/json'},
-                            body: JSON.stringify(dataToSend),
+                            body: formData,
                         })
                             .then(res => res.json())
                             .then(data => {
@@ -219,7 +285,9 @@ document.addEventListener('click', (e) => {
                                     labDescription.style.color = 'black';
                                     document.querySelector('#title').value = '';
                                     document.querySelector('#date').value ='';
-                                    document.querySelector('#description').value = ''
+                                    document.querySelector('#description').value = '';
+                                    [...document.querySelectorAll('.attBox')].forEach(el => el.remove());
+                                    window.scrollTo(0,0);
                                 } else {
                                     infoBox.classList.remove('hide');
                                     infoBox.style.color = 'red';

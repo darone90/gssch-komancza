@@ -19,3 +19,11 @@ na pm2 lub serwerze zrobić coś co  będzie restartowało appkę
 sprawdzić czy w cookiesesion da się ustawic żeby czas wygasńiecia był zależny od ostatniej aktywności
 
 ostylować bagietę z większą ilością tekstu
+
+problem z ścieżkami inaczej działa gdy uruchomione bezpośrednio z bin a inaczej z poiomu deploy
+
+dodać scrool up po każdym dodaniu artykułu, produktu czy ogłoszenia
+
+dodać przycisk odświeżania we wszystkich sekcjach
+
+dodać przycisk powrotu na stronę glówną

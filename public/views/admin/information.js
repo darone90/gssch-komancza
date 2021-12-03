@@ -9,22 +9,28 @@ export default class extends viewModel {
     loadAnnoucements(data) {
 
         const annoBox = document.querySelector('.actualAnno');
+        const archivedAnnoBox = document.querySelector('.archiveAnno');
 
-        if(data.length > 0) {
+        const dataToShow = [...data];
+        const actualAnno = dataToShow.filter(el => el.archived === false);
+        const archivedAnno = dataToShow.filter(el => el.archived === true);
 
-        for(let i = 0; i < data.length; i++) {
+        if(actualAnno.length > 0) {
+
+        for(let i = 0; i < actualAnno.length; i++) {
 
             const anno = document.createElement('div');
             anno.classList.add('annoucement');
-            anno.classList.add(`${data[i]._id}`);
+            anno.classList.add(`${actualAnno[i]._id}`);
 
             anno.innerHTML = `
-                <h1>${data[i].title}</h1>
-                <h2>${data[i].date}</h2>
-                <p>${data[i].description}</p>
-                <p>Utworzono dnia ${new Date(Number(data[i].created)).toISOString().slice(0,10)}</p>
-                <button class='editAnno ${data[i]._id}' id='${data[i]._id}'>Edytuj</button>
-                <button class='deleteAnno ${data[i]._id}'>Usuń</button>
+                <h1>${actualAnno[i].title}</h1>
+                <h2>${actualAnno[i].date}</h2>
+                <p>${actualAnno[i].description}</p>
+                <p>Utworzono dnia ${new Date(Number(actualAnno[i].created)).toISOString().slice(0,10)}</p>
+                <button class='editAnno ${actualAnno[i]._id}' id='${actualAnno[i]._id}'>Edytuj</button>
+                <button class='deleteAnno ${actualAnno[i]._id}'>Usuń</button>
+                <button class='archiveAnno ${actualAnno[i]._id}'>Archiwizuj</button>
             `;
 
             annoBox.appendChild(anno);
@@ -39,6 +45,37 @@ export default class extends viewModel {
         `;
 
         annoBox.appendChild(noAnno)
+    };
+
+    if(archivedAnno.length > 0) {
+
+        for(let i = 0; i < archivedAnno.length; i++) {
+
+            const anno = document.createElement('div');
+            anno.classList.add('annoucement');
+            anno.classList.add(`${archivedAnno[i]._id}`);
+
+            anno.innerHTML = `
+                <h1>${archivedAnno[i].title}</h1>
+                <h2>${archivedAnno[i].date}</h2>
+                <p>${archivedAnno[i].description}</p>
+                <p>Utworzono dnia ${new Date(Number(archivedAnno[i].created)).toISOString().slice(0,10)}</p>
+                <button class='unArchiveAnno ${archivedAnno[i]._id}' id='${archivedAnno[i]._id}'>Przywróć</button>
+                <button class='deleteAnno ${archivedAnno[i]._id}'>Usuń</button>
+            `;
+
+            archivedAnnoBox.appendChild(anno);
+        };
+    } else {
+
+        const noAnno = document.createElement('div');
+        noAnno.classList.add('noAnno');
+
+        noAnno.innerHTML = `
+            <h1>Aktualnie brak archiwalnych ogłoszeń</h1>
+        `;
+
+        archivedAnnoBox.appendChild(noAnno)
     };
 
         const loading = document.querySelector('.loadingBox');
@@ -60,6 +97,7 @@ export default class extends viewModel {
         <div class='annoucementsBox'>
             <button class='addAnno active'>Dodaj ogłoszenie</button>
             <button class='showAnno'>Aktualne ogłoszenia</button>
+            <button class='archivedAnno'>Ogłoszenia archiwalne</button>
             <div class='addingAnno'>
                 <form>
                     <label for="title" id='forTitle'>Tytuł ogłoszenia</label>
@@ -68,6 +106,8 @@ export default class extends viewModel {
                     <input type="date" id="date">
                     <label for="description" id='forDescription'>Treść ogłoszenia</label>
                     <textarea id="description" cols="30" rows="10" placeholder='Proszę wprowadzić treść'></textarea>
+                    <h1>Akceptowane formaty załączników to: .pdf, .doc, .docx, .odt</h1>
+                    <button class="addAtachement">Dodaja załącznik</button> 
                     <button class="public">Publikuj</button>
                     <button class='clear'>Wyczyść formularz</button>
                 </form>
@@ -75,6 +115,9 @@ export default class extends viewModel {
             </div>
             <div class='actualAnno hide'>
                 <h1>Aktualnie zamieszczone ogłoszenia: </h1>
+            </div>
+            <div class='archiveAnno hide'>
+                <h1>Ogłoszenia archiwalne: </h1>
             </div>
             <div class='popupForm hide'>
                     <form>
