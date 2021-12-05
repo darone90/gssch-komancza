@@ -4,6 +4,7 @@ import Information from "../views/admin/information.js";
 import Articles from "../views/admin/articles.js";
 import Assortment from "../views/admin/assortmet.js";
 import UserDataChange from "../views/admin/userchanges.js";
+import Base from "../views/admin/base.js";
 
 
 const router = async () => {
@@ -14,6 +15,7 @@ const router = async () => {
         {path: '/admin/articles', view: Articles},
         {path: '/admin/assortment', view: Assortment},
         {path: '/admin/userdatachange', view: UserDataChange},
+        {path: '/admin/base', view: Base},
     ];
 
     const isMatch = routes.map( route => {

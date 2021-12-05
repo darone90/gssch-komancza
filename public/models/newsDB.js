@@ -6,6 +6,7 @@ const newsSchema = new Schema({
     date: {type: String},
     description: {type: Array, required: [true, 'Wymagane jest podanie treści artykułu']},
     created: {type: String, default: Date.now },
+    archived: {type: Boolean, default: false},
     foto: {type: String},
 });
 

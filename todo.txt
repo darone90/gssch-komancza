@@ -27,3 +27,9 @@ dodać scrool up po każdym dodaniu artykułu, produktu czy ogłoszenia
 dodać przycisk odświeżania we wszystkich sekcjach
 
 dodać przycisk powrotu na stronę glówną
+
+dodać okno ładowania przy dodawaniu czegokolwiek
+
+przesyłanie dokumnetów i zdjęć zrobić poprzez pipe
+
+wprowadzić limiter na ilośc produktów ogłoszeń i news poprzez plik który będzie zliczał ilośc 

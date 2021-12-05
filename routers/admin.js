@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-const {unlink} = require('fs').promises;
+const {unlink, readFile} = require('fs').promises;
 const Message = require('../public/models/messageDB.js');
 const Anno = require('../public/models/annoucementsDB.js');
 const News = require('../public/models/newsDB.js');
 const Asso = require('../public/models/assortmentDB.js');
+const Doc = require('../public/models/documentDB.js');
 
 const multer = require('multer');
 const storage = multer.diskStorage({
@@ -70,6 +71,11 @@ router.get('/get-anno', ( req, res) => {
     });
 });
 
+router.get('/get-documents', async (req, res) => {
+    const data = await Doc.find({});
+    res.json(data);
+});
+
 router.get('/get-articles', (req, res) => {
     News.find({}, (err, data) => {
         if(err) {
@@ -82,6 +88,14 @@ router.get('/get-articles', (req, res) => {
 
 router.post('/remove-product', async(req, res) => {
     const filter = req.body;
+    const data = await Asso.findOne(filter)
+    const fotoToRemove = data.foto;
+
+    if(fotoToRemove !== null) {
+        const path = '../public/images/imagesDB/' + `${fotoToRemove}`
+        await unlink(path)
+    };
+
     await Asso.findByIdAndRemove(filter);
     res.json({ok:true});
 
@@ -194,6 +208,13 @@ router.post('/update-product', async(req, res) => {
 router.post('/remove-article', async (req, res) => {
         
     const filter = req.body;
+    const article =  await News.findById(filter)
+    const foto = article.foto
+
+    if(foto !== null) {
+        const path = '../public/images/imagesDB/' + `${foto}`;
+        await unlink(path);
+    };
     await News.findByIdAndRemove(filter);
     res.json({ok:true});
 
@@ -287,15 +308,88 @@ router.post('/add-news',upload.single('foto'), (req, res) => {
 router.post('/anno-delete', async (req, res) => {
 
     const filter = req.body;
+    const anno = await Anno.findById(filter);
+    const attachement = anno.attachements;
+
+    if(attachement.length > 0) {
+        attachement.forEach(async (el) => {
+            const name = el.newName;
+            const path = '../public/attachement/' + `${name}`;
+            await unlink(path);
+        })
+    }
+
     await Anno.findByIdAndRemove(filter);
     res.json({ok: true});
 })
+
+router.post('/anno-archive', async (req,res) => {
+    const filter = {_id : req.body._id};
+    const update = {archived: req.body.archive};
+    await Anno.findByIdAndUpdate(filter, update);
+    res.json({ok:true});
+});
+
+router.post('/article-archive', async (req,res) => {
+    const filter = {_id : req.body._id};
+    const update = {archived: req.body.archive};
+    await News.findByIdAndUpdate(filter, update);
+    res.json({ok:true});
+});
+
+router.get('/download/:id/:name', (req,res) => {
+
+    const path = `../public/attachement/${req.params.id}`;
+    const name = req.params.name;
+    res.download(path, name);
+});
+
 
 router.post('/unread-read', async (req, res) => {
 
     const filter = {_id : req.body.id};
     const update = {readed: true};
     await Message.findOneAndUpdate(filter, update)
+    res.json({ok: true});
+});
+
+router.post('/delete-att', async (req, res) => {
+
+    const {name, id} = req.body;
+    const anoucement = await Anno.findOne({_id: id})
+    const newAttList = anoucement.attachements.filter(el => el.newName !== name);
+
+    const path = `../public/attachement/${name}`;
+    await unlink(path);
+
+    await Anno.findByIdAndUpdate({_id: id}, {attachements: newAttList});
+
+    res.json({ok: true});
+
+});
+
+router.post('/edit-annoucement', uploadAttachement.array('attachements',8), async (req, res) => {
+
+    const {_id, title, date, description} = req.body;
+    const old = await Anno.findOne({_id});
+    const newAttArr = old.attachements;
+
+    req.files.forEach(el => {
+        const newName = el.filename;
+        const oldName = el.originalname.split('.')[0];
+        const objToPush = {
+            newName,
+            oldName
+        };
+        newAttArr.push(objToPush);
+    });
+
+    const titleUpdate = title ? title : old.title;
+    const dateUpdate = date ? date : old.date;
+    const descriptionUpadte = description ? description : old.description;
+
+    await Anno.findByIdAndUpdate({_id}, {attachements: newAttArr, title: titleUpdate, date: dateUpdate, description: descriptionUpadte});
+
     res.json({ok: true});
 });
 
@@ -319,7 +413,6 @@ router.post('/add-annoucement', uploadAttachement.array('attachements',8), (req,
         attachements.push(objToPush);
     });
     const {title, date, description} = req.body;
-    console.log(attachements);
     const data = {
         title,
         date,
@@ -328,15 +421,15 @@ router.post('/add-annoucement', uploadAttachement.array('attachements',8), (req,
     };
 
     const toSend = new Anno(data);
-    // toSend.save(err => {
-    //     if (err) {
-    //         throw new Error;
-    //         res.json({ok: false});
-    //     } else {
-    //         res.json({ok:true});
-    //     };   
-    // });  
-    res.json({ok: true});
+    toSend.save(err => {
+        if (err) {
+            throw new Error;
+            res.json({ok: false});
+        } else {
+            res.json({ok:true});
+        };   
+    });  
+
 });
 
 router.post('/anno-find', (req, res) => {

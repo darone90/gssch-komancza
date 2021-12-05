@@ -34,11 +34,11 @@ export default class extends viewModel {
             const noProducts = document.createElement('div');
             noProducts.classList.add('noAnno');
 
-            noArticle.innerHTML = `
+            noProducts.innerHTML = `
                 <h1>Aktualnie brak produktów na stronie</h1>
             `;
 
-            assortmentBox.appendChild(noArticle);
+            assortmentBox.appendChild(noProducts);
 
         };
         const loading = document.querySelector('.loadingBox');

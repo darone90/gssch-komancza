@@ -30,9 +30,22 @@ export default class extends viewModel {
                 <p>Utworzono dnia ${new Date(Number(actualAnno[i].created)).toISOString().slice(0,10)}</p>
                 <button class='editAnno ${actualAnno[i]._id}' id='${actualAnno[i]._id}'>Edytuj</button>
                 <button class='deleteAnno ${actualAnno[i]._id}'>Usuń</button>
-                <button class='archiveAnno ${actualAnno[i]._id}'>Archiwizuj</button>
+                <button class='archiveAnnoOn ${actualAnno[i]._id}'>Archiwizuj</button>
             `;
+            if (actualAnno[i].attachements.length > 0) {
+            const attachements = actualAnno[i].attachements
+            const attBox = document.createElement('div');
+            const titleAtt = document.createElement('h3');
+            titleAtt.innerText = 'Lista załączników: ';
+            attBox.appendChild(titleAtt);
+            attachements.forEach(el => {
+                const p = document.createElement('p');
+                p.innerText = `${el.oldName}`
+                attBox.appendChild(p);
+            })
+            anno.appendChild(attBox);
 
+            };
             annoBox.appendChild(anno);
         };
     } else {
@@ -47,7 +60,9 @@ export default class extends viewModel {
         annoBox.appendChild(noAnno)
     };
 
+    
     if(archivedAnno.length > 0) {
+
 
         for(let i = 0; i < archivedAnno.length; i++) {
 
@@ -64,10 +79,32 @@ export default class extends viewModel {
                 <button class='deleteAnno ${archivedAnno[i]._id}'>Usuń</button>
             `;
 
+            if (archivedAnno[i].attachements.length > 0) {
+
+            const attachements = archivedAnno[i].attachements
+                const attBox = document.createElement('div');
+                const titleAtt = document.createElement('h3');
+                titleAtt.innerText = 'Lista załączników: ';
+                attBox.appendChild(titleAtt);
+                attachements.forEach(el => {
+                    const p = document.createElement('p');
+                    p.innerText = `${el.oldName}`;
+                    p.classList.add(`${el.newName}`);
+                   
+                    const downloadbtn = document.createElement('button');
+                    downloadbtn.classList.add('dwlatt');
+                    downloadbtn.classList.add(`${el.newName}`);
+                    downloadbtn.innerText = 'Pobierz'
+                    
+                    attBox.appendChild(p);
+                    attBox.appendChild(downloadbtn);
+                    anno.appendChild(attBox);
+                });
+            };
+           
             archivedAnnoBox.appendChild(anno);
         };
     } else {
-
         const noAnno = document.createElement('div');
         noAnno.classList.add('noAnno');
 
@@ -127,7 +164,9 @@ export default class extends viewModel {
                         <input type="date" id="dateEdit">
                         <label for="descriptionEdit" id='forDescriptionEdit'>Treść ogłoszenia</label>
                         <textarea id="descriptionEdit" cols="30" rows="10"></textarea>
+                        <button class="addAtachementPopup">Dodaja załącznik</button>
                         <button class="publicEdit">Zapisz zmiany</button>
+                        <h2>Lista załączników :</h2>
                         <button class='close'>Zamknij edytor</button>
                     </form>
                     <div class='infoBoxEdit hide'></div>

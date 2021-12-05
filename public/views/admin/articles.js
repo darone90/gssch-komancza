@@ -9,18 +9,26 @@ export default class extends viewModel {
     articleLoad(data) {
 
         const articlesBox = document.querySelector('.actualArticles');
+        const archivedArticlesBox = document.querySelector('.archivedArticles');
 
-        if(data.length > 0) {
+        const dataToShow = [...data];
 
-            for(let i = 0; i < data.length; i++){
+        const actualData = dataToShow.filter(el => el.archived === false);
+        const archivedData = dataToShow.filter(el => el.archived === true);
+
+
+        if(actualData.length > 0) {
+
+            for(let i = 0; i < actualData.length; i++){
 
                 const article = document.createElement('div')
                 article.classList.add('articleShort');
-                const {title, date, created, _id} = data[i];
+                const {title, date, created, _id} = actualData[i];
 
                 article.innerHTML = `
                     <h1>Tytuł: ${title} czas wydarzenia: ${date} utworzony: ${new Date(Number(created)).toISOString().slice(0,10)}</h1>
                     <button class='editArticle ${_id}' id='${_id}'>Edytuj</button>
+                    <button class='moveToArchive ${_id}'>Archiwizuj</button>
                     <button class='removeArticle ${_id}' id='${_id}'>Usuń</button>
                 `;
 
@@ -36,6 +44,35 @@ export default class extends viewModel {
             `;
 
             articlesBox.appendChild(noArticle);
+
+        };
+
+        if(archivedData.length > 0) {
+
+            for(let i = 0; i < archivedData.length; i++){
+
+                const article = document.createElement('div')
+                article.classList.add('articleShort');
+                const {title, date, created, _id} = archivedData[i];
+
+                article.innerHTML = `
+                    <h1>Tytuł: ${title} czas wydarzenia: ${date} utworzony: ${new Date(Number(created)).toISOString().slice(0,10)}</h1>
+                    <button class='returnArticle ${_id}'>Przywróć</button>
+                    <button class='removeArticle ${_id}' id='${_id}'>Usuń</button>
+                `;
+
+                archivedArticlesBox.appendChild(article);
+            };
+        } else {
+
+            const noArticle = document.createElement('div');
+            noArticle.classList.add('noAnno');
+
+            noArticle.innerHTML = `
+                <h1>Aktualnie brak artykułów archiwalnych</h1>
+            `;
+
+            archivedArticlesBox.appendChild(noArticle);
 
         };
 
@@ -57,6 +94,7 @@ export default class extends viewModel {
         return `
         <button class='addArticle active'>Dodaj artykuł</button>
         <button class='showArticles'>Opublikowane artykuły</button>
+        <button class='showArchivedArticles'>Archiwum</button>
         <div class='addingArticle'>
             <form>
                 <label for="titleArt" id='titleArtLab'>Tytuł artykułu</label>
@@ -78,6 +116,9 @@ export default class extends viewModel {
             </div>
             <div class='actualArticles hide'>
                 <h1>Aktualnie opublikowane artykuły: </h1>
+            </div>
+            <div class='archivedArticles hide'>
+                <h1>Artykuły archiwalne: </h1>
             </div>
             <div class='popupFormNews hide'>
                     <form>

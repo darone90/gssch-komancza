@@ -116,6 +116,10 @@ button.accountChanges a {
         font-size: 1rem;
     }
 
+    ul li:nth-child(5) a {
+        font-size: 1rem;
+    }
+
     div#app {
         position: absolute;
         left: 17rem;
@@ -272,10 +276,12 @@ button.accountChanges a {
     button.read,
     button.delete,
     button.editArticle,
+    button.moveToArchive,
     button.removeArticle,
     button.clearArtAsso,
     button.editProduct,
-    button.removeProduct {
+    button.removeProduct,
+    button.returnArticle {
         background-color: white;
         border: 2px solid black;
         font-size: 1.3em;
@@ -288,10 +294,12 @@ button.accountChanges a {
     button.read:hover,
     button.delete:hover,
     button.editArticle:hover,
+    button.moveToArchive:hover,
     button.removeArticle:hover,
     button.clearArtAsso:hover,
     button.editProduct:hover,
-    button.removeProduct:hover {
+    button.removeProduct:hover,
+    button.returnArticle:hover {
         box-shadow: 5px 5px 10px black;
     }
 
@@ -326,7 +334,8 @@ button.accountChanges a {
     button.clearArt,
     button.addProduct,
     button.showProducts,
-    button.closeEditProduct {
+    button.closeEditProduct,
+    button.showArchivedArticles {
         background-color: white;
         border: 2px solid black;
         font-size: 1.3em;
@@ -347,6 +356,7 @@ button.accountChanges a {
     button.addProduct.active,
     button.showProducts.active,
     button.closeEditProduct.active,
+    button.showArchivedArticles.active,
     button.showReaded:hover,
     button.showUnreaded:hover,
     button.addAnno:hover,
@@ -357,7 +367,8 @@ button.accountChanges a {
     button.clearArt:hover,
     button.addProduct:hover,
     button.showProducts:hover,
-    button.closeEditProduct:hover {
+    button.closeEditProduct:hover,
+    button.showArchivedArticles:hover {
         color: white;
         background-color: blue;
     }
@@ -381,6 +392,7 @@ button.accountChanges a {
     div.popupForm.hide,
     div.addingArticle.hide,
     div.actualArticles.hide,
+    div.archivedArticles.hide,
     div.popupFormNews.hide,
     button.removeParagraph.hide,
     button.removeParagraphEdit.hide,
@@ -662,4 +674,36 @@ button.accountChanges a {
         right: 4rem;
         top: 35rem;
         font-size: 1rem;
+    }
+
+    div.attBox {
+        margin-bottom: 150px;
+        margin-left: 50px;
+    }
+
+    div.doccontainer {
+        display: flex;
+        flex-direction: row;
+
+    }
+
+    div.documentList {
+        border-right: 2px solid black;
+        margin-right: 50px;
+        padding: 10px 25px 0 25px;
+        min-height: 30rem;
+
+
+    }
+
+    div.documentList h1,
+    div.addDocument h1 {
+        margin-bottom: 15px;
+    }
+
+    div.addDocument {
+        padding-top: 10px;
+    }
+    div.addDocument input {
+        margin-bottom: 30px;
     }

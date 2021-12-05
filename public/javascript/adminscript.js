@@ -142,8 +142,9 @@ document.addEventListener('click', (e) => {
 
             };
 
-            if(hasClass(e.target, 'showAnno')) {
-                
+            if(hasClass(e.target, 'showAnno') || hasClass(e.target, 'close')) {
+                e.preventDefault()
+
                 const oppositeBtns = [document.querySelector('.addAnno'), document.querySelector('.archivedAnno')];
                 oppositeBtns.forEach(btn => btn.classList.remove('active'));
                 e.target.classList.add('active');
@@ -161,10 +162,11 @@ document.addEventListener('click', (e) => {
                 oppositeBtns.forEach(btn => btn.classList.remove('active'));
                 e.target.classList.add('active');
 
-                document.querySelector('.archiveAnno').classList.remove('hide');
+                
                 document.querySelector('.addingAnno').classList.add('hide');
                 document.querySelector('.popupForm').classList.add('hide');
                 document.querySelector('.actualAnno').classList.add('hide');
+                document.querySelector('.archiveAnno').classList.remove('hide');
 
             };
 
@@ -200,6 +202,40 @@ document.addEventListener('click', (e) => {
                 };
             };
 
+            if(hasClass(e.target, 'addAtachementPopup')) {
+                e.preventDefault();
+
+                const form = document.querySelector('.popupForm form');
+                const pubBtn = document.querySelector('.publicEdit');
+                const index = document.querySelectorAll('.attBox').length;
+                const existedAtt = document.querySelectorAll('.attgroup');
+                const no = 8 - existedAtt.length;
+
+                if(index < no) {
+                const add = document.createElement('input');
+                add.type = 'file';
+                add.accept = '.pdf, .doc, .docx, .odt';
+                add.classList.add('attachementInput');
+                const remBtn = document.createElement('button'); 
+                remBtn.classList.add(`removeAttachementPopup`);
+                remBtn.classList.add(`${index}`);
+                remBtn.innerText = 'Usuń załącznik';
+                const attBox = document.createElement('div');
+                attBox.classList.add('attBox');
+                attBox.classList.add(`${index}`);
+                attBox.appendChild(add);
+                attBox.appendChild(remBtn);
+                form.insertBefore(attBox, pubBtn);
+                } else {
+                    const warning = document.createElement('h1');
+                    warning.innerText = 'Nie można dodać więcej załączników';
+                    warning.classList.add('warning');
+                    warning.style.color = 'red';
+                    e.target.disabled = true;
+                    form.insertBefore(warning, pubBtn);
+                };
+            };
+
             if(hasClass(e.target, 'removeAttachement')) {
                 e.preventDefault();
 
@@ -209,6 +245,22 @@ document.addEventListener('click', (e) => {
                 elToRem.remove();
 
                 const addBtn = document.querySelector('.addAtachement');
+                if(addBtn.disabled === true) {
+                    addBtn.disabled = false;
+                    document.querySelector('.warning').remove();
+                };
+
+            };
+
+            if(hasClass(e.target, 'removeAttachementPopup')) {
+                e.preventDefault();
+
+                const all = [...document.querySelectorAll('.attBox')];
+                const index = e.target.classList[1];
+                const elToRem = all.find(el => el.classList.contains(index));
+                elToRem.remove();
+
+                const addBtn = document.querySelector('.addAtachementPopup');
                 if(addBtn.disabled === true) {
                     addBtn.disabled = false;
                     document.querySelector('.warning').remove();
@@ -323,11 +375,62 @@ document.addEventListener('click', (e) => {
                         date.value = data.date;
                         description.value = data.description;
                         currentObjectId = data._id;
-                    })
+
+                        const att = data.attachements
+                        const attBox = document.createElement('div');
+                        attBox.classList.add('attBox');
+                        if(att.length > 0) {
+                        att.forEach(el => {
+                            const att = document.createElement('div')
+                            att.classList.add('attgroup');
+                            att.innerHTML = `
+                                <p class=${el.newName}>${el.oldName}</p>
+                                <button class='dwlatt ${el.newName}'>Pobierz</button>
+                                <button class='delatt ${el.newName}'>Usuń</button>
+                            `;
+                            attBox.appendChild(att);
+                        })
+                    } else {
+                        const p = documen.createElement('p');
+                        p.innerText = 'Brak załączników do tego ogłoszenia';
+                        attBox.appendChild(p);
+                    }
+                    popup.appendChild(attBox);
+
+                    });
 
 
             };
+            if(hasClass(e.target, 'delatt')) {
+                if(window.confirm("Załącznik zostanie trwale usunięty, kontynuować ?")) {
+                    const name = e.target.classList[1];
+                    const id = currentObjectId;
 
+                    fetch('/admin/delete-att', {
+                        method: 'POST',
+                        headers: {'Content-Type' : 'application/json'},
+                        body: JSON.stringify({
+                            name,
+                            id
+                        })             
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                                if(data.ok === true) {
+                                    e.target.innerText = "załącznik usunięty";
+                                    e.target.style.color = 'red';
+                                    const buttons = [...document.getElementsByClassName(`${e.target.classList[1]}`)];
+                                    buttons.forEach(el => el.disabled = true);
+                                } else {
+                                    e.target.innerText = 'Wystąpił błąd';
+                                    e.target.style.color = 'red';
+                                }
+                            });
+                } else {
+                    return;
+                };
+
+            };
             if(hasClass(e.target, 'publicEdit')) {
 
                 e.preventDefault();
@@ -337,38 +440,146 @@ document.addEventListener('click', (e) => {
                 const description = document.querySelector('#descriptionEdit').value;
                 const info = document.querySelector('.infoBoxEdit');
 
-                const update = {
-                    _id : currentObjectId,
-                    title,
-                    date,
-                    description,
-                };
+                const attachements = [...document.querySelectorAll('.attachementInput')];
 
-                fetch('/admin/anno-edit', {
+                if(!title || !date || !description) {
+                    window.alert('niektóre wymagane pola pozostały puste, nie zostaną w nich wprowadzone żadne zmiany');                   
+                };
+                if(window.confirm('Zmiany gotowe do wprowadzenia, kontynuować ? ')) {
+                const formData = new FormData();
+                
+                formData.append("title" , title);
+                formData.append('date', date);
+                formData.append('description', description);
+                formData.append('_id', currentObjectId);
+                attachements.forEach(el => {
+                    if(el.files[0] !== undefined) {
+                    formData.append('attachements', el.files[0]);
+                    };
+                });
+                
+                fetch('/admin/edit-annoucement', {
                     method: 'POST',
-                    headers: {'Content-Type' : 'application/json'},
-                    body: JSON.stringify(update)
+                    body: formData,
                 })
                     .then(res => res.json())
                     .then(data => {
                         if(data.ok) {
-                            
                             info.classList.remove('hide');
-                            info.innerText = 'Zmiany zostały zapisane';
                             info.style.color = 'green';
-
+                            info.innerText = 'zmiany zostały wprowadzone';
+                            document.querySelector('.popupForm form').style.display = 'none';
+                            document.querySelector('.attBox').style.display = 'none';
+                            window.scrollTo(0,0);
                         } else {
-
                             info.classList.remove('hide');
-                            info.innerText = 'Wystąpił problem z zapisem';
                             info.style.color = 'red';
+                            info.innerText = 'W trakcie publikacji wystąpił błąd! Odśwież stronę';
+                        };
+                    });
+                } else {
+                    return;
+                }
+            };
+            if(hasClass(e.target, 'archiveAnnoOn')) {
+
+                const archive = true;
+                const _id = e.target.classList[1];
+                const btn = e.target;
+
+                fetch('/admin/anno-archive', {
+
+                    method: 'POST',
+                    headers: {'Content-Type' : 'application/json'},
+                    body: JSON.stringify({_id, archive})
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if(data.ok === true) {
+                            btn.innerText = 'Ogłoszenie przeniesione do archiwum';
+                            btn.style.color = 'red';
+                            document.querySelector('.editAnno').disabled = true;
+                            document.querySelector('.deleteAnno').disabled = true;
+
                         }
-
                     })
-
             };
 
+            if(hasClass(e.target, 'moveToArchive')) {
 
+                const archive = true;
+                const _id = e.target.classList[1];
+                const btn = e.target;
+
+                fetch('/admin/article-archive', {
+
+                    method: 'POST',
+                    headers: {'Content-Type' : 'application/json'},
+                    body: JSON.stringify({_id, archive})
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if(data.ok === true) {
+                            btn.innerText = 'Ogłoszenie przeniesione do archiwum';
+                            btn.style.color = 'red';
+                            document.querySelector('.editArticle').disabled = true;
+                            document.querySelector('.removeArticle').disabled = true;
+
+                        }
+                    })
+            };
+
+            if(hasClass(e.target, 'unArchiveAnno')) {
+
+                const archive = false;
+                const _id = e.target.classList[1];
+                const btn = e.target;
+
+                fetch('/admin/anno-archive', {
+
+                    method: 'POST',
+                    headers: {'Content-Type' : 'application/json'},
+                    body: JSON.stringify({_id, archive})
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if(data.ok === true) {
+                            btn.innerText = 'Ogłoszenie przywrócone';
+                            btn.style.color = 'green';
+                            document.querySelector('.deleteAnno').disabled = true;
+                        }
+                    })
+            };
+
+            if(hasClass(e.target, 'returnArticle')) {
+
+                const archive = false;
+                const _id = e.target.classList[1];
+                const btn = e.target;
+
+                fetch('/admin/article-archive', {
+
+                    method: 'POST',
+                    headers: {'Content-Type' : 'application/json'},
+                    body: JSON.stringify({_id, archive})
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if(data.ok === true) {
+                            btn.innerText = 'Ogłoszenie przywrócone';
+                            btn.style.color = 'green';
+                            document.querySelector('.removeArticle').disabled = true;
+                        }
+                    })
+            };
+
+            if(hasClass(e.target, 'dwlatt')) {
+
+                const id = e.target.classList[1];
+                const table = document.getElementsByClassName(`${id}`);
+                const name = table[0].innerText
+                window.location.href =  `/admin/download/${id}/${name}`;
+            };
             if(hasClass(e.target, 'deleteAnno')) {
 
                 const _id = e.target.classList[1];
@@ -409,9 +620,12 @@ document.addEventListener('click', (e) => {
                 e.target.classList.add('active');
 
                 document.querySelector('.showArticles').classList.remove('active');
+                document.querySelector('.showArchivedArticles').classList.remove('active');
                 document.querySelector('.addingArticle').classList.remove('hide');
                 document.querySelector('.actualArticles').classList.add('hide');
                 document.querySelector('.popupFormNews').classList.add('hide');
+                document.querySelector('.archivedArticles').classList.add('hide');
+                
             };
 
             if(hasClass(e.target, 'showArticles') || hasClass(e.target, 'closeEditor')) {
@@ -419,10 +633,25 @@ document.addEventListener('click', (e) => {
                 e.preventDefault();
 
                 document.querySelector('.addArticle').classList.remove('active');
+                document.querySelector('.showArchivedArticles').classList.remove('active');
                 document.querySelector('.showArticles').classList.add('active');
                 document.querySelector('.actualArticles').classList.remove('hide');
                 document.querySelector('.addingArticle').classList.add('hide');
                 document.querySelector('.popupFormNews').classList.add('hide');
+                document.querySelector('.archivedArticles').classList.add('hide');
+            };
+
+            if(hasClass(e.target, 'showArchivedArticles')) {
+
+                e.preventDefault();
+
+                document.querySelector('.addArticle').classList.remove('active');
+                document.querySelector('.showArticles').classList.remove('active');
+                document.querySelector('.showArchivedArticles').classList.add('active');
+                document.querySelector('.actualArticles').classList.add('hide');
+                document.querySelector('.addingArticle').classList.add('hide');
+                document.querySelector('.popupFormNews').classList.add('hide');
+                document.querySelector('.archivedArticles').classList.remove('hide');
             };
 
             if(hasClass(e.target, 'addParagraph')) {
