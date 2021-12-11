@@ -48,6 +48,7 @@ app.use('/accounts', accountRouter);
 
 app.use('/public', express.static(path.resolve(__dirname, 'public')));
 
+
 app.get('/error', (req,res) => {
     res.sendFile(path.resolve(__dirname, 'public', 'error.html'))
 });
@@ -111,23 +112,5 @@ app.get('/*', (req, res)=> {
     res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
 
-// app.get('/assoadd', async (req,res) => {
-//     const foto = await readFile('../public/images/fullsize/bagiet.jpg', 'base64');
-
-//     const assoInfo = {
-//         title : 'Nowy zajebisty bagiet',
-//         description : 'Przykładowy opis zajebistego bagieta którego nikt jeszcze nie produkuje chociaż może warto zacząć czy coś takiego, no musi być jakiś opis tego gówna na próbę', 
-//         foto : foto,
-//     };
-
-//     const asso = new Asso(assoInfo);
-//     asso.save((err)=> {
-//         if(err) throw new Error
-//         else console.log('poszło');
-//     });
-
-//     res.redirect('/');
-
-// });
 
 module.exports = app;

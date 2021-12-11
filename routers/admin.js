@@ -7,8 +7,11 @@ const Anno = require('../public/models/annoucementsDB.js');
 const News = require('../public/models/newsDB.js');
 const Asso = require('../public/models/assortmentDB.js');
 const Doc = require('../public/models/documentDB.js');
+const {readCounter, checkCounter} = require('../utils/dataCounter');
+const {maxAgeSession} = require('../config.js');
 
 const multer = require('multer');
+
 const storage = multer.diskStorage({
     destination : function(req, file, cb) {
         cb(null, '../public/images/imagesDB/');
@@ -20,7 +23,16 @@ const storage = multer.diskStorage({
 
 const attachementStorage = multer.diskStorage({
     destination : function(req, file, cb) {
-        cb(null, '../public/attachement');
+        cb(null, '../public/attachement/');
+    },
+    filename : function(req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+});
+
+const documentStorage = multer.diskStorage({
+    destination : function(req, file, cb) {
+        cb(null, '../public/documents/');
     },
     filename : function(req, file, cb) {
         cb(null, Date.now() + path.extname(file.originalname))
@@ -29,6 +41,7 @@ const attachementStorage = multer.diskStorage({
 
 const upload = multer({storage : storage});
 const uploadAttachement = multer({storage : attachementStorage});
+const uploadDocument = multer({storage : documentStorage});
 
 
 router.all('*', (req,res,next) => {
@@ -100,6 +113,24 @@ router.post('/remove-product', async(req, res) => {
     res.json({ok:true});
 
 })
+router.post('/add-documet', uploadDocument.single('doc'), async (req, res) => {
+
+    const original = req.file.originalname;
+    const base = req.file.filename;
+    const createdBy = req.body.user
+
+    const data = {
+        original,
+        base,
+        createdBy
+    };
+    
+    const toSend = new Doc(data);
+    await toSend.save();
+
+    res.json({ok:true});
+});
+
 router.post('/add-assortment',upload.single('foto'), (req, res) => {
 
     const foto = req.file ? req.file.filename : null;
@@ -304,6 +335,17 @@ router.post('/add-news',upload.single('foto'), (req, res) => {
             };
         });
 });
+router.post('/delete-doc', async (req, res) => {
+    const filter = req.body._id
+    const data = await Doc.findById(filter);
+    const basename = data.base;
+
+    await Doc.findByIdAndDelete(filter);
+    const path = '../public/documents/' + `${basename}`
+    await unlink(path);
+
+    res.json({ok:true});
+})
 
 router.post('/anno-delete', async (req, res) => {
 
@@ -344,6 +386,12 @@ router.get('/download/:id/:name', (req,res) => {
     res.download(path, name);
 });
 
+router.get('/downloaddoc/:id/:name', (req,res) => {
+    const path = `../public/documents/${req.params.id}`
+    const name = req.params.name;
+    res.download(path, name);
+})
+
 
 router.post('/unread-read', async (req, res) => {
 
@@ -374,6 +422,8 @@ router.post('/edit-annoucement', uploadAttachement.array('attachements',8), asyn
     const old = await Anno.findOne({_id});
     const newAttArr = old.attachements;
 
+    
+
     req.files.forEach(el => {
         const newName = el.filename;
         const oldName = el.originalname.split('.')[0];
@@ -400,8 +450,9 @@ router.post('/delete', async(req, res) => {
     res.json({ok : true});
 })
 
-router.post('/add-annoucement', uploadAttachement.array('attachements',8), (req,res) => {
+router.post('/add-annoucement', uploadAttachement.array('attachements',8), async (req,res) => {
 
+    let size = 0;
     const attachements = [];
     req.files.forEach(el => {
         const newName = el.filename;
@@ -411,7 +462,10 @@ router.post('/add-annoucement', uploadAttachement.array('attachements',8), (req,
             oldName
         };
         attachements.push(objToPush);
+        size += el.size;
     });
+
+    if(checkCounter('content', size/1000, 'add')) {
     const {title, date, description} = req.body;
     const data = {
         title,
@@ -419,7 +473,7 @@ router.post('/add-annoucement', uploadAttachement.array('attachements',8), (req,
         description,
         attachements,
     };
-
+    
     const toSend = new Anno(data);
     toSend.save(err => {
         if (err) {
@@ -429,7 +483,13 @@ router.post('/add-annoucement', uploadAttachement.array('attachements',8), (req,
             res.json({ok:true});
         };   
     });  
-
+    } else {
+        req.files.forEach(el => {
+            const path = `../public/attachement/${el.filename}`;
+            await unlink(path);
+        })
+        res.redirect('/error')
+    }
 });
 
 router.post('/anno-find', (req, res) => {
@@ -457,9 +517,20 @@ router.post('/anno-edit', async (req, res) => {
         res.json({ok: true});
 })
 
-router.get('/*', (req,res) => {
+router.get('/*', async (req,res) => {
+    const contentLimit = await readCounter('content');
+    const baseLimit = await readCounter('database');
 
-    res.sendFile(path.resolve('../public/admin.html'));
+    res
+        .cookie('content-limit', contentLimit, {
+            maxAge: maxAgeSession,
+            sameSite: 'strict',
+        })
+        .cookie('base-limit', baseLimit, {
+            maxAge: maxAgeSession,
+            sameSite: 'strict',
+        })
+        .sendFile(path.resolve('../public/admin.html'));
 });
 
 module.exports = router;

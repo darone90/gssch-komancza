@@ -10,19 +10,21 @@ export default class extends viewModel {
 
         const docBox = document.querySelector('.documentList');
 
-        for(doc in data) {
-            const {_id, original, base, created, createdBy} = doc;
+        data.forEach(el => {
+            
+            const {_id, original, base, created, createdBy} = el;
             const file = document.createElement('div');
             file.classList.add('doclistpart');
 
             file.innerHTML = `
-                <h3 class='${base}''>$Nazwa : ${original}</h3>
+                <h3>Nazwa :</h3>
+                <h4 class='${base}'> ${original}</h4>
                 <p>Doadny dnia: ${new Date(Number(created)).toISOString().slice(0,10)} przez ${createdBy}</p>
-                <button class='dwnatt ${base}'>Pobierz</button>
+                <button class='dwldoc ${base} ${_id}'>Pobierz</button>
                 <button class='deleteDocument ${_id}'>Usuń dokument</button>
             `;
-            docBox.insertBefore(file, docBox.nextSibling || null);
-        };
+            docBox.insertBefore(file, file.nextSibling || null);
+        });
 
         if (data.length < 1) {
             const noDocuments = document.createElement('p');
