@@ -8,6 +8,7 @@ const News = require('../public/models/newsDB.js');
 const Asso = require('../public/models/assortmentDB.js');
 const Doc = require('../public/models/documentDB.js');
 const {readCounter, checkCounter, changeCounter} = require('../utils/dataCounter.js');
+const {contentLimit, databaseLimit} = require('../utils/limitconfig.js')
 const {errorHandle} = require('../utils/handlers.js');
 const {maxAgeSession} = require('../config.js');
 
@@ -80,6 +81,25 @@ router
         } catch (err) {
             errorHandle(res, err, 'databaseproblem-readasso-all');
         };
+    })
+
+    .get('/messages-get', async (req ,res) => {
+
+        try {
+            const data = await Message.find({});
+            res.json(data);
+        } catch (err) {
+            errorHandle(res, err, 'databaseproblem-readmessages-all');
+        };
+    })
+
+    .get('/documents-get', async (req, res) => {
+        try {
+            const data = await Doc.find({});
+            res.json(data);
+        } catch (err) {
+            errorHandle(res, err, 'databaseproblem-readdocuments-all');
+        }
     })
     
     .get('/anno-find/:id', async (req, res) => {
@@ -181,7 +201,36 @@ router
                 await News.findByIdAndRemove(filter);
                 res.json({ok:true});
             } catch(err) {
-                errorHandle(res, err, 'databaseproblem-delete')
+                errorHandle(res, err, 'databaseproblem-delete');
+            };       
+        })
+
+    .delete('/messages-delete/:id', async(req, res) => {
+
+            const filter = {_id : req.params.id};
+            try {
+                await Message.findByIdAndRemove(filter);
+                res.json({ok : true});
+            } catch (err) {
+                errorHandle(res, err, 'databaseproblem-delete');
+            }
+            
+        })
+
+    .delete('/documents-delete/:id', async (req, res) => {
+
+            const filter = {_id : req.params.id};
+            try {
+                const data = await Doc.findById(filter);
+                const basename = data.base;
+                await Doc.findByIdAndDelete(filter);
+                const path = '../public/documents/' + `${basename}`;
+                const fileSize = await stat(path);
+                changeCounter('database', fileSize.size, 'subtraction');
+                await unlink(path);
+                res.json({ok:true});
+            } catch (err) {
+                errorHandle(res, err, 'databaseproblem-delete');
             };       
         })
 
@@ -236,14 +285,31 @@ router
             };       
         })
     .patch('/products-foto-delete', async (req, res) => {
-        
+
             const filter = req.body;
             const update = {foto: null};
-            await Asso.findOneAndUpdate(filter, update);
-            const path = '../public/images/imagesDB/' + `${req.body.foto}`;
-            await unlink(path);
-        
-            res.json({ok:true});
+            try {
+                await Asso.findOneAndUpdate(filter, update);
+                const path = '../public/images/imagesDB/' + `${req.body.foto}`;
+                const fileSize = await stat(path);
+                changeCounter('content', fileSize.size, 'subtraction');
+                await unlink(path);
+                res.json({ok:true});
+            } catch (err) {
+                errorHandle(res, err, 'databasediskproblem-removeattachement');
+            };     
+        })
+
+    .patch('/messages-readed/:id', async (req, res) => {
+
+            const filter = {_id : req.params.id};
+            const update = {readed: true};
+            try {
+                await Message.findOneAndUpdate(filter, update)
+                res.json({ok: true});
+            } catch (err) {
+                errorHandle(res, err, 'databaseproblem-unreadtoread');
+            }
         })
 
     .put('/anno-edit', uploadAttachement.array('attachements',8), async (req, res) => {
@@ -276,7 +342,7 @@ router
                             await unlink(path);
                             errorHandle(res, 'przekroczenie limitu danych', 'databaseproblem-overload')
                         } catch (err) {
-                            errorHandle(res, err, 'diskproblem-delete')
+                            errorHandle(res, err, 'diskproblem-delete');
                         };
                     });
                 };
@@ -328,7 +394,7 @@ router
                         errorHandle(res, err, "databaseproblem-editing");
                 };               
             } else {
-                errorHandle(res, 'przekroczenie limitu danych', 'databaseproblem-overload')
+                errorHandle(res, 'przekroczenie limitu danych', 'databaseproblem-overload');
             };
             } else {
                 const dataToSend = {
@@ -342,6 +408,58 @@ router
                 } catch (err) {
                     errorHandle(res, err, "databaseproblem-editing");
                 };
+            };
+        })
+
+    .put('/products-edit', upload.single('foto'), async (req, res) => {
+
+            const {_id, title, description} = req.body;
+            const foto = req.file ? req.file.filename : false; 
+            const filter = {_id};
+                
+            if(foto) {
+                if(checkCounter('content', req.file.size, 'add')) {
+
+                    try {
+                        const data = await Asso.findOne(filter);
+                        if(data.foto === null) {
+                            return;
+                        } else {
+                            const path = '../public/images/imagesDB/' + `${data.foto}`;
+                            const fileSize = await stat(path);
+                            changeCounter('content', fileSize.size, 'subtraction');
+                            await unlink(path);
+                            const dataToSend = {
+                                title,
+                                description,
+                                foto,
+                            };
+                            await Asso.findOneAndUpdate(filter, dataToSend);
+                            res.json({ok: true});
+                        }
+                    } catch (err) {
+                        errorHandle(res, err, "databaseproblem-editing");
+                    };      
+                } else {
+                    const path = '../public/images/imagesDB/' + `${req.file.filename}`
+                    try {
+                        await unlink(path)
+                    } catch(err) {
+                        errorHandle(res, err, 'diskproblem-delete');
+                    };
+                    errorHandle(res, 'przekroczenie limitu danych', 'databaseproblem-overload')
+                };
+            } else {
+                const dataToSend = {
+                    title,
+                    description,
+                };
+                try{
+                    await Asso.findOneAndUpdate(filter, dataToSend);
+                    res.json({ok: true});
+                } catch(err) {
+                    errorHandle(res, err, "databaseproblem-editing");
+                };               
             };
         })
 
@@ -429,222 +547,102 @@ router
                 errorHandle(res, err, 'diskproblem-delete');
             };
             errorHandle(res, 'przekroczenie limitu danych', 'databaseproblem-overload');
-        };
-    })
+            };
+        })
 
+    .post('/products-add',upload.single('foto'), async (req, res) => {
 
+        const foto = req.file ? req.file.filename : null;
+        const {title, description} = req.body;
+        const fileSize = req.file ? req.file.size : 0;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-router.post('/delete-doc', async (req, res) => {
-    const filter = req.body._id
-    const data = await Doc.findById(filter);
-    const basename = data.base;
-
-    await Doc.findByIdAndDelete(filter);
-    const path = '../public/documents/' + `${basename}`
-    await unlink(path);
-
-    res.json({ok:true});
-})
-
-router.get('/show-messages', (req ,res) => {
-    Message.find({}, (err, data) => {
-        if(err) {
-            throw new Error('błąd wczytywania wiadomości')
-        } else {
-            res.json(data);
-        };
-    });
-});
-
-router.get('/get-documents', async (req, res) => {
-    const data = await Doc.find({});
-    res.json(data);
-});
-
-router.post('/add-documet', uploadDocument.single('doc'), async (req, res) => {
-
-    const original = req.file.originalname;
-    const base = req.file.filename;
-    const createdBy = req.body.user
-
-    const data = {
-        original,
-        base,
-        createdBy
-    };
+        if (checkCounter('content', fileSize, 'add')) {
     
-    const toSend = new Doc(data);
-    await toSend.save();
-
-    res.json({ok:true});
-});
-
-router.post('/add-assortment',upload.single('foto'), (req, res) => {
-
-    const foto = req.file ? req.file.filename : null;
-    const {title, description} = req.body;
-
-    const data = {
-        title,
-        description,
-        foto,
-    };
-
-    const toSend = new Asso(data);
-    toSend.save(err => {
-        if (err) {throw new Error('Wystąpił problem przy zapisie produktu', err)}
-        else {
-            res.json({ok:true});
-        }
-    })
-});
-
-
-router.post('/update-product', async(req, res) => {
-
-    const {_id, title, description} = req.body;
-
-    const foto = req.file ? req.file.filename : false;
-    
-    const filter = {_id};
-        
-    if(foto) {
-        Asso.findOne(filter, async (err, data) => {
-            if(err) {
-                throw new Error('błąd wczytywania', err)
-            } else {
-                if(data.foto === null){
-                    return;
-                } else {
-                const path = '../public/images/imagesDB/' + `${data.foto}`
-                await unlink(path);
-                }
+            const data = {
+                title,
+                description,
+                foto,
+            };
+            const toSend = new Asso(data);
+            try {
+                await toSend.save();
+                res.json({ok: true});
+            } catch (err) {
+                errorHandle(res, err, 'databaseproblem-addingproduct');
             }
-        });
-
-        const dataToSend = {
-            title,
-            description,
-            foto,
-        };        
-        await Asso.findOneAndUpdate(filter, dataToSend);
-        res.json({ok: true});
-    } else {
-        const dataToSend = {
-            title,
-            description,
+        } else {
+            const path = '../public/images/imagesDB/' + `${req.file.filename}`;
+            try {
+                await unlink(path);
+            } catch (err) {
+                errorHandle(res, err, 'diskproblem-delete');
+            }
+            errorHandle(res, 'przekroczenie limitu danych', 'databaseproblem-overload');
         };
-        await Asso.findOneAndUpdate(filter, dataToSend);
-        res.json({ok: true});
-    }
-});
+    })
 
+    .post('/documents-add', uploadDocument.single('doc'), async (req, res) => {
 
-router.post('/delete-doc', async (req, res) => {
-    const filter = req.body._id
-    const data = await Doc.findById(filter);
-    const basename = data.base;
+        const original = req.file.originalname;
+        const base = req.file.filename;
+        const createdBy = req.body.user
 
-    await Doc.findByIdAndDelete(filter);
-    const path = '../public/documents/' + `${basename}`
-    await unlink(path);
+        if (checkCounter('database', req.file.size, 'add')){
+            try {
+                const data = {
+                    original,
+                    base,
+                    createdBy
+                };
+                const toSend = new Doc(data);
+                await toSend.save();
+                res.json({ok:true});
+            } catch (err) {
+                errorHandle(res, err, 'databaseproblem-addingdocument');
+            };
+        } else {
+            try {
+                const path = '../public/documents/' + `${base}`;
+                await unlink(path);
+                errorHandle(res, 'przekroczenie limitu danych', 'databaseproblem-overload');
+            } catch (err) {
+                errorHandle(res, err, 'diskproblem-delete');
+            };
+        };    
+    })
 
-    res.json({ok:true});
-})
+    .get('/download/:id/:name', (req,res) => {
 
+        const path = `../public/attachement/${req.params.id}`;
+        const name = req.params.name;
+        res.download(path, name);
+    })
 
-router.get('/download/:id/:name', (req,res) => {
+    .get('/downloaddoc/:id/:name', (req,res) => {
+        const path = `../public/documents/${req.params.id}`
+        const name = req.params.name;
+        res.download(path, name);
+    })
 
-    const path = `../public/attachement/${req.params.id}`;
-    const name = req.params.name;
-    res.download(path, name);
-});
+    .get('/*', async (req,res) => {
+        try {
+            const contentLimitValue = await readCounter('content');
+            const baseLimitValue = await readCounter('database');
 
-router.get('/downloaddoc/:id/:name', (req,res) => {
-    const path = `../public/documents/${req.params.id}`
-    const name = req.params.name;
-    res.download(path, name);
-})
-
-
-router.post('/unread-read', async (req, res) => {
-
-    const filter = {_id : req.body.id};
-    const update = {readed: true};
-    await Message.findOneAndUpdate(filter, update)
-    res.json({ok: true});
-});
-
-router.post('/delete', async(req, res) => {
-
-    const filter = {_id : req.body.id};
-    await Message.findByIdAndRemove(filter);
-    res.json({ok : true});
-})
-
-
-
-
-
-
-
-
-
-
-router.get('/*', async (req,res) => {
-    const contentLimit = await readCounter('content');
-    const baseLimit = await readCounter('database');
-
-    res
-        .cookie('content-limit', contentLimit, {
-            maxAge: maxAgeSession,
-            sameSite: 'strict',
-        })
-        .cookie('base-limit', baseLimit, {
-            maxAge: maxAgeSession,
-            sameSite: 'strict',
-        })
-        .sendFile(path.resolve('../public/admin.html'));
-});
+        res
+            .cookie('content-limit', contentLimitValue + "?" + contentLimit, {
+                maxAge: maxAgeSession,
+                sameSite: 'strict',
+            })
+            .cookie('base-limit', baseLimitValue + "?" + databaseLimit, {
+                maxAge: maxAgeSession,
+                sameSite: 'strict',
+            })
+            .sendFile(path.resolve('../public/admin.html'));
+        } catch (err) {
+            errorHandle(res, err, 'readingcounterproblem');
+        }
+    
+    });
 
 module.exports = router;

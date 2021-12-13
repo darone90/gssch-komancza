@@ -59,6 +59,8 @@ export default class extends viewModel {
         return `
         <button class='addProduct active'>Dodaj produkt</button>
         <button class='showProducts'>Opublikowane produkty</button>
+        <button class='mainPage hide'><a href="/bakery">Podgląd strony głównej</a></button>
+        <button class='refreshArticle hide'>Odśwież aby zobaczyć zmiany</button>
         <div class='addingArticle'>
             <form>
                 <label for="prodName" id='prodNameLab'>Nazwa produktu</label>

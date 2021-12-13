@@ -95,6 +95,8 @@ export default class extends viewModel {
         <button class='addArticle active'>Dodaj artykuł</button>
         <button class='showArticles'>Opublikowane artykuły</button>
         <button class='showArchivedArticles'>Archiwum</button>
+        <button class='mainPage hide'><a href="/">Podgląd strony głównej</a></button>
+        <button class='refreshArticle hide'>Odśwież aby zobaczyć zmiany</button>
         <div class='addingArticle'>
             <form>
                 <label for="titleArt" id='titleArtLab'>Tytuł artykułu</label>

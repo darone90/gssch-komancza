@@ -1,5 +1,6 @@
 const loading = document.querySelector('.loadingBox');
 const  nameBox = document.querySelector('.nameFromCookie');
+const cookies = document.cookie.split(';')
 
 let currentObjectId;
 
@@ -8,8 +9,30 @@ const hasClass = (elem, className) => {
 };
 
 const loadName= () => {
-    const name = document.cookie.substr(10);
+    const name = cookies[2].substr(11);
     nameBox.innerText = name;
+}
+
+const loadSpaceBars = () => {
+    const content = cookies[0].substr(15);
+    const valuesC = content.split('%3F');
+    const contentValue = Number(valuesC[0]);
+    const contentLimit = Number(valuesC[1]);
+
+    const database = cookies[1].substr(12);
+    const valuesD = database.split('%3F');
+    const databaseValue = Number(valuesD[0]);
+    const databaseLimit = Number(valuesD[1]);
+
+    const percentC = Math.round(contentValue/(contentLimit/100));
+    const barC = document.querySelector('.contentbar div');
+    barC.style.width = `${percentC}%`
+
+    const percentD = Math.round(databaseValue/(databaseLimit/100));
+    const barD = document.querySelector('.databasebar div');
+    barD.style.width = `${percentD}%`;
+
+    
 }
 
 const removeParagraph = (e) => {
@@ -37,11 +60,9 @@ document.addEventListener('click', (e) => {
         const id = e.target.classList[1];
         const messageBox = document.getElementById(`${id}`);
 
-        fetch('/admin/unread-read', {
+        fetch(`/admin/messages-readed/${id}`, {
 
-            method: 'POST',
-            headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify({id}),
+            method: 'PATCH',
 
         }).then(res => res.json()).then(data => {
 
@@ -101,12 +122,9 @@ document.addEventListener('click', (e) => {
         const messageBox = document.getElementById(`${id}`);
 
 
-        fetch('/admin/delete', {
+        fetch(`/admin/messages-delete/${id}`, {
 
-            method: 'POST',
-            headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify({id}),
-
+            method: 'DELETE',
         }).then(res => res.json()).then(data => {
 
             if (data.ok === true) {
@@ -531,7 +549,7 @@ document.addEventListener('click', (e) => {
                 const _id = e.target.classList[1];
                 const btn = e.target;
 
-                fetch('/admin/anno-archive', {
+                fetch('/admin/archive/anno', {
 
                     method: 'PATCH',
                     headers: {'Content-Type' : 'application/json'},
@@ -617,10 +635,8 @@ document.addEventListener('click', (e) => {
                 const btn = [...document.getElementsByClassName(`${_id}`)];
 
                 if(window.confirm('Trwałe usunięcie dokumentu z bazy danych, kontynuować?')) {
-                    fetch('/admin/delete-doc',{
-                        method: 'POST',
-                        headers: {'Content-Type' : 'application/json'},
-                        body: JSON.stringify({_id})
+                    fetch(`/admin/documents-delete/${_id}`,{
+                        method: 'DELETE',
                     })
                         .then(res => res.json())
                         .then(data => {
@@ -979,7 +995,7 @@ document.addEventListener('click', (e) => {
                 formData.append('user', userName);
                 formData.append('doc', file);
 
-                fetch('/admin/add-documet', {
+                fetch('/admin/documents-add', {
                     method: 'POST',
                     body: formData
                 })
@@ -1063,7 +1079,7 @@ document.addEventListener('click', (e) => {
                     formData.append('description', description.value);
                     formData.append('foto', foto);
 
-                    fetch('/admin/add-assortment', {
+                    fetch('/admin/products-add', {
                         method: 'POST',
                         body: formData,
                     })  
@@ -1221,8 +1237,8 @@ document.addEventListener('click', (e) => {
                         formData.append('description', description);
                         formData.append('foto', data);
 
-                        fetch('/admin/update-product', {
-                            method: 'POST',
+                        fetch('/admin/products-edit', {
+                            method: 'PUT',
                             body: formData,
                         }).then(res => res.json())
                         .then(data => {
@@ -1250,3 +1266,4 @@ document.addEventListener('click', (e) => {
 });
 
 window.addEventListener('load', loadName);
+window.addEventListener('load', loadSpaceBars);

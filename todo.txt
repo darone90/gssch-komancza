@@ -30,8 +30,6 @@ dodać przycisk powrotu na stronę glówną
 
 dodać okno ładowania przy dodawaniu czegokolwiek
 
-przesyłanie dokumnetów i zdjęć zrobić poprzez pipe
-
-wprowadzić limiter na ilośc produktów ogłoszeń i news poprzez plik który będzie zliczał ilośc 
-
 dodać licencję
+
+zrobić porządnie błędy

@@ -142,6 +142,8 @@ export default class extends viewModel {
             <button class='addAnno active'>Dodaj ogłoszenie</button>
             <button class='showAnno'>Aktualne ogłoszenia</button>
             <button class='archivedAnno'>Ogłoszenia archiwalne</button>
+            <button class='mainPage hide'><a href="/announcements">Podgląd strony głównej</a></button>
+            <button class='refreshArticle hide'>Odśwież aby zobaczyć zmiany</button>
             <div class='addingAnno'>
                 <form>
                     <label for="title" id='forTitle'>Tytuł ogłoszenia</label>

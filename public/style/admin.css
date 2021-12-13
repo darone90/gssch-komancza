@@ -335,7 +335,9 @@ button.accountChanges a {
     button.addProduct,
     button.showProducts,
     button.closeEditProduct,
-    button.showArchivedArticles {
+    button.showArchivedArticles,
+    button.mainPage,
+    button.refreshArticle {
         background-color: white;
         border: 2px solid black;
         font-size: 1.3em;
@@ -368,7 +370,9 @@ button.accountChanges a {
     button.addProduct:hover,
     button.showProducts:hover,
     button.closeEditProduct:hover,
-    button.showArchivedArticles:hover {
+    button.showArchivedArticles:hover,
+    button.mainPage:hover,
+    button.refreshArticle:hover {
         color: white;
         background-color: blue;
     }
@@ -396,6 +400,8 @@ button.accountChanges a {
     div.popupFormNews.hide,
     button.removeParagraph.hide,
     button.removeParagraphEdit.hide,
+    button.mainPage.hide,
+    button.refreshArticle.hide,
     div.editArticle.hide {
         display: none;
     }
@@ -692,8 +698,6 @@ button.accountChanges a {
         margin-right: 50px;
         padding: 10px 25px 0 25px;
         min-height: 30rem;
-
-
     }
 
     div.documentList h1,
@@ -707,3 +711,30 @@ button.accountChanges a {
     div.addDocument input {
         margin-bottom: 30px;
     }
+div.spaceBox {
+    position: absolute;
+    right: 18em;
+    top: 3em;
+    height: 8em;
+    width: 20em;
+}
+
+div.spaceBox h3 {
+    margin: 3px 0 0 3px;
+}
+
+div.contentbar,
+div.databasebar {
+    margin: 0.5rem 0 0.5rem 1rem;
+    width: 18rem;
+    height: 1.5em;
+    border: 2px solid black;
+}
+
+div.loaded {
+    position: relative;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: red;
+}

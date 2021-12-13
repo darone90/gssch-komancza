@@ -14,6 +14,15 @@ if (errorType === 'databaseproblem-readannoucements-all') {
     `
 };
 
+if (errorType === 'databaseproblem-readdocuments-all') {
+    p.innerText = `
+        Wystąpił błąd wczytwyania bazy dokumentów
+        Może to być spowodowane jej chwilową niedostępnością 
+        Prosimy spróbować za chwilę
+        Jeśli błąd będzie się powtarzał prosimy o kontakt z moderatorem
+    `
+};
+
 if (errorType === 'databaseproblem-readnews-all') {
     p.innerText = `
         Wystąpił błąd wczytwyania artykułów z bazy danych
@@ -26,6 +35,15 @@ if (errorType === 'databaseproblem-readnews-all') {
 if (errorType === 'databaseproblem-readasso-all') {
     p.innerText = `
         Wystąpił błąd wczytwyania produktów z bazy danych
+        Może to być spowodowane jej chwilową niedostępnością 
+        Prosimy spróbować za chwilę
+        Jeśli błąd będzie się powtarzał prosimy o kontakt z moderatorem
+    `
+};
+
+if (errorType === 'databaseproblem-readmessage-all') {
+    p.innerText = `
+        Wystąpił błąd wczytwyania wiadomości z bazy danych
         Może to być spowodowane jej chwilową niedostępnością 
         Prosimy spróbować za chwilę
         Jeśli błąd będzie się powtarzał prosimy o kontakt z moderatorem
@@ -115,6 +133,41 @@ if (errorType === 'databaseproblem-addingannoucemet') {
         Sprawdź połączenie z internetem
         Jeśli połączenie działa spróbuj za kilka minut
         Jeśli błąd będzie się powtarzał skontaktuj się z moderatorem
+    `;
+};
+
+if (errorType === 'databaseproblem-addingproduct') {
+    p.innerText = `
+        Wystąpił błąd w trakcie dodawania produktu
+        Sprawdź połączenie z internetem
+        Jeśli połączenie działa spróbuj za kilka minut
+        Jeśli błąd będzie się powtarzał skontaktuj się z moderatorem
+    `;
+};
+
+if (errorType === 'databaseproblem-unreadtoread') {
+    p.innerText = `
+        Wystąpił błąd w trakcie zmiany statusu wiadomości
+        Sprawdź połączenie z internetem
+        Jeśli połączenie działa spróbuj za kilka minut
+        Jeśli błąd będzie się powtarzał skontaktuj się z moderatorem
+    `;
+};
+
+if (errorType === 'databaseproblem-addingdocument') {
+    p.innerText = `
+        Wystąpił błąd w trakcie dodawania dokumentu
+        Sprawdź połączenie z internetem
+        Jeśli połączenie działa spróbuj za kilka minut
+        Jeśli błąd będzie się powtarzał skontaktuj się z moderatorem
+    `;
+};
+
+if (errorType === 'readingcounterproblem') {
+    p.innerText = `
+        Wystąpił problem z odczytem wolnych udostępnionych zasobów dysku
+        Spróbuj ponownie wykonać operację 
+        Jeśli błąd się powtórzy skontaktuj się z moderatorem
     `;
 };
 
