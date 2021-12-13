@@ -28,7 +28,7 @@ export default class extends viewModel {
                 <h2>${actualAnno[i].date}</h2>
                 <p>${actualAnno[i].description}</p>
                 <p>Utworzono dnia ${new Date(Number(actualAnno[i].created)).toISOString().slice(0,10)}</p>
-                <button class='editAnno ${actualAnno[i]._id}' id='${actualAnno[i]._id}'>Edytuj</button>
+                <button class='editAnno ${actualAnno[i]._id}'>Edytuj</button>
                 <button class='deleteAnno ${actualAnno[i]._id}'>Usuń</button>
                 <button class='archiveAnnoOn ${actualAnno[i]._id}'>Archiwizuj</button>
             `;
@@ -75,7 +75,7 @@ export default class extends viewModel {
                 <h2>${archivedAnno[i].date}</h2>
                 <p>${archivedAnno[i].description}</p>
                 <p>Utworzono dnia ${new Date(Number(archivedAnno[i].created)).toISOString().slice(0,10)}</p>
-                <button class='unArchiveAnno ${archivedAnno[i]._id}' id='${archivedAnno[i]._id}'>Przywróć</button>
+                <button class='unArchiveAnno ${archivedAnno[i]._id}'>Przywróć</button>
                 <button class='deleteAnno ${archivedAnno[i]._id}'>Usuń</button>
             `;
 
@@ -124,10 +124,17 @@ export default class extends viewModel {
         const loading = document.querySelector('.loadingBox');
         loading.classList.add('onload');
 
-        fetch('/admin/get-anno', {
-            method: 'GET'
+        fetch('/admin/anno-get', {
+            method: 'GET',
+            redirect: 'follow'
         })
-            .then(res => res.json())
+            .then(res => {
+                if(res.redirected) {
+                    window.location.href = res.url;
+                    return [];
+                } else {
+                    return res.json()}
+            })
             .then(data => this.loadAnnoucements(data));
 
         return `

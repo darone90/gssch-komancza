@@ -1,4 +1,4 @@
 module.exports = {
-    contentLimit: 200000,
-    databaseLimit: 100000
+    contentLimit: 200000000,
+    databaseLimit: 100000000
 }

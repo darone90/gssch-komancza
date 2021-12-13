@@ -49,7 +49,7 @@ app.use('/accounts', accountRouter);
 app.use('/public', express.static(path.resolve(__dirname, 'public')));
 
 
-app.get('/error', (req,res) => {
+app.get('/error/*', (req,res) => {
     res.sendFile(path.resolve(__dirname, 'public', 'error.html'))
 });
 

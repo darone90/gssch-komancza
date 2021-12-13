@@ -85,7 +85,7 @@ export default class extends viewModel {
         const loading = document.querySelector('.loadingBox');
         loading.classList.add('onload');
 
-        fetch('/admin/get-articles', {
+        fetch('/admin/news-get', {
             method: 'GET'
         })
             .then(res => res.json())

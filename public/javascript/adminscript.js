@@ -322,7 +322,7 @@ document.addEventListener('click', (e) => {
                         
 
 
-                        fetch('/admin/add-annoucement', {
+                        fetch('/admin/anno-add', {
                             method: 'POST',
                             body: formData,
                         })
@@ -364,10 +364,8 @@ document.addEventListener('click', (e) => {
 
                 const _id = e.target.classList[1];
 
-                fetch('/admin/anno-find', {
-                    method: 'POST',
-                    headers: {'Content-Type' : 'application/json'},
-                    body: JSON.stringify({_id}),
+                fetch(`/admin/anno-find/${_id}`, {
+                    method: 'GET',
                 })
                     .then(res => res.json())
                     .then(data => {
@@ -391,7 +389,7 @@ document.addEventListener('click', (e) => {
                             attBox.appendChild(att);
                         })
                     } else {
-                        const p = documen.createElement('p');
+                        const p = document.createElement('p');
                         p.innerText = 'Brak załączników do tego ogłoszenia';
                         attBox.appendChild(p);
                     }
@@ -406,8 +404,8 @@ document.addEventListener('click', (e) => {
                     const name = e.target.classList[1];
                     const id = currentObjectId;
 
-                    fetch('/admin/delete-att', {
-                        method: 'POST',
+                    fetch('/admin/anno-attachement-delete', {
+                        method: 'PATCH',
                         headers: {'Content-Type' : 'application/json'},
                         body: JSON.stringify({
                             name,
@@ -458,8 +456,8 @@ document.addEventListener('click', (e) => {
                     };
                 });
                 
-                fetch('/admin/edit-annoucement', {
-                    method: 'POST',
+                fetch('/admin/anno-edit', {
+                    method: 'PUT',
                     body: formData,
                 })
                     .then(res => res.json())
@@ -487,9 +485,9 @@ document.addEventListener('click', (e) => {
                 const _id = e.target.classList[1];
                 const btn = e.target;
 
-                fetch('/admin/anno-archive', {
+                fetch('/admin/archive/anno', {
 
-                    method: 'POST',
+                    method: 'PATCH',
                     headers: {'Content-Type' : 'application/json'},
                     body: JSON.stringify({_id, archive})
                 })
@@ -498,9 +496,8 @@ document.addEventListener('click', (e) => {
                         if(data.ok === true) {
                             btn.innerText = 'Ogłoszenie przeniesione do archiwum';
                             btn.style.color = 'red';
-                            document.querySelector('.editAnno').disabled = true;
-                            document.querySelector('.deleteAnno').disabled = true;
-
+                            const buttons = [...document.getElementsByClassName(`${_id}`)];
+                            buttons.forEach(el => el.disabled = true);
                         }
                     })
             };
@@ -511,9 +508,9 @@ document.addEventListener('click', (e) => {
                 const _id = e.target.classList[1];
                 const btn = e.target;
 
-                fetch('/admin/article-archive', {
+                fetch('/admin/archive/news', {
 
-                    method: 'POST',
+                    method: 'PATCH',
                     headers: {'Content-Type' : 'application/json'},
                     body: JSON.stringify({_id, archive})
                 })
@@ -522,9 +519,8 @@ document.addEventListener('click', (e) => {
                         if(data.ok === true) {
                             btn.innerText = 'Ogłoszenie przeniesione do archiwum';
                             btn.style.color = 'red';
-                            document.querySelector('.editArticle').disabled = true;
-                            document.querySelector('.removeArticle').disabled = true;
-
+                            const buttons = [...document.getElementsByClassName(`${_id}`)];
+                            buttons.forEach(btn => btn.disabled = true);
                         }
                     })
             };
@@ -537,7 +533,7 @@ document.addEventListener('click', (e) => {
 
                 fetch('/admin/anno-archive', {
 
-                    method: 'POST',
+                    method: 'PATCH',
                     headers: {'Content-Type' : 'application/json'},
                     body: JSON.stringify({_id, archive})
                 })
@@ -546,7 +542,8 @@ document.addEventListener('click', (e) => {
                         if(data.ok === true) {
                             btn.innerText = 'Ogłoszenie przywrócone';
                             btn.style.color = 'green';
-                            document.querySelector('.deleteAnno').disabled = true;
+                            const buttons = [...document.getElementsByClassName(`${_id}`)];
+                            buttons.forEach(el => el.disabled = true);
                         }
                     })
             };
@@ -557,9 +554,9 @@ document.addEventListener('click', (e) => {
                 const _id = e.target.classList[1];
                 const btn = e.target;
 
-                fetch('/admin/article-archive', {
+                fetch('/admin/archive/news', {
 
-                    method: 'POST',
+                    method: 'PATCH',
                     headers: {'Content-Type' : 'application/json'},
                     body: JSON.stringify({_id, archive})
                 })
@@ -568,7 +565,8 @@ document.addEventListener('click', (e) => {
                         if(data.ok === true) {
                             btn.innerText = 'Ogłoszenie przywrócone';
                             btn.style.color = 'green';
-                            document.querySelector('.removeArticle').disabled = true;
+                            const buttons = [...document.getElementsByClassName(`${_id}`)];
+                            buttons.forEach(btn => btn.disabled = true);
                         }
                     })
             };
@@ -592,27 +590,20 @@ document.addEventListener('click', (e) => {
 
                 const _id = e.target.classList[1];
 
-
-                const editBtn = document.getElementById(`${_id}`);
-
-
                 if(window.confirm('Ogłoszenie zostanie trwale usunięte, czy chcesz kontynuować ?')) {
 
-                    fetch('/admin/anno-delete', {
-
-                        method: 'POST',
-                        headers: {'Content-Type' : 'application/json'},
-                        body: JSON.stringify({_id})
+                    fetch(`/admin/anno-delete/${_id}`, {
+                        method: 'DELETE',
                     })
                         .then(res => res.json())
                         .then(data => {
                             if(data.ok) {
-                                e.target.disabled = true;
-                                editBtn.disabled = true;
-
                                 e.target.innerText = 'Ogłoszenie zostanie usunięte';
                                 e.target.style.color = 'red';
                                 e.target.style.fontSize = '2rem';
+
+                                const buttons = [...document.getElementsByClassName(`${_id}`)];
+                                buttons.forEach(el => el.disabled = true);
                                 
                             } else {
                                 h1.innerText = 'Nastąpił nieoczekiwany błąd'
@@ -757,7 +748,7 @@ document.addEventListener('click', (e) => {
                         formData.append('description', arr);
                         formData.append("foto", data);
 
-                        fetch('/admin/add-news', {
+                        fetch('/admin/news-add', {
                             method: 'POST',
                             body: formData,
                         })
@@ -809,10 +800,8 @@ document.addEventListener('click', (e) => {
                 const paragraphBox = document.querySelector('.paragrapfBoxEdit');
                 const fotoBox = document.querySelector('.img');
 
-                fetch('/admin/get-article', {
-                    method: 'POST',
-                    headers: {'Content-Type' : 'application/json'},
-                    body: JSON.stringify({_id})
+                fetch(`/admin/news-find/${_id}`, {
+                    method: 'GET',
                 })
                     .then(res => res.json())
                     .then(data => {
@@ -870,8 +859,8 @@ document.addEventListener('click', (e) => {
                     const foto = pathArr.reverse()[0];
                     const h1 = document.querySelector('.fotoTitle');
                     
-                    fetch('/admin/remove-foto', {
-                        method: 'POST',
+                    fetch('/admin/news-foto-delete', {
+                        method: 'PATCH',
                         headers: {'Content-Type' : 'application/json'},
                         body: JSON.stringify({foto}),
                     })
@@ -928,8 +917,8 @@ document.addEventListener('click', (e) => {
                         formData.append('description', arr);
                         formData.append('foto', data);
 
-                        fetch('/admin/update-article', {
-                            method: 'POST',
+                        fetch('/admin/news-edit', {
+                            method: 'PUT',
                             body: formData,
                         }).then(res => res.json())
                         .then(data => {
@@ -957,11 +946,9 @@ document.addEventListener('click', (e) => {
                 const _id = e.target.classList[1];
                 
                 if(window.confirm('Artykuł zostanie trwale usunięty, kontynuować?')){
-                fetch('/admin/remove-article', {
+                fetch(`/admin/news-delete/${_id}`, {
 
-                    method: 'POST',
-                    headers: {'Content-Type' : 'application/json'},
-                    body: JSON.stringify({_id})
+                    method: 'DELETE',
                 })
                     .then(res => res.json())
                     .then(data => {
@@ -969,7 +956,8 @@ document.addEventListener('click', (e) => {
                             e.target.innerText = 'Artykuł zostanie usunięty';
                             e.target.style.color = 'red';
                             e.target.disabled = true;
-                            document.querySelector('.editArticle').disabled = true;
+                            const buttons = [...document.getElementsByClassName(`${_id}`)];
+                            buttons.forEach(btn => btn.disabled = true);
                         }
                     });
                 } else {return};
@@ -1109,10 +1097,9 @@ document.addEventListener('click', (e) => {
                 e.preventDefault();
                 if(window.confirm('Czy na pewno chcesz usunąć element?')){
                     const _id = e.target.classList[1];
-                    fetch('/admin/remove-product', {
-                        method: 'POST',
-                        headers: {'Content-Type' : 'application/json'},
-                        body: JSON.stringify({_id})
+
+                    fetch(`/admin/products-delete/${_id}`, {
+                        method: 'DELETE',
                     })
                         .then(res => res.json())
                         .then(data => {
@@ -1144,10 +1131,8 @@ document.addEventListener('click', (e) => {
 
                 const _id = e.target.classList[1];
 
-                fetch('/admin/find-product', {
-                    method: 'POST',
-                    headers: {'Content-Type' : 'application/json'},
-                    body: JSON.stringify({_id})
+                fetch(`/admin/products-find/${_id}`, {
+                    method: 'GET'
                         })
                         .then(res => res.json())
                         .then(data => {
@@ -1189,8 +1174,8 @@ document.addEventListener('click', (e) => {
                     const foto = pathArr.reverse()[0];
                     const h1 = document.querySelector('.labelToFoto');
                     
-                    fetch('/admin/remove-product-foto', {
-                        method: 'POST',
+                    fetch('/admin/products-foto-delete', {
+                        method: 'PATCH',
                         headers: {'Content-Type' : 'application/json'},
                         body: JSON.stringify({foto}),
                     })

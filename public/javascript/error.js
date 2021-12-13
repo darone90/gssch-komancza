@@ -1,12 +1,120 @@
-function addErrorInfo(data) {
-    const errInfo = document.createElement('div');
-    const body = document.querySelector('body');
-    if(data){
-    errInfo.innerText = data;
-    } else {
-        errInfo.innerText = 'nie można określić typu błędu';
-    }
-    body.appendChild(errInfo);
+const url = window.location.href;
+const p = document.querySelector('.errordescription');
+
+
+
+const errorType = url.split('error/')[1];
+
+if (errorType === 'databaseproblem-readannoucements-all') {
+    p.innerText = `
+        Wystąpił błąd wczytwyania ogłoszeń z bazy danych
+        Może to być spowodowane jej chwilową niedostępnością 
+        Prosimy spróbować za chwilę
+        Jeśli błąd będzie się powtarzał prosimy o kontakt z moderatorem
+    `
+};
+
+if (errorType === 'databaseproblem-readnews-all') {
+    p.innerText = `
+        Wystąpił błąd wczytwyania artykułów z bazy danych
+        Może to być spowodowane jej chwilową niedostępnością 
+        Prosimy spróbować za chwilę
+        Jeśli błąd będzie się powtarzał prosimy o kontakt z moderatorem
+    `
+};
+
+if (errorType === 'databaseproblem-readasso-all') {
+    p.innerText = `
+        Wystąpił błąd wczytwyania produktów z bazy danych
+        Może to być spowodowane jej chwilową niedostępnością 
+        Prosimy spróbować za chwilę
+        Jeśli błąd będzie się powtarzał prosimy o kontakt z moderatorem
+    `
+};
+
+if (errorType === 'databaseproblem-readannoucements-one') {
+    p.innerText = `
+        Wystąpił błąd wczytwyania ogłoszenia z bazy danych
+        Prosimy sprawdzić połączenie i spróbować jeszcze raz
+        W razie powtarzania się błędu skontaktuj się z moderatorem 
+        
+    `
+};
+
+if (errorType === 'databaseproblem-readnews-one') {
+    p.innerText = `
+        Wystąpił błąd wczytwyania artykułu  z bazy danych
+        Prosimy sprawdzić połączenie i spróbować jeszcze raz
+        W razie powtarzania się błędu skontaktuj się z moderatorem 
+        
+    `
+};
+
+if (errorType === 'databaseproblem-readasso-one') {
+    p.innerText = `
+        Wystąpił błąd wczytwyania produktu z bazy danych
+        Prosimy sprawdzić połączenie i spróbować jeszcze raz
+        W razie powtarzania się błędu skontaktuj się z moderatorem 
+        
+    `
+};
+
+if (errorType === 'databaseproblem-delete') {
+    p.innerText = `
+        Wystąpił błąd podczas próby usunięcia elementu
+        Jest to najprawdopodobniej problem związany z bazą danych
+        Ogłoszenie mogło nie zostać usniętę 
+        Spróbuj powtórzyć operację za kilka minut 
+        Jeśli problem będzie się powtarzał, skontaktuj się z moderatorem       
+    `
 }
 
-fetch('/error/info', {method: 'GET',}).then(res => res.json()).then(data => addErrorInfo(data));
+if (errorType === 'diskproblem-delete') {
+    p.innerText = `
+        Nieoczekiwany błąd serwera przy próbie usnięcia załączników ogłoszenia
+        Prosimy o kontakt z moderatorem       
+    `
+};
+
+if (errorType === 'databaseproblem-archiving') {
+    p.innerText = `
+        Wystąpił problem przy próbie archiwizacji 
+        Prawdopodobnie wystąpił problem z połączeniem lub chwilowo niedostępna jest baza danych
+        Spróbuj ponownie za chwilę 
+        Jeśli błąd będzie się powtarzał skontaktuj się z moderatorem     
+    `
+};
+
+if (errorType === 'databaseproblem-editing') {
+    p.innerText = `
+        Wystąpił nieoczekiwany błąd w trakcie edycji zasobu
+        Może to być spowodowane brakiem połączenia lub chwilowym problemem z bazą danych
+        Spróbuj ponownie za chwilę 
+        Jeśli błąd będzie się powtarzał skontaktuj sie z moderatorem  
+    `
+};
+
+if (errorType === 'databaseproblem-overload') {
+    p.innerText = `
+        Przekroczono limit dostępnego miejsca na publikowane materiały
+        Prosimy usunąć stare publikacje aby zwolnić dostępne miejsce
+    `
+};
+
+if (errorType === 'databasediskproblem-removeattachement') {
+    p.innerText = `
+        W trakcie usuwania załącznika wystąpił nieoczekiwany błąd
+        Prosimy spróbować za chwilę
+        Gdyby problem się powtarzał prosimy o kontakt z moderatorem
+    `;
+};
+
+if (errorType === 'databaseproblem-addingannoucemet') {
+    p.innerText = `
+        Wystąpił błąd w trakcie dodawania ogłoszenie
+        Sprawdź połączenie z internetem
+        Jeśli połączenie działa spróbuj za kilka minut
+        Jeśli błąd będzie się powtarzał skontaktuj się z moderatorem
+    `;
+};
+
