@@ -406,6 +406,11 @@ button.accountChanges a {
         display: none;
     }
 
+    button.removeParagraph,
+    button.removeParagraphEdit {
+        margin-bottom: 70px;
+    }
+
     div.addingAnno form,
     div.popupForm form,
     div.addingArticle form,
@@ -434,6 +439,7 @@ button.accountChanges a {
     div.addingArticle form input,
     div.popupFormNews form input,
     div.editArticle form input {
+        margin-bottom: 50px;
         width: 40%;
         font-size: 1.2rem;
     }
@@ -550,22 +556,17 @@ button.accountChanges a {
         div.annoucement button.deleteAnno {
             float: right;
         }
-
-        button.addParagraph {
-            position: absolute;
-            right: 20rem;
-            top: 16.5rem
-        }
-
         div.addingArticle form textarea {
             margin-top: 30px;
             width: 55rem;
             height: 5rem;
         }
 
-        div.paragraphBox {
+        div.paragraphBox,
+        div.fotoaddingbox {
             width: 55rem;
-        }
+            margin-bottom: 50px;
+            }
 
         div.articleShort {
             border: 2px solid black;
@@ -584,7 +585,7 @@ button.accountChanges a {
 
         button.clearArt {
             position: absolute;
-            left: 5rem;
+            right: 5rem;
             top: 15rem;
     }
 

@@ -103,14 +103,16 @@ export default class extends viewModel {
                 <input type="text" id='titleArt' placeholder='Co się wydarzyło'>
                 <label for="dateArt">Data wydarzenia</label>
                 <input type="text" id='dateArt' placeholder='Kiedy?'>
-                <h1>Paragrafy artykułu: </h1>
-                <div class='paragraphBox'>
-                    
-                    <button class="addParagraph">Dodaj paragraf</button>
+                <h2>Akapity artykułu: </h2>
+                <div class='paragraphBox'>    
+                    <button class="addParagraph">Dodaj akapit</button>
+                    <textarea class='toArticle'></textarea>
                 </div>
-                <button class='removeParagraph hide'>Usuń paragraf</button>
-                <label for="fileInput">Dodaj zdjęcie</label>
+                <button class='removeParagraph hide'>Usuń akapit</button>
+                <div class='fotoaddingbox'>
+                <label for="fileInput">Dodaj zdjęcie: </label>
                 <input name='fileInput' type="file" id="fileInput" accept=".jpg,.png">
+                </div>
                 <button class='sendArticle'>Opublikuj artykuł</button>
             </form>
                 <button class='clearArt'>Wyczyść formularz</button>
@@ -128,11 +130,11 @@ export default class extends viewModel {
                         <input type="text" id='titleArtEdit'>
                         <label for="dateArtEdit">Data wydarzenia</label>
                         <input type="text" id='dateArtEdit'>
-                        <h1>Paragrafy artykułu</h1>
+                        <h1>Akapity artykułu</h1>
                         <div class='paragrapfBoxEdit'>
-                            <button class="addParagrapfEdit">Dodaj paragraf</button>
-                            <button class='removeParagraphEdit'>Usuń paragraf</button>
+                            <button class="addParagrapfEdit">Dodaj akapit</button>
                         </div>
+                        <button class='removeParagraphEdit'>Usuń akapit</button>
                         <label for="fileInput">Zmień zdjęcie</label>
                         <input type="file" id="fileInputEdit" accept=".jpg,.png">
                         <button class='editArticleSend'>Wprowadź zmiany</button>
