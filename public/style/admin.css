@@ -325,6 +325,7 @@ button.accountChanges a {
     }
 
     button.showReaded,
+    button.refresh,
     button.showUnreaded,
     button.addAnno,
     button.showAnno,
@@ -359,6 +360,7 @@ button.accountChanges a {
     button.showProducts.active,
     button.closeEditProduct.active,
     button.showArchivedArticles.active,
+    button.refresh:hover,
     button.showReaded:hover,
     button.showUnreaded:hover,
     button.addAnno:hover,
@@ -375,6 +377,11 @@ button.accountChanges a {
     button.refreshArticle:hover {
         color: white;
         background-color: blue;
+    }
+
+    button.addAtachement,
+    button.addAtachementPopup {
+        margin-bottom: 50px;
     }
 
     div.replace,
@@ -406,6 +413,26 @@ button.accountChanges a {
         display: none;
     }
 
+    div.archivedArticles h1 {
+        margin: 10px 0 30px 10px;
+    }
+
+    div.archiveAnno h1 {
+        margin: 20px 0 30px 10px;
+    }
+
+    button.mainPage,
+    button.refresh {
+        float: right;
+        margin-right: 10px;
+    }
+
+    button.mainPage a,
+    button.refresh a {
+        color: black;
+        text-decoration: none;
+    }
+
     button.removeParagraph,
     button.removeParagraphEdit {
         margin-bottom: 70px;
@@ -421,6 +448,11 @@ button.accountChanges a {
         margin-top: 30px;
         margin-bottom: 40px;
         align-items: center;
+    }
+
+    div.popupForm h2 {
+        margin-left: 10px;
+        margin-bottom: 30px;
     }
 
 
@@ -449,15 +481,8 @@ button.accountChanges a {
     div.editArticle form textarea {
         width: 60%;
         font-size: 1.2rem;
+        margin-bottom: 50px;
     }
-
-    div.popupFormNews form textarea {
-        width: 100%;
-        height: 10rem;
-        margin: 20px 0;
-        font-size: 1.2rem;
-    }
-
     div.addingAnno form button,
     div.popupForm form button,
     div.addingArticle form button,
@@ -538,7 +563,8 @@ button.accountChanges a {
             margin: 2.5rem 0 1rem 20px;
         }
 
-        div.annoucement button {
+        div.annoucement button,
+        div.attgroup button {
             height: 2rem;
             background-color: white;
             text-shadow: 2px 2px 5px black;
@@ -549,20 +575,24 @@ button.accountChanges a {
             transition: 0.4s;
         }
 
-        div.annoucement button:hover {
+        div.annoucement button:hover,
+        div.attgroup button:hover {
             box-shadow: 5px 5px 10px black;
         }
 
         div.annoucement button.deleteAnno {
             float: right;
         }
+        div.popupFormNews form textarea,
         div.addingArticle form textarea {
             margin-top: 30px;
             width: 55rem;
-            height: 5rem;
+            height: 10rem;
+            font-size: 1.2rem;
         }
 
         div.paragraphBox,
+        div.paragrapfBoxEdit,
         div.fotoaddingbox {
             width: 55rem;
             margin-bottom: 50px;
@@ -592,7 +622,7 @@ button.accountChanges a {
     img.img {
         position: absolute;
         right: 0;
-        top: 0;
+        top: 150px;
         width: 15rem;
         height: 20rem;
         margin: 10px 10px 0 0;
@@ -600,14 +630,14 @@ button.accountChanges a {
 
     h1.fotoTitle {
         position: absolute;
-        top: 0;
-        right: 18rem;
+        top: 100px;
+        right: 1rem;
     }
 
     button.removeFoto {
         position: absolute;
-        top: 3rem;
-        right: 18rem;
+        top: 32rem;
+        right: 2rem;
     }
 
     button.closeEditor {
@@ -646,12 +676,19 @@ button.accountChanges a {
         margin: 20px 0 20px 20px;
     }
 
+    div.actualProducts p {
+
+        width: 70%;
+    }
+
     div.productShort img {
-        position: relative;
-        left: 70%;
-        bottom: 5rem;
-        width: 20rem;
+        width: 25%;
         height: 18rem;
+    }
+
+    div.productShort div {
+        display: flex;
+        flex-direction: row-reverse;
     }
 
     div.productShort img.hide {
@@ -666,26 +703,29 @@ button.accountChanges a {
 
     h1.labelToFoto {
         position: absolute;
-        right: 18rem;
-        top: 2rem;
+        right: 3rem;
+        top: 7rem;
     }
 
     button.removeProductFoto {
         position: absolute;
-        top: 21rem;
+        top: 33rem;
         right: 5rem;
     }
 
     h1.idBox {
         position: absolute;
         right: 4rem;
-        top: 35rem;
+        top: 45rem;
         font-size: 1rem;
     }
 
     div.attBox {
-        margin-bottom: 150px;
-        margin-left: 50px;
+        width: 60rem;
+        }
+
+        div.attgroup {
+            margin-bottom: 40px;
     }
 
     div.doccontainer {
@@ -738,4 +778,25 @@ div.loaded {
     width: 0%;
     height: 100%;
     background-color: red;
+}
+
+div.doclistpart {
+    margin-bottom: 20px;
+}
+
+div.userdatachange form {
+    margin: 50px 10px 0 10px;
+    width: 25%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+div.userPasswordInfoBox {
+    position: absolute;
+    top: 8em;
+    left: 20em;
+    border: 2px solid black;
+
 }

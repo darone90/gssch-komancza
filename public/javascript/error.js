@@ -171,3 +171,9 @@ if (errorType === 'readingcounterproblem') {
     `;
 };
 
+if (errorType === 'errorlog-problem-read') {
+    p.innerText = `
+        Wystąpił problem z katalogu błędów
+    `;
+};
+

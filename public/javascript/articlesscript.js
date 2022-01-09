@@ -116,6 +116,9 @@ document.addEventListener('click', (e) => {
         } else {
             if(window.confirm('Artykuł gotowy do publikacji, kontynuować ?')) {
 
+                const loading = document.querySelector('.loadingBox');
+                loading.classList.add('onload');
+
                 const foto = document.querySelector('#fileInput');
                 const data = foto.files[0];
                 const formData = new FormData();
@@ -144,6 +147,7 @@ document.addEventListener('click', (e) => {
                     .then(res => res.json())
                     .then(data => {
                         if(data.ok) {
+                            loading.classList.remove('onload');
                             infoBox.classList.remove('hide');
                             infoBox.style.color = 'green';
                             infoBox.innerText = 'Artykuł został opublikowany';
@@ -153,8 +157,7 @@ document.addEventListener('click', (e) => {
                             foto.value = '';
                             setTimeout(()=> {
                                 window.location.pathname = '/admin/articles';
-                                console.log('działam')
-                            },1500)
+                            },1500);
                         };
                     })
             } else {
@@ -226,6 +229,9 @@ document.addEventListener('click', (e) => {
             infoBox.style.color = 'red';
         } else {
             if(window.confirm("Wprowadzić zmiany w artykule? ")) {
+                const loading = document.querySelector('.loadingBox');
+                loading.classList.add('onload');
+
                 const _id = document.querySelector('.articleId').innerText.split(' ')[1];
                 const newTitle = title.value;
                 const newDate = document.querySelector('#dateArtEdit').value;
@@ -256,6 +262,7 @@ document.addEventListener('click', (e) => {
                 }).then(res => res.json())
                 .then(data => {
                     if(data.ok) {
+                        loading.classList.remove('onload');
                         infoBox.classList.remove('hide');
                         infoBox.style.color = 'green';
                         infoBox.innerText = 'Zmiany zostały wprowadzone';
@@ -282,6 +289,9 @@ document.addEventListener('click', (e) => {
         const _id = e.target.classList[1];
         
         if(window.confirm('Artykuł zostanie trwale usunięty, kontynuować?')){
+            const loading = document.querySelector('.loadingBox');
+            loading.classList.add('onload');
+
         fetch(`/admin/news-delete/${_id}`, {
 
             method: 'DELETE',
@@ -289,6 +299,7 @@ document.addEventListener('click', (e) => {
             .then(res => res.json())
             .then(data => {
                 if(data.ok) {
+                    loading.classList.remove('onload');
                     e.target.innerText = 'Artykuł zostanie usunięty';
                     e.target.style.color = 'red';
                     e.target.disabled = true;
@@ -316,6 +327,8 @@ document.addEventListener('click', (e) => {
     if(hasClass(e.target, 'removeFoto')) {
                 
         if(window.confirm('Zdjęcie zostanie trwale usunięte, kontynuować ? ')){
+            const loading = document.querySelector('.loadingBox');
+            loading.classList.add('onload');
         const path = document.querySelector('.img').src;
         const pathArr = path.split('/');
         const foto = pathArr.reverse()[0];
@@ -329,19 +342,18 @@ document.addEventListener('click', (e) => {
             .then(res => res.json())
             .then(data => {
                 if(data.ok) {
-                   
+
+                    loading.classList.remove('onload');
                     h1.innerText = 'Zdjęcie zostanie usunięte';
                     h1.style.color = 'red';
-                } else {
-                    h1.innerText = 'Wystąpił problem przy usuwaniu';
-                    h1.style.color = 'red';
-                }
+                } 
             });
         }else{return};
     };
 
     if(hasClass(e.target, 'moveToArchive')) {
-
+        const loading = document.querySelector('.loadingBox');
+        loading.classList.add('onload');
     const archive = true;
     const _id = e.target.classList[1];
     const btn = e.target;
@@ -354,7 +366,8 @@ document.addEventListener('click', (e) => {
     })
         .then(res => res.json())
         .then(data => {
-            if(data.ok === true) {
+            if(data.ok === true) { 
+                loading.classList.remove('onload');
                 btn.innerText = 'Ogłoszenie przeniesione do archiwum';
                 btn.style.color = 'red';
                 const buttons = [...document.getElementsByClassName(`${_id}`)];
@@ -364,6 +377,9 @@ document.addEventListener('click', (e) => {
     };
 
     if(hasClass(e.target, 'returnArticle')) {
+
+        const loading = document.querySelector('.loadingBox');
+        loading.classList.add('onload');
 
         const archive = false;
         const _id = e.target.classList[1];
@@ -378,6 +394,8 @@ document.addEventListener('click', (e) => {
             .then(res => res.json())
             .then(data => {
                 if(data.ok === true) {
+
+                    loading.classList.remove('onload');
                     btn.innerText = 'Ogłoszenie przywrócone';
                     btn.style.color = 'green';
                     const buttons = [...document.getElementsByClassName(`${_id}`)];

@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/style/accounts.css">
     <title>Zarządzanie kontami</title>
 </head>
 <body>
     <div class="header">
-        <h1>Only for masters</h1>
+        <h1>Zarządzanie kontami serwisu GSSCH w Komańczy</h1>
+        <div class='nameBox'>
+            <h2>Zalogowany użytkownik:</h2>
+        </div>
         <div class="logo"></div>
-        <button class='logout'><a href="/logout">Wyloguj</a></button>
+        <button class='logout all'><a href="/logout">Wyloguj</a></button>
+        <button class='all mainpage'><a href="/">Powrót do strony głównej</a></button>
     </div>
     <nav>
         <ul>
-            <li><a href="/accounts/add" data-link>Dodawanie</a></li>
+            <li><a href="/accounts/add" data-link>Dodaj nowe konto</a></li>
             <li><a href="/accounts/edit" data-link>Edytuj istniejące</a></li>
-            <li><a href="/accounts/remove" data-link>Usuń</a></li>
-            <li><a href="/admin">Panel Administratorsk</a></li>
+            <li><a href="/accounts/errorlog" data-link>Log błędów</a></li>
+            <li><a href="/admin">Powrót do panelu admin</a></li>
         </ul>
         <div id="app"></div>
     </nav>

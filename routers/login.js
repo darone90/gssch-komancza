@@ -57,19 +57,5 @@ router.post('/', (req,res) => {
     });
 });
 
-// router.get('/adduser', (req, res) => {
-//     const userData = {
-//         name : 'Leame',
-//         password : 'slave',
-//         codedsalt : 'not necessery yet',
-//         permissions : false
-//     };
-//     const userSend = new User(userData);
-//     userSend.save((err) => {
-//         if(err) throw new Error
-//         else console.log('poszło')
-//     });
-//     res.redirect('/login');
-// })
 
 module.exports = router;

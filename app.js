@@ -1,17 +1,15 @@
 const express = require('express');
-const path = require('path');
+const cookieParser = require('cookie-parser');
+const cookieSession = require('cookie-session');
 const mongoose = require('mongoose');
+const rateLimit = require('express-rate-limit');
+const path = require('path');
 const config = require('./config');
 const News = require('./public/models/newsDB.js');
 const Anno = require('./public/models/annoucementsDB.js');
 const Message = require('./public/models/messageDB.js');
 const Asso = require('./public/models/assortmentDB');
-const cookieParser = require('cookie-parser');
-const cookieSession = require('cookie-session');
 
-
-
-// rate limitera dodać
 const loginRouter = require('./routers/login.js');
 const adminRouter = require('./routers/admin.js');
 const accountRouter = require('./routers/account.js');
@@ -27,6 +25,13 @@ database.once('open', () => {
 console.log('database MongoDB is connected');
 });
 
+const limiter = rateLimit({
+    windowMs: 15*60*1000,
+    max: 550,
+    standardHeaders: true,
+    legacyHeaders: false,
+})
+
 
 
 const app = express();
@@ -34,6 +39,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(limiter);
 app.use(cookieParser());
 app.use(cookieSession({
     name: 'loged',

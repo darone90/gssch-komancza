@@ -19,7 +19,7 @@ export default class extends viewModel {
             file.innerHTML = `
                 <h3>Nazwa :</h3>
                 <h4 class='${base}'> ${original}</h4>
-                <p>Doadny dnia: ${new Date(Number(created)).toISOString().slice(0,10)} przez ${createdBy}</p>
+                <p>Dodany dnia: ${new Date(Number(created)).toISOString().slice(0,10)} przez ${createdBy}</p>
                 <button class='dwldoc ${base} ${_id}'>Pobierz</button>
                 <button class='deleteDocument ${_id}'>Usuń dokument</button>
             `;
@@ -59,7 +59,7 @@ export default class extends viewModel {
                 <label for="fileInput">Dodaj dokument</label>
                 <input name='fileInput' type="file" id="fileInput" accept=".doc, .docx, .pdf, .xls, .xlsx, .odt, .ods">
                 <button class='documentadd'>Prześlij do bazy</button>
-                <p>Akceptowane są formaty McrosoftOffice Word oraz Excel, OppenOfiice Writer oraz Calc a także pliki pdf</p>
+                <p>Akceptowane są formaty:  McrosoftOffice Word oraz Excel, OppenOfiice Writer oraz Calc a także pliki pdf</p>
             </div>
         </div>
         `

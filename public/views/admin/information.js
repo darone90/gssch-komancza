@@ -11,7 +11,7 @@ export default class extends viewModel {
         const annoBox = document.querySelector('.actualAnno');
         const archivedAnnoBox = document.querySelector('.archiveAnno');
 
-        const dataToShow = [...data];
+        const dataToShow = [...data].reverse();
         const actualAnno = dataToShow.filter(el => el.archived === false);
         const archivedAnno = dataToShow.filter(el => el.archived === true);
 
@@ -142,8 +142,8 @@ export default class extends viewModel {
             <button class='addAnno active'>Dodaj ogłoszenie</button>
             <button class='showAnno'>Aktualne ogłoszenia</button>
             <button class='archivedAnno'>Ogłoszenia archiwalne</button>
-            <button class='mainPage hide'><a href="/announcements">Podgląd strony głównej</a></button>
-            <button class='refreshArticle hide'>Odśwież aby zobaczyć zmiany</button>
+            <button class='mainPage'><a href="/announcements">Podgląd strony głównej</a></button>
+        <button class='refresh'><a href="/admin/info"><i class="fas fa-sync-alt"></i>Odśwież</a></button>
             <div class='addingAnno'>
                 <form>
                     <label for="title" id='forTitle'>Tytuł ogłoszenia</label>
@@ -152,7 +152,7 @@ export default class extends viewModel {
                     <input type="date" id="date">
                     <label for="description" id='forDescription'>Treść ogłoszenia</label>
                     <textarea id="description" cols="30" rows="10" placeholder='Proszę wprowadzić treść'></textarea>
-                    <h1>Akceptowane formaty załączników to: .pdf, .doc, .docx, .odt</h1>
+                    <h3>Akceptowane formaty załączników to: .pdf, .doc, .docx, .odt</h3>
                     <button class="addAtachement">Dodaja załącznik</button> 
                     <button class="public">Publikuj</button>
                     <button class='clear'>Wyczyść formularz</button>
@@ -175,9 +175,9 @@ export default class extends viewModel {
                         <textarea id="descriptionEdit" cols="30" rows="10"></textarea>
                         <button class="addAtachementPopup">Dodaja załącznik</button>
                         <button class="publicEdit">Zapisz zmiany</button>
-                        <h2>Lista załączników :</h2>
                         <button class='close'>Zamknij edytor</button>
                     </form>
+                    <h2>Lista załączników :</h2>
                     <div class='infoBoxEdit hide'></div>
                 </div>
         </div>

@@ -1,0 +1,117 @@
+div.header {
+    width: 100%;
+    height: 10rem;
+    border-bottom: 3px solid black;
+    box-shadow: 0px 10px 10px black;
+}
+
+div.header h1 {
+    margin-left: 20px;
+}
+
+div.header h2 {
+    margin-left: 100px;
+}
+
+button.all {
+    height: 2rem;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-left: 20px;
+    transition: 0.4s;
+
+}
+
+button.all:hover {
+    background-color: black;
+    color: white;
+}
+
+button.all:hover a {
+    color: white;
+}
+
+button.all a {
+    display: block;
+    line-height: 2em;
+    text-decoration: none;
+    color: black;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 100%;
+    height: 100%;
+}
+
+button.mainpage {
+    float: right;
+    margin-right: 40px;
+}
+
+div#app {
+    position: absolute;
+    right: 0;
+    top: 12rem;
+    border: 1px solid black;
+    width: 75%;
+    min-height: 30rem;
+    margin-right: 15px;
+    box-shadow: 10px 10px 20px black;
+}
+
+p.invitation {
+    text-align: justify;
+    margin: 20px 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.5rem;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    width: 20%;
+    height: 3rem;
+    border: 2px solid black;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    transition: 0.6s;
+}
+
+nav ul li a {
+    display: block;
+    width: 100%;
+    height: 3rem;
+    line-height: 3rem;
+    text-decoration: none;
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+nav ul li:hover {
+    background-color: blue;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    row-gap: 5px;
+    margin-left: 3rem;
+}
+
+h2.titleaddform {
+    margin-left: 20px;
+}
+
+div.infoBox {
+    border: 1px solid black;
+    padding: 0 5px;
+    position: absolute;
+    left: 30%;
+    top: 20%;
+    box-shadow: 3px 3px 10px black;
+}

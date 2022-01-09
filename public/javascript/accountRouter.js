@@ -1,6 +1,6 @@
 import Add from "../views/accounts/add.js";
 import Edit from "../views/accounts/edit.js";
-import Remove from "../views/accounts/remove.js";
+import Errorlog from "../views/accounts/errorlog.js";
 import Invitation from "../views/accounts/invitation.js";
 
 const router = async () => {
@@ -8,7 +8,7 @@ const router = async () => {
         {path: '/accounts/', view : Invitation},
         {path: '/accounts/add', view: Add},
         {path: '/accounts/edit', view: Edit},
-        {path: '/accounts/remove', view: Remove},
+        {path: '/accounts/errorlog', view: Errorlog},
     ];
 
     const isMatch = routes.map( route => {

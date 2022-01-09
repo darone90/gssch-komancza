@@ -12,13 +12,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet"> 
+    <script src="https://kit.fontawesome.com/c353fea5cc.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
         <div class='logo'></div>
         <div class='title'><h1>Panel administratorski strony internetowej GSSCH w Komańczy</h1></div>
         <div class='logedUser'><h2>Zalogowany użytkownik:</h2><h2 class="nameFromCookie"></h2></div>
-        <button class='accountChanges'><a href="/admin/userdatachange" data-link>Zmiana danych konta</a></button>
+        <button class='accountChanges'><a href="/admin/userdatachange" data-link>Zmiana hasła</a></button>
         <div class='spaceBox'>
             <h3>Miejse na treści</h3>
             <div class="contentbar"><div class="loaded"></div></div>
@@ -28,11 +29,11 @@
     </header>
     <nav>
         <ul>
-            <li><a href="/admin/messages" data-link>Odebrane wiadomości</a></li>
-            <li><a href="/admin/articles" data-link>Artykuły</a></li>
-            <li><a href="/admin/info" data-link>Ogłoszenia</a></li>
-            <li><a href="/admin/assortment" data-link>Piekarnia</a></li>
-            <li><a href="/admin/base" data-link>Baza dokumentów</a></li>
+            <li><a class='mainmenu' href="/admin/messages" data-link>Odebrane wiadomości</a></li>
+            <li><a class='mainmenu' href="/admin/articles" data-link>Artykuły</a></li>
+            <li><a class='mainmenu' href="/admin/info" data-link>Ogłoszenia</a></li>
+            <li><a class='mainmenu' href="/admin/assortment" data-link>Piekarnia</a></li>
+            <li><a class='mainmenu' href="/admin/base" data-link>Baza dokumentów</a></li>
         </ul>
     </nav>
     <div class="loadingBox">Ładowanie...</div>
@@ -47,6 +48,13 @@
     <script type="module" src="../public/javascript/adminRouter.js"></script>
     <script src="../public/javascript/adminscript.js"></script>
     <script src="../public/javascript/articlesscript.js"></script>
+    <script src="../public/javascript/annoucementsscript.js"></script>
+    <script src="../public/javascript/assortmentscript.js"></script>
+    <script src="../public/javascript/basescript.js"></script>
+    <script src="../public/javascript/messagesscript.js"></script>
+
 </body>
 </html>
+
+
 

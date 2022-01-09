@@ -17,13 +17,15 @@ export default class extends viewModel {
                 const product = document.createElement('div')
                 product.classList.add('productShort');
                 const {title, description, foto, _id} = data[i];
-                const hide = foto === null || foto === '' ? 'hide' : '';
+                const hide = foto === null || foto === '' ? 'hide' : 'show';
 
                 product.innerHTML = `
                     <h1>${title}</h1>
-                    <p>${description}</p>
+                    <div>
                     <img class='${hide}' src='../public/images/imagesDB/${foto}'>
-                    <button class='editProduct ${_id}' id='${_id}'>Edytuj</button>
+                    <p>${description}</p>
+                    </div>
+                    <button class='editProduct ${_id} ' id='${_id}'>Edytuj</button>
                     <button class='removeProduct ${_id}' id='${_id}'>Usuń</button>
                 `;
 
@@ -54,13 +56,13 @@ export default class extends viewModel {
             method: "GET"
         })
             .then(res => res.json())
-            .then(data => this.assortmentLoad(data));
+            .then(data => this.assortmentLoad(data.reverse()));
 
         return `
         <button class='addProduct active'>Dodaj produkt</button>
         <button class='showProducts'>Opublikowane produkty</button>
-        <button class='mainPage hide'><a href="/bakery">Podgląd strony głównej</a></button>
-        <button class='refreshArticle hide'>Odśwież aby zobaczyć zmiany</button>
+        <button class='mainPage'><a href="/bakery">Podgląd strony głównej</a></button>
+        <button class='refresh'><a href="/admin/assortment"><i class="fas fa-sync-alt"></i>Odśwież</a></button>
         <div class='addingArticle'>
             <form>
                 <label for="prodName" id='prodNameLab'>Nazwa produktu</label>

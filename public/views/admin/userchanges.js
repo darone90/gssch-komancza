@@ -7,7 +7,19 @@ export default class extends viewModel {
     }
     async getHtml() {
         return `
-        <h2>Tutaj będzie zmiana parametrów konta</h2>
-        <h2>Strona do napisania</h2>`
+        <div class='userdatachange'>
+            <div class='userPasswordInfoBox'>
+                <p>Hasło musi składać się conajmniej z 6 znaków i zawierać cyfry</p>
+            </div>
+            <form>
+                <label for="oldPassword">Wprowadź aktualne hasło</label>
+                <input type="password" id='oldPassword'>
+                <label for="newPassword">Nowe Hasło</label>
+                <input type="password" id="newPassword">
+                <label for="newPasswordAgain">Powtórz nowe hasło</label>
+                <input type="password" id="newPasswordAgain">
+                <button class="changePassword">Zmień hasło</button>
+            </form>
+        </div>`
     }
 }

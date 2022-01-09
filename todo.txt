@@ -2,33 +2,13 @@ dodać nagłówki dla wyszukiwarek
 
 zrobić ładowanie przy logowaniu 
 
-dodoać middleware do ograniczenia liczby zapytań
-
 dodać wersję artykułow bez zdjęcia
 
-podkreślniki w menu admin zrobić 
-
-ładowanie dodać przy zapisie bądz edycji artykułu
-
-w news wystylować h1 ze brak ogłoszeń
-
-dodać jakiś bajer przy zaniku neta żeby się nie ładowało w nieskończoność 
-
 na pm2 lub serwerze zrobić coś co  będzie restartowało appkę 
-
-sprawdzić czy w cookiesesion da się ustawic żeby czas wygasńiecia był zależny od ostatniej aktywności
 
 ostylować bagietę z większą ilością tekstu
 
 problem z ścieżkami inaczej działa gdy uruchomione bezpośrednio z bin a inaczej z poiomu deploy
-
-dodać scrool up po każdym dodaniu artykułu, produktu czy ogłoszenia
-
-dodać przycisk odświeżania we wszystkich sekcjach
-
-dodać przycisk powrotu na stronę glówną
-
-dodać okno ładowania przy dodawaniu czegokolwiek
 
 dodać licencję
 
