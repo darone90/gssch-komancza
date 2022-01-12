@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const path = require('path')
 const User = require('../public/models/userDB.js');
+const {errorHandle} = require('../utils/handlers.js');
+const {decoding, hashHandle, coding, compareHash} = require('../utils/crypto.js');
 const {maxAgeSession} = require('../config.js');
 
 
@@ -13,48 +15,35 @@ router.get('/', (req,res) => {
     }
 });
 
-router.post('/', (req,res) => {
-    
-    User.find({}, (err, data) => {
-        let users;
-        if(err) {
-            throw new Error
-        } else {
-            users = Object.values(data);
-        }
+router.post('/', async (req,res) => {
+ 
+    try {
         const user = req.body.user;
         const password = req.body.password;
-        let isUserCorrect;
-        let isMaster;
-        let userName;
+        const data = await User.findOne({codeOne : user});
+        if(data !== null) {
+            const compare = await compareHash(password, data.codeTwo);
+            if(compare) {
+                req.session.admin = 1;
+                const userName = user;
+                if(data.codeThree) {
+                    req.session.master = 1;
+                };
+                res
+                    .cookie('user-name', userName, {
+                        maxAge: maxAgeSession,
+                    })
+                    .redirect('/admin');
 
-        users.forEach( person => {
-            if(person.name === user && person.password === password) {
-                isUserCorrect = true;
-                userName = person.name
-                if(person.permissions) {
-                    isMaster = true;
-                }
-            };
-        });
-        
-        if(isUserCorrect) {
-            req.session.admin = 1;
-            
-            if(isMaster) {
-                req.session.master = 1;
+            } else {
+                res.json({acces: 'denied'});
             }
-            res
-                .cookie('user-name', userName, {
-                    maxAge: maxAgeSession,
-                })
-                .redirect('/admin');
         } else {
-            res.json({
-                loged : 'uncorrect',
-            });
+            res.json({acces: 'denied'});
         }
-    });
+    } catch (err) {
+        errorHandle(res, err, 'userslist-download-problem')
+    };
 });
 
 

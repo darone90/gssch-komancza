@@ -7,6 +7,7 @@ export default class extends viewModel {
     }
 
     errorLoad(data) {
+
         const errorBox = document.querySelector('.errorBox');
         if(data.length < 1) {
             const h2 = document.createElement('h2');
@@ -14,24 +15,35 @@ export default class extends viewModel {
             errorBox.appendChild(h2);
         } else {
             data.forEach(err => {
-                const error = document.createElement('div');
-                error.classList.add('error');
+                const errorSingle = document.createElement('div');
+                errorSingle.classList.add('error');
+                const {error, date, info} = err;
 
-                error.innerHTML = `
-                    
+                errorSingle.innerHTML = `
+                    <h3>Typ błędu: ${info}</h3>
+                    <p>Błąd zarejestrowany dnia: ${new Date(date)}</p>
+                    <h3>Opis błędu:</h3>
+                    <p>${error.message}</p>
                 `;
+
+                errorBox.appendChild(errorSingle);
             })
         }
     }
 
     async getHtml() {
 
-
+        fetch('/accounts/errorlog/all', {
+            method: 'GET',
+        })
+            .then(res=> res.json())
+            .then(data=> this.errorLoad(data));
 
         return `
         <div class='errorCatalog'>
             <h2>W bazie znajdują się następujące błędy systemu:</h2>
             <div class='errorBox'></div>
+            <button class='all clearErrorLog'>Wyczyść log błędów</button>
         </div>`
     }
 }

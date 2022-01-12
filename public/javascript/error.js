@@ -173,7 +173,26 @@ if (errorType === 'readingcounterproblem') {
 
 if (errorType === 'errorlog-problem-read') {
     p.innerText = `
-        Wystąpił problem z katalogu błędów
+        Wystąpił problem z wczytaniem katalogu błędów
+    `;
+};
+
+if (errorType === 'error-outofpermission') {
+    p.innerText = `
+        Niestety nie posiadasz uprawnień dostępu do tej treści,
+        aby uzyskać uprawnienia skontaktuj się z moderatorem strony
+    `;
+};
+
+if (errorType === 'newuser-save-problem') {
+    p.innerText = `
+        Problem przy zapisie nowego użytkownika
+    `;
+};
+
+if (errorType === 'userslist-download-problem') {
+    p.innerText = `
+        Problem z pobraniem listy użytkowników
     `;
 };
 

@@ -1,27 +1,4 @@
 const {readFile, writeFile} = require('fs').promises;
-const {hash, compare} = require('bcrypt');
-
-const hashHandle = (password) => {
-    let hashed;
-    hash(password, 15, function(err, hash) {
-        if(err) throw new Error;
-        hashed = hash;
-    })
-    return hashed;
-};
-
-const compareHash = (givedPass, oldPass) => {
-    compare(givedPass, oldPass, function(err, res) {
-        if(err) throw new Error;
-
-        if(res) {
-            return true;
-        } else {
-            return false;
-        }
-    })
-}
-
 
 
 const errorHandle = async (res, error, data) => {
@@ -32,7 +9,7 @@ const errorHandle = async (res, error, data) => {
     arr = JSON.parse(readeddata);
     const toSave = {
         error,
-        date: Date.now,
+        date: Date.now(),
         info: data
     };
     arr.push(toSave);
@@ -53,8 +30,6 @@ const clearErrorHandle = async () => {
 
 module.exports = {
     errorHandle,
-    hashHandle,
-    compareHash,
     readErrorHandle,
     clearErrorHandle
 };
