@@ -205,3 +205,19 @@ if (errorType === 'user-confirmation-problem') {
         jeśli nie jesteś włascicielem tego konta wyloguj się. 
     `;
 };
+
+
+if (errorType === 'userlist-load-problem') {
+    p.innerText = `
+        Wystąpił błąd wczytywania listy użytkowników,
+        Spróbuj za chwilę, jeśli problem się powtórzy, 
+        skontaktuj się z administratorem.
+    `;
+};
+
+if (errorType === 'errorlog-clearing-problem') {
+    p.innerText = `
+        Wystąpił błąd podczas czyszczenia logu błędów,
+        Skontaktuj się z administratorem
+    `;
+};

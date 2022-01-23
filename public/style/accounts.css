@@ -130,7 +130,9 @@ div.confirmation.hide {
 }
 
 div.confirmation {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: absolute;
     left: 0;
     top: 0;
@@ -138,4 +140,31 @@ div.confirmation {
     height: 100%;
     background-color: white;
     z-index: 5;
-}
+    padding: 20px;
+    font-family: 'Lucida Sans',
+    'Lucida Sans Regular',
+    'Lucida Grande',
+    'Lucida Sans Unicode',
+    Geneva,
+    Verdana,
+    sans-serif;
+    }
+
+    div.confirmation input {
+        margin-bottom: 30px;
+    }
+
+    div.confirmation button {
+        margin: 15px;
+    }
+
+    div.usersBox {
+        padding: 15px;
+    }
+
+    div.userBox {
+        border: 2px solid black;
+        box-shadow: 5px 5px 15px black;
+        margin-bottom: 20px;
+        padding: 10px;
+    }

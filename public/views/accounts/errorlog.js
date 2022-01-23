@@ -7,7 +7,7 @@ export default class extends viewModel {
     }
 
     errorLoad(data) {
-
+        data.reverse()
         const errorBox = document.querySelector('.errorBox');
         if(data.length < 1) {
             const h2 = document.createElement('h2');
@@ -23,7 +23,7 @@ export default class extends viewModel {
                     <h3>Typ błędu: ${info}</h3>
                     <p>Błąd zarejestrowany dnia: ${new Date(date)}</p>
                     <h3>Opis błędu:</h3>
-                    <p>${error.message}</p>
+                    <p>${error === null ? 'no info available' : error.message}</p>
                 `;
 
                 errorBox.appendChild(errorSingle);

@@ -12,4 +12,5 @@ problem z ścieżkami inaczej działa gdy uruchomione bezpośrednio z bin a inac
 
 dodać licencję
 
-zrobić porządnie błędy
+poprawić obsługę błędów dla wszystkich get i obsługę błędów w app
+

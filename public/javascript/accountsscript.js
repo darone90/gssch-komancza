@@ -102,6 +102,35 @@ document.addEventListener('click', (e) => {
                 }
             })
     }
+
+    if(hasClass(e.target, 'cancel')) {
+        e.preventDefault();
+        document.querySelector('.confirmation').classList.add('hide');
+    }
+
+    if(hasClass(e.target, 'clearErrorLog')) {
+        if(confirm('Wczyścić zapis wszystkich błędów? ')) {
+            fetch('/accounts/clear-error', {
+                method: "GET"
+            })
+                .then(res => {
+                    if(res.redirected) {
+                        return data = res.url;
+                    } else {
+                        return data = 'ok'
+                    }
+                })
+                .then(data => {
+                    if(data === 'ok') {
+                        window.location.reload();
+                    } else {
+                        window.location.href = data;
+                    }
+                })
+        } else {
+            return;
+        }
+    }
 });
 
 window.addEventListener('load', loadName);

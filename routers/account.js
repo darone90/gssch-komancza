@@ -24,6 +24,22 @@ router
             errorHandle(res, err, 'errorlog-problem-read')
         }
     })
+    .get('/read-users', async (req, res) => {
+        try {
+            const users = await User.find({});
+            res.json(users);
+        } catch (err) {
+            errorHandle(res, err, "userlist-load-problem")
+        }
+    })
+    .get('/clear-error', async (req, res) => {
+        try {
+            await clearErrorHandle();
+            res.json({ok: true});
+        } catch (err) {
+            errorHandle(res, err, "errorlog-clearing-problem")
+        }
+    })
     .post('/confirm', async (req, res) => {
         try {
 

@@ -29,8 +29,8 @@ export default class extends viewModel {
         <h3></h3>
         <label for='passwordConfirmation'>Potwierdź hasło</label>
         <input type='password' id='passwordConfirmation'>
-        <button class='sendConfirmation'>Potwierdź</button>
-        <button class='cancel'>Anuluj</button> 
+        <div><button class='sendConfirmation all'>Potwierdź</button>
+        <button class='cancel all'>Anuluj</button> </div>
         </div>
         `
         
