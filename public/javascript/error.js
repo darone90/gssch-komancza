@@ -184,9 +184,11 @@ if (errorType === 'error-outofpermission') {
     `;
 };
 
-if (errorType === 'newuser-save-problem') {
+
+if (errorType === 'newuser-samename') {
     p.innerText = `
-        Problem przy zapisie nowego użytkownika
+        Wygląda na to że uzytkownik o takiej nazwie już istnieje w bazie,
+        Proszę wybrać inną nazwę użytkownika
     `;
 };
 
@@ -196,3 +198,10 @@ if (errorType === 'userslist-download-problem') {
     `;
 };
 
+if (errorType === 'user-confirmation-problem') {
+    p.innerText = `
+        Wystąpił problem autoryzacji. Upewnij się że podane zostało właściwe hasło.
+        Ponowna autoryzacja została wprowadzona dla zwiększenia bezpieczeństwa,
+        jeśli nie jesteś włascicielem tego konta wyloguj się. 
+    `;
+};

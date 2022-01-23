@@ -67,7 +67,13 @@ document.addEventListener('click', (e) => {
                 method: 'POST',
                 body: formData,
             })  
-                .then(res => res.json())
+                .then(res => {
+                    if(res.redirected) {
+                        return data = res.url
+                    } else {
+                        return data = res.json()
+                    } 
+                })
                 .then(data => {
                     if(data.ok) {
                         
@@ -81,6 +87,8 @@ document.addEventListener('click', (e) => {
                         setTimeout(()=> {
                             window.location.pathname = '/admin/assortment';
                         },1800);
+                    } else {
+                        window.location.href = data;
                     };
                 });
             };
@@ -98,7 +106,13 @@ document.addEventListener('click', (e) => {
             fetch(`/admin/products-delete/${_id}`, {
                 method: 'DELETE',
             })
-                .then(res => res.json())
+                .then(res => {
+                    if(res.redirected) {
+                        return data = res.url
+                    } else {
+                        return data = res.json()
+                    } 
+                })
                 .then(data => {
                     if(data.ok) {   
                         loading.classList.remove('onload');
@@ -106,6 +120,8 @@ document.addEventListener('click', (e) => {
                         e.target.style.color = 'red';
                         const buttons = [...document.getElementsByClassName(`${_id}`)];
                         buttons.forEach(btn=> btn.disabled = true)
+                    } else {
+                        window.location.href = data;
                     };
                 })
         } else {return};
@@ -169,13 +185,21 @@ document.addEventListener('click', (e) => {
                 headers: {'Content-Type' : 'application/json'},
                 body: JSON.stringify({foto}),
             })
-                .then(res => res.json())
+                .then(res => {
+                    if(res.redirected) {
+                        return data = res.url
+                    } else {
+                        return data = res.json()
+                    } 
+                })
                 .then(data => {
                     if(data.ok) {
                         
                         loading.classList.remove('onload');
                         h1.innerText = 'Zdjęcie zostanie usunięte';
                         h1.style.color = 'red';
+                    } else {
+                        window.location.href = data;
                     };
                 });
             }else{return};
@@ -213,7 +237,13 @@ document.addEventListener('click', (e) => {
                 fetch('/admin/products-edit', {
                     method: 'PUT',
                     body: formData,
-                }).then(res => res.json())
+                }).then(res => {
+                    if(res.redirected) {
+                        return data = res.url
+                    } else {
+                        return data = res.json()
+                    } 
+                })
                 .then(data => {
                     if(data.ok) {
                         
@@ -227,6 +257,8 @@ document.addEventListener('click', (e) => {
                         setTimeout(()=> {
                             window.location.pathname = '/admin/assortment';
                         },1800);
+                    } else {
+                        window.location.href = data;
                     };
                 })
             } else {return};

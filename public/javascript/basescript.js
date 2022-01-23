@@ -20,7 +20,13 @@ document.addEventListener('click', (e) => {
             method: 'POST',
             body: formData
         })
-            .then(res => res.json())
+            .then(res => {
+                if(res.redirected) {
+                    return data = res.url
+                } else {
+                    return data = res.json()
+                } 
+            })
             .then(data => {
                 if(data.ok) {
                     info.innerText = 'Dokument został pomyślnie przesłany do bazy';
@@ -32,6 +38,8 @@ document.addEventListener('click', (e) => {
                     rfrbtn.innerText = 'Dodaj kolejny dokumnet';
                     rfrbtn.classList.add('refresh');
                     addBox.appendChild(rfrbtn);
+                } else {
+                    window.location.href = data;
                 };
             })
 
@@ -45,12 +53,20 @@ document.addEventListener('click', (e) => {
             fetch(`/admin/documents-delete/${_id}`,{
                 method: 'DELETE',
             })
-                .then(res => res.json())
+                .then(res => {
+                    if(res.redirected) {
+                        return data = res.url
+                    } else {
+                        return data = res.json()
+                    } 
+                })
                 .then(data => {
                     if(data.ok) {
                         e.target.innerText = 'Dokument usunięty';
                         e.target.style.color = 'red';
                         btn.forEach(btn => btn.disabled = true);
+                    } else {
+                        window.location.href = data;
                     }
                 })
         }

@@ -144,7 +144,13 @@ document.addEventListener('click', (e) => {
                     method: 'POST',
                     body: formData,
                 })
-                    .then(res => res.json())
+                    .then(res => {
+                        if(res.redirected) {
+                            return data = res.url
+                        } else {
+                            return data = res.json()
+                        } 
+                    })
                     .then(data => {
                         if(data.ok) {
                             loading.classList.remove('onload');
@@ -158,7 +164,9 @@ document.addEventListener('click', (e) => {
                             setTimeout(()=> {
                                 window.location.pathname = '/admin/articles';
                             },1500);
-                        };
+                        } else {
+                            window.location.href = data;
+                        }
                     })
             } else {
                 return;
@@ -259,7 +267,13 @@ document.addEventListener('click', (e) => {
                 fetch('/admin/news-edit', {
                     method: 'PUT',
                     body: formData,
-                }).then(res => res.json())
+                }).then(res => {
+                    if(res.redirected) {
+                        return data = res.url
+                    } else {
+                        return data = res.json()
+                    } 
+                })
                 .then(data => {
                     if(data.ok) {
                         loading.classList.remove('onload');
@@ -274,9 +288,7 @@ document.addEventListener('click', (e) => {
                             window.location.pathname ="/admin/articles";
                         }, 1500)
                     } else {
-                        infoBox.classList.remove('hide');
-                        infoBox.style.color = 'red';
-                        infoBox.innerText = 'W trakcie zapisu wystapił błąd';
+                        window.location.href = data;
                     };
                 })
             } else {return};
@@ -296,7 +308,13 @@ document.addEventListener('click', (e) => {
 
             method: 'DELETE',
         })
-            .then(res => res.json())
+            .then(res => {
+                if(res.redirected) {
+                    return data = res.url
+                } else {
+                    return data = res.json()
+                } 
+            })
             .then(data => {
                 if(data.ok) {
                     loading.classList.remove('onload');
@@ -305,6 +323,8 @@ document.addEventListener('click', (e) => {
                     e.target.disabled = true;
                     const buttons = [...document.getElementsByClassName(`${_id}`)];
                     buttons.forEach(btn => btn.disabled = true);
+                } else {
+                    window.location.href = data;
                 }
             });
         } else {return};
@@ -339,14 +359,22 @@ document.addEventListener('click', (e) => {
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify({foto}),
         })
-            .then(res => res.json())
+            .then(res => {
+                if(res.redirected) {
+                    return data = res.url
+                } else {
+                    return data = res.json()
+                } 
+            })
             .then(data => {
                 if(data.ok) {
 
                     loading.classList.remove('onload');
                     h1.innerText = 'Zdjęcie zostanie usunięte';
                     h1.style.color = 'red';
-                } 
+                } else {
+                    window.location.href = data;
+                }
             });
         }else{return};
     };
@@ -364,7 +392,13 @@ document.addEventListener('click', (e) => {
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify({_id, archive})
     })
-        .then(res => res.json())
+        .then(res => {
+            if(res.redirected) {
+                return data = res.url
+            } else {
+                return data = res.json()
+            } 
+        })
         .then(data => {
             if(data.ok === true) { 
                 loading.classList.remove('onload');
@@ -372,6 +406,8 @@ document.addEventListener('click', (e) => {
                 btn.style.color = 'red';
                 const buttons = [...document.getElementsByClassName(`${_id}`)];
                 buttons.forEach(btn => btn.disabled = true);
+            } else {
+                window.location.href = data;
             }
         })
     };
@@ -391,7 +427,13 @@ document.addEventListener('click', (e) => {
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify({_id, archive})
         })
-            .then(res => res.json())
+            .then(res => {
+                if(res.redirected) {
+                    return data = res.url
+                } else {
+                    return data = res.json()
+                } 
+            })
             .then(data => {
                 if(data.ok === true) {
 
@@ -400,6 +442,8 @@ document.addEventListener('click', (e) => {
                     btn.style.color = 'green';
                     const buttons = [...document.getElementsByClassName(`${_id}`)];
                     buttons.forEach(btn => btn.disabled = true);
+                } else {
+                    window.location.href = data;
                 }
             })
     };

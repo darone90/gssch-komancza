@@ -125,3 +125,17 @@ div.error {
 div.errorCatalog h2 {
     margin-left: 10px;
 }
+div.confirmation.hide {
+    display: none;
+}
+
+div.confirmation {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 5;
+}

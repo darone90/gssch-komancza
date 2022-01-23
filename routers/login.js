@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require('path')
 const User = require('../public/models/userDB.js');
 const {errorHandle} = require('../utils/handlers.js');
-const {decoding, hashHandle, coding, compareHash} = require('../utils/crypto.js');
+const {compareHash} = require('../utils/crypto.js');
 const {maxAgeSession} = require('../config.js');
 
 
@@ -42,7 +42,7 @@ router.post('/', async (req,res) => {
             res.json({acces: 'denied'});
         }
     } catch (err) {
-        errorHandle(res, err, 'userslist-download-problem')
+        errorHandle(res, err, 'userslist-download-problem');
     };
 });
 

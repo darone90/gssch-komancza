@@ -10,7 +10,14 @@ document.addEventListener('click', (e) => {
 
             method: 'PATCH',
 
-        }).then(res => res.json()).then(data => {
+        }).then(res => {
+            if(res.redirected) {
+                return data = res.url
+            } else {
+                return data = res.json()
+            } 
+        })
+          .then(data => {
 
             if (data.ok === true) {
                 const info = document.createElement('div');
@@ -22,6 +29,8 @@ document.addEventListener('click', (e) => {
 
                 e.target.disabled = true;
 
+            } else {
+                window.location.href = data;
             };
 
         });
@@ -65,7 +74,14 @@ document.addEventListener('click', (e) => {
         fetch(`/admin/messages-delete/${id}`, {
 
             method: 'DELETE',
-        }).then(res => res.json()).then(data => {
+        }).then(res => {
+            if(res.redirected) {
+                return data = res.url
+            } else {
+                return data = res.json()
+            } 
+        })
+          .then(data => {
 
             if (data.ok === true) {
                 const info = document.createElement('div');
@@ -76,6 +92,8 @@ document.addEventListener('click', (e) => {
                 loading.classList.remove('onload');
                 e.target.disabled = true;
 
+            } else {
+                window.location.href = data;
             };
         });    
             } else {return}};

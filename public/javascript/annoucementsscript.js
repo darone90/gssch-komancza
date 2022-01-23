@@ -84,7 +84,13 @@ document.addEventListener('click', (e) => {
                     method: 'POST',
                     body: formData,
                 })
-                    .then(res => res.json())
+                    .then(res => {
+                        if(res.redirected){
+                            return data = res.url;
+                        } else {
+                            return data = res.json();
+                        }
+                        })
                     .then(data => {
                         if(data.ok) {
                             
@@ -103,6 +109,8 @@ document.addEventListener('click', (e) => {
                             setTimeout(()=> {
                                 window.location.pathname = '/admin/info';
                             },2000)
+                        } else {
+                            window.location.href = data;
                         };
                     });
             } else { return };
@@ -143,9 +151,15 @@ document.addEventListener('click', (e) => {
             method: 'PUT',
             body: formData,
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.redirected) {
+                    return data = res.url
+                } else {
+                    return data = res.json()
+                }    
+            })
             .then(data => {
-                if(data.ok) {
+                if(data.ok) { 
                     
                     loading.classList.remove('onload');
                     info.classList.remove('hide');
@@ -157,6 +171,8 @@ document.addEventListener('click', (e) => {
                     setTimeout(()=> {
                         window.location.pathname = '/admin/info';
                     },2000)
+                } else {
+                    window.location.href = data
                 }
             });
         } else {
@@ -323,7 +339,13 @@ document.addEventListener('click', (e) => {
                     id
                 })             
             })
-            .then(res => res.json())
+            .then(res => {
+                if(res.redirected) {
+                    return data = res.url;
+                } else {
+                    return data = res.json();
+                } 
+            })
             .then(data => {
                         if(data.ok === true) {
                             
@@ -332,6 +354,8 @@ document.addEventListener('click', (e) => {
                             e.target.style.color = 'red';
                             const buttons = [...document.getElementsByClassName(`${e.target.classList[1]}`)];
                             buttons.forEach(el => el.disabled = true);
+                        } else {
+                            window.location.href = data;
                         }
                     });
         } else {
@@ -352,7 +376,13 @@ document.addEventListener('click', (e) => {
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify({_id, archive})
         })
-            .then(res => res.json())
+            .then(res => {
+                if(res.redirected) {
+                    return data = res.url
+                } else {
+                    return data = res.json()
+                } 
+            })
             .then(data => {
                 if(data.ok === true) {
                     
@@ -361,6 +391,8 @@ document.addEventListener('click', (e) => {
                     btn.style.color = 'red';
                     const buttons = [...document.getElementsByClassName(`${_id}`)];
                     buttons.forEach(el => el.disabled = true);
+                } else {
+                    window.location.href = data;
                 }
             })
     };
@@ -380,7 +412,13 @@ document.addEventListener('click', (e) => {
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify({_id, archive})
         })
-            .then(res => res.json())
+            .then(res => {
+                if(res.redirected) {
+                    return data = res.url
+                } else {
+                    return data = res.json()
+                } 
+            })
             .then(data => {
                 if(data.ok === true) {
                     
@@ -389,6 +427,8 @@ document.addEventListener('click', (e) => {
                     btn.style.color = 'green';
                     const buttons = [...document.getElementsByClassName(`${_id}`)];
                     buttons.forEach(el => el.disabled = true);
+                } else {
+                    window.location.href = data;
                 }
             })
     };
@@ -404,18 +444,24 @@ document.addEventListener('click', (e) => {
             fetch(`/admin/anno-delete/${_id}`, {
                 method: 'DELETE',
             })
-                .then(res => res.json())
+                .then(res => {
+                    if(res.redirected) {
+                        return data = res.url
+                    } else {
+                        return data = res.json()
+                    } 
+                })
                 .then(data => {
-                    if(data.ok) {
-                        
+                    if(data.ok) {                     
                         loading.classList.remove('onload');
                         e.target.innerText = 'Ogłoszenie zostanie usunięte';
                         e.target.style.color = 'red';
                         e.target.style.fontSize = '2rem';
 
                         const buttons = [...document.getElementsByClassName(`${_id}`)];
-                        buttons.forEach(el => el.disabled = true);
-                        
+                        buttons.forEach(el => el.disabled = true); 
+                    } else {
+                        window.location.href = data;
                     }
                 })
         }
