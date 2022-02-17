@@ -56,7 +56,26 @@ router
             errorHandle(res, err, "user-confirmation-problem")
         }
     })
+    .post('/change', async (req, res) => {
 
+        const id = req.body.id;
+        const action = req.body.actionType === 0 ? 'perChange' : 'delete';
+        const filter = {_id : id};
+        try {
+            if(action === 'perChange'){
+                const user = await User.findOne(filter);
+                const update = {codeThree : !user.codeThree};
+                await User.findOneAndUpdate(filter, update);
+                res.json({ok: true, id});    
+            };
+            if(action === 'delete') {
+                await User.findByIdAndDelete(filter)
+                res.json({ok: true, id});
+            };
+        } catch(err) {
+            errorHandle(res, err, 'changepaermission-database');
+        }
+    })
     .post('/add', async (req, res) => {
 
         try {

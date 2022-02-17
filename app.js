@@ -10,10 +10,11 @@ const News = require('./public/models/newsDB.js');
 const Anno = require('./public/models/annoucementsDB.js');
 const Message = require('./public/models/messageDB.js');
 const Asso = require('./public/models/assortmentDB');
-
 const loginRouter = require('./routers/login.js');
 const adminRouter = require('./routers/admin.js');
 const accountRouter = require('./routers/account.js');
+const {coding} = require('./utils/crypto');
+const {errorHandle} = require('./utils/handlers')
 
 mongoose.connect(config.db, {
     useNewUrlParser: true,
@@ -60,52 +61,61 @@ app.get('/error/*', (req,res) => {
     res.sendFile(path.resolve(__dirname, 'public', 'error.html'))
 });
 
-app.get('/newsdata', (req,res) => {
-    News.find({}, (err, data)=> {
-        if(err) {
-            console.log('Wystąpił błąd wczytywania danych z bazy...', err)
-            app.get('/error/info', (req, res)=> {
-                res.json(err);
-            });
-            res.redirect('/error');
-        } else {
-            res.json(data);
-        };
-    });
-   
+app.get('/newsdata', async (req,res) => {
+    try {
+        const data = await News.find({archived: false});
+        res.json(data)
+
+    } catch(err) {
+        errorHandle(res, err, "readNews-database")
+    };
 });
 
-app.get('/assortmentdata', (req, res) => {
-    Asso.find({}, (err, data) => {
-        if(err) throw new Error
-        else res.json(data);
-    })
-})
-app.get('/readanno', (req,res) => {
-    Anno.find({}, (err,data) => {
-        if ( err ) {
-            throw new Error;
-        } else {
-            res.json(data);
-        };
-    })
+app.get('/assortmentdata', async (req, res) => {
+
+    try {
+        const data = await Asso.find({})
+        res.json(data)
+    } catch(err) {
+        errorHandle(res, err, "assortment-reading")
+    };
+});
+
+app.get('/readanno', async (req,res) => {
+    try {
+        const data = await Anno.find({archived: false})
+        res.json(data)
+    } catch(err) {
+        errorHandle(res, err, "annoucement-reading")
+    }
 });
 
 app.get('/admingo', (req, res) => {
     res.redirect('/admin');
 })
 
-app.post('/sendmessage',  (req, res) => {
-    const data = req.body;
-    const newMessage = new Message(data);
-
-    newMessage.save(err => {
-        if(err) throw new Error
-        else console.log('Wiadomość wysłana poprawnie');
-    });
-    res.json({
-        sucess: 'true',
-    });
+app.post('/sendmessage',  async (req, res) => {
+    const {name, subject, content, contact} = req.body;
+    const reqData = req.body;
+    try {
+        const nameCoded = await coding(name);
+        const subjectCoded = await coding(subject);
+        const contentCoded = await coding(content);
+        const contactCoded = await coding(contact);
+        const dataToSend = {...reqData,
+                            name: nameCoded,
+                            subject: subjectCoded,
+                            content: contentCoded,
+                            contact: contactCoded
+                        };
+        const newMessage = new Message(dataToSend); 
+        await newMessage.save();
+        res.json({
+            sucess: 'true',
+        });
+    } catch(err) {
+        errorHandle(res, err, "message-sending")
+    }
 });
 
 app.get('/logout', (req, res) => {

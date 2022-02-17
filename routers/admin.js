@@ -11,6 +11,7 @@ const {readCounter, checkCounter, changeCounter} = require('../utils/dataCounter
 const {contentLimit, databaseLimit} = require('../utils/limitconfig.js')
 const {errorHandle} = require('../utils/handlers.js');
 const {maxAgeSession} = require('../config.js');
+const {decoding} = require('../utils/crypto')
 
 const multer = require('multer');
 
@@ -87,7 +88,19 @@ router
 
         try {
             const data = await Message.find({});
-            res.json(data);
+            const newData = [];
+            for(const message of data) {
+                const newMessage = {
+                    name: await decoding(message.name.zero, message.name.one),
+                    subject: await decoding(message.subject.zero, message.subject.one),
+                    content: await decoding(message.content.zero, message.content.one),
+                    contact: await decoding(message.contact.zero, message.contact.one),
+                    readed: message.readed,
+                    date: message.date
+                }
+                newData.push(newMessage)
+            };
+            res.json(newData)
         } catch (err) {
             errorHandle(res, err, 'databaseproblem-readmessages-all');
         };

@@ -15,8 +15,8 @@ const coding = async (toCode) => {
         encrypted += cipher.final('hex');
 
         return {
-             encrypted,
-            iv: iv.toString('hex')
+            zero: encrypted,
+            one: iv.toString('hex')
         }
     } catch (err) {
         throw new Error('coding error', err)

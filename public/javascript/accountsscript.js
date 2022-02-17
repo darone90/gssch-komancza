@@ -1,5 +1,7 @@
 const  nameBox = document.querySelector('.nameBox h2');
-const cookies = document.cookie.split(';')
+const cookies = document.cookie.split(';');
+let currentId;
+let action;
 
 const loadName= () => {
 
@@ -13,8 +15,108 @@ const hasClass = (elem, className) => {
     return elem.classList.contains(className);
 };
 
+const addUser = () => {
+    
+                    const name = document.getElementById('name').value;
+                    const password = document.getElementById('password').value;
+                    const permissions = document.getElementById('permissions').checked;
+                    const info = document.querySelector('.infoBox p');
+
+                    fetch('/accounts/add', {
+                        method: 'POST',
+                        headers: {'Content-Type' : 'application/json'},
+                            body: JSON.stringify({
+                                name,
+                                password,
+                                permissions
+                            })  
+                    })
+                    .then(res => {
+                        if(res.redirected) {
+                            return urlData = res.url
+                        } else {
+                            return urlData = res.json()
+                        }
+                    })
+                    .then(data => {
+                        if(data.ok) {
+                            info.innerText = 'Użytkownik został dodany';
+                            info.style.color = 'green';
+                            setTimeout(()=> {
+                                window.location.href = '/accounts/add';
+                            }, 1800)
+                        } else {
+                            window.location.href = data;
+                        }
+                    });
+}
+
+const permissionChange = (currentIdentification, actionType) => {
+    const id = currentIdentification;
+    fetch('/accounts/change', {
+        method: 'POST',
+        headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify({
+                id,
+                actionType
+            })
+        })
+            .then(res => {
+                if(res.redirected) {
+                    return urlData = res.url
+                } else {
+                    return urlData = res.json()
+                }
+            })
+            .then(data => {
+                if(data.ok) {
+                    infoBlock = {
+                        0: {className: 'permissionChange',
+                            info: 'ZMIANY ZOSTAŁY WPROWADZONE',
+                            color: 'green'},
+                        1: {className: 'removeUser',
+                            info: 'UŻYTKOWNIK ZOSTAŁ USUNIĘTY',
+                            color: 'red'}
+                    }
+                    const info = actionType === 0 ? infoBlock['0'] : infoBlock['1'];
+                    const btnID = data.id;
+                    const block = document.getElementsByClassName(`${btnID} userBox`)['0']
+                    const btn = document.getElementsByClassName(`${btnID} ${info.className}`)['0']
+                    btn.innerText = info.info;
+                    btn.style.color = info.color;
+                    block.scrollIntoView({behavior: 'smooth'});
+
+                    setTimeout(()=> {
+                        window.location.href = '/accounts/edit';
+                    }, 2000)
+                } else {
+                    window.location.href = data;
+                }
+            });
+}
+
 document.addEventListener('click', (e) => {
 
+    if(hasClass(e.target, 'removeUser')) {
+        action = 1;
+        currentId = e.target.classList[0];
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+          document.querySelector('.confirmation').classList.remove('hide');
+    };
+
+    if(hasClass(e.target, 'permissionChange')) {
+        action = 0;
+        currentId = e.target.classList[0];
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        document.querySelector('.confirmation').classList.remove('hide');
+
+    };
     if(hasClass(e.target, 'addUser')) {
 
         e.preventDefault();
@@ -65,38 +167,15 @@ document.addEventListener('click', (e) => {
             .then(data => {
                 if(data.confirm) {
                     document.querySelector('.confirmation').classList.add('hide');
-                    const name = document.getElementById('name').value;
-                    const password = document.getElementById('password').value;
-                    const permissions = document.getElementById('permissions').checked;
-                    const info = document.querySelector('.infoBox p');
 
-                    fetch('/accounts/add', {
-                        method: 'POST',
-                        headers: {'Content-Type' : 'application/json'},
-                            body: JSON.stringify({
-                                name,
-                                password,
-                                permissions
-                            })  
-                    })
-                    .then(res => {
-                        if(res.redirected) {
-                            return urlData = res.url
-                        } else {
-                            return urlData = res.json()
-                        }
-                    })
-                    .then(data => {
-                        if(data.ok) {
-                            info.innerText = 'Użytkownik został dodany';
-                            info.style.color = 'green';
-                            setTimeout(()=> {
-                                window.location.href = '/accounts/add';
-                            }, 1800)
-                        } else {
-                            window.location.href = data;
-                        }
-                    });
+                    switch(window.location.pathname) {
+                        case "/accounts/add" :
+                            addUser();
+                            break;
+                        case "/accounts/edit" :
+                                permissionChange(currentId, action);
+                            break;
+                    }
                 } else {
                     window.location.href = data;
                 }

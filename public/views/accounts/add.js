@@ -23,15 +23,7 @@ export default class extends viewModel {
         <div class='infoBox'>
             <p>Aby dodać użytkownika prsoszę wypełnić formularza</p> 
         </div>
-        <div class='confirmation hide'>
-        <h2>Weryfikacja użytwkonika</h2>
-        <p>W celu wprowadzenia zmian w liście użytkowników podaj swoje hasło dla konta:</p>
-        <h3></h3>
-        <label for='passwordConfirmation'>Potwierdź hasło</label>
-        <input type='password' id='passwordConfirmation'>
-        <div><button class='sendConfirmation all'>Potwierdź</button>
-        <button class='cancel all'>Anuluj</button> </div>
-        </div>
+        
         `
         
     }

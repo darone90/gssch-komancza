@@ -11,7 +11,8 @@ export default class extends viewModel {
         data.forEach(user => {
             const {codeOne : name, codeThree : permission, _id} = user;
             const userBox = document.createElement('div');
-            userBox.classList.add('userBox')
+            userBox.classList.add('userBox');
+            userBox.classList.add(`${_id}`);
 
             userBox.innerHTML = `
                 <h2>Nazwa użytkownika: ${name}</h2>

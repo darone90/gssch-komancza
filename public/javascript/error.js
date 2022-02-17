@@ -221,3 +221,38 @@ if (errorType === 'errorlog-clearing-problem') {
         Skontaktuj się z administratorem
     `;
 };
+
+if (errorType === 'changepaermission-database') {
+    p.innerText = `
+        Wystąpił błąd podczas wprwadzania zmian w bazie danych lub użytkownik o podanym ID nie istnieje
+        spróbuj ponownie za chwilę. Jeśli błąd będzie się powtarzał skontaktuj się z moderatorem
+    `;
+};
+
+if (errorType === 'message-sending') {
+    p.innerText = `
+        Wystąpił błąd podczas wysyłania wiadomości, spróbuj za chwilę
+    `;
+};
+
+if (errorType === 'readNews-database') {
+    p.innerText = `
+        Błąd wczytywania treści wiadomości z bazy danych, spróbuj za chwilę...
+    `;
+};
+
+if (errorType === 'assortment-reading') {
+    p.innerText = `
+        Błąd wczytywania produktów z bazy danych, spróbuj za chwilę...
+    `;
+};
+
+if (errorType === 'annoucement-reading') {
+    p.innerText = `
+        Błąd wczytywania aktualnych ogłoszeń z bazy danych, spróbuj za chwilę...
+    `;
+};
+
+
+
+
