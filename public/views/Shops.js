@@ -13,6 +13,7 @@ export default class extends viewModel {
         <div class="ca shops">
             <h1> Delikatesy Centrum </h1>
             <main> Zakładka w budowie</main>
+            <div class='btn-descript'>Kontakt</div>
             <div class='shopBanner'></div>
             <div class='moreBtn a'><i class="a fas fa-angle-double-up"></i></div>
             <div class='extends double'>
@@ -33,6 +34,7 @@ export default class extends viewModel {
         <div class="cb shops">
             <h1> Sklep spożywczo-przemysłowe </h1>
             <main>Zakładka w budowie</main>
+            <div class='btn-descript'>Kontakt</div>
             <div class='shopBanner'></div>
             <div class='moreBtn b'><i class="b fas fa-angle-double-up"></i></div>
             <div class='extends'>
@@ -45,6 +47,7 @@ export default class extends viewModel {
         <div class="cc shops">
             <h1> Sklep przemysłowy </h1>
             <main>Zakładka w budowie</main>
+            <div class='btn-descript'>Kontakt</div>
             <div class='shopBanner'></div>
             <div class='moreBtn c'><i class="c fas fa-angle-double-up"></i></div>
             <div class='extends'>
@@ -59,6 +62,7 @@ export default class extends viewModel {
         <div class="cd shops">
             <h1> Sklep budowlany </h1>
             <main>Zakładka w budowie</main>
+            <div class='btn-descript'>Kontakt</div>
             <div class='shopBanner'></div>
             <div class='moreBtn d'><i class="d fas fa-angle-double-up"></i></div>
             <div class='extends'>

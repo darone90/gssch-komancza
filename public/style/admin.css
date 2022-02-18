@@ -798,5 +798,6 @@ div.userPasswordInfoBox {
     top: 8em;
     left: 20em;
     border: 2px solid black;
+    padding: 5px;
 
 }

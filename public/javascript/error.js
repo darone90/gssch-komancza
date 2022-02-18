@@ -253,6 +253,13 @@ if (errorType === 'annoucement-reading') {
     `;
 };
 
+if (errorType === 'user-paswword-change') {
+    p.innerText = `
+        Podane aktualne hasło jest nieprawidłowe, jeśli jesteś pewny poprawności hasła skontaktuj się z administratorem
+        
+    `;
+};
+
 
 
 

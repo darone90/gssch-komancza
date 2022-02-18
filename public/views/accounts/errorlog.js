@@ -7,7 +7,8 @@ export default class extends viewModel {
     }
 
     errorLoad(data) {
-        data.reverse()
+        data.reverse();
+        const loadingBox = document.querySelector('.loading');
         const errorBox = document.querySelector('.errorBox');
         if(data.length < 1) {
             const h2 = document.createElement('h2');
@@ -19,20 +20,24 @@ export default class extends viewModel {
                 errorSingle.classList.add('error');
                 const {error, date, info} = err;
 
+
                 errorSingle.innerHTML = `
                     <h3>Typ błędu: ${info}</h3>
                     <p>Błąd zarejestrowany dnia: ${new Date(date)}</p>
                     <h3>Opis błędu:</h3>
-                    <p>${error === null ? 'no info available' : error.message}</p>
+                    <p>${error === undefined || null ? "Brak informacji": error}</p>
                 `;
 
                 errorBox.appendChild(errorSingle);
+                
             })
         }
+        loadingBox.classList.add('hide');
     }
 
     async getHtml() {
-
+        const loadingBox = document.querySelector('.loading');
+        loadingBox.classList.remove('hide');
         fetch('/accounts/errorlog/all', {
             method: 'GET',
         })

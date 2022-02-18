@@ -7,6 +7,7 @@ export default class extends viewModel {
     }
 
     getUsers(data) {
+        const loadingBox = document.querySelector('.loading');
         const userList = document.querySelector('.usersList');
         data.forEach(user => {
             const {codeOne : name, codeThree : permission, _id} = user;
@@ -22,11 +23,13 @@ export default class extends viewModel {
             `
 
             userList.appendChild(userBox)
+            loadingBox.classList.add('hide');
         })
     }
 
     async getHtml() {
-
+        const loadingBox = document.querySelector('.loading');
+        loadingBox.classList.remove('hide');
         fetch('/accounts/read-users', {
             method: "GET",
         }).then(res => res.json()).then(data => this.getUsers(data));

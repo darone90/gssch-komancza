@@ -7,13 +7,16 @@ const Anno = require('../public/models/annoucementsDB.js');
 const News = require('../public/models/newsDB.js');
 const Asso = require('../public/models/assortmentDB.js');
 const Doc = require('../public/models/documentDB.js');
+const User = require('../public/models/userDB.js');
 const {readCounter, checkCounter, changeCounter} = require('../utils/dataCounter.js');
 const {contentLimit, databaseLimit} = require('../utils/limitconfig.js')
 const {errorHandle} = require('../utils/handlers.js');
+const {compareHash, hashHandle} = require('../utils/crypto.js');
 const {maxAgeSession} = require('../config.js');
 const {decoding} = require('../utils/crypto')
 
 const multer = require('multer');
+const { error } = require('console');
 
 const storage = multer.diskStorage({
     destination : function(req, file, cb) {
@@ -475,7 +478,24 @@ router
                 };               
             };
         })
+    .post('/user-password-change', async (req, res) => {
 
+        const {oldPassword, newPassword} = req.body;
+        try {
+            const filter = {codeOne : req.cookies['user-name']};
+            const user = await User.findOne(filter);
+            const compare = await compareHash(oldPassword, user.codeTwo);
+            if(!compare) {
+                throw new Error('Podane aktualne hasło jest niepoprawne');
+            } else {
+                const update = {codeTwo: await hashHandle(newPassword)};
+                await User.findOneAndUpdate(filter, update);
+                res.json({ok: true})
+            };
+        } catch (err) {
+            errorHandle(res,err, "user-paswword-change");
+        };
+    })
     .post('/anno-add', uploadAttachement.array('attachements',8), async (req,res) => {
 
             let size = 0;

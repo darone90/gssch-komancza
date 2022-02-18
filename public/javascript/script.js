@@ -15,6 +15,7 @@ function next(i, l) {
     const articleDate = document.querySelector('article h1.date');
     const articleTitle = document.querySelector('article h2.title');
     const img = document.querySelector('img.popupimg');
+    const imgbox = document.querySelector('.fullsizeImg');
 
     if (i <= l - 1) {
 
@@ -28,6 +29,7 @@ function next(i, l) {
         const {description, title, date, foto} = database[i];
         articleDate.innerText = date;
         articleTitle.innerText = title;
+        foto === null ? imgbox.classList.add('hide') : imgbox.classList.remove('hide');
         img.src = `./public/images/imagesDB/${foto}`;
 
         description.forEach(paragraph => {
@@ -54,6 +56,7 @@ function perview(i) {
     const articleDate = document.querySelector('article h1.date');
     const articleTitle = document.querySelector('article h2.title');
     const img = document.querySelector('img.popupimg');
+    const imgbox = document.querySelector('.fullsizeImg');
 
     if (i >= 0) {
 
@@ -69,6 +72,7 @@ function perview(i) {
         articleDate.innerText = date;
         articleTitle.innerText = title;
         img.src = `./public/images/imagesDB/${foto}`;
+        foto === null ? imgbox.classList.add('hide') : imgbox.classList.remove('hide');
         
         description.forEach(paragraph => {
         const html = document.createElement('p');
@@ -102,6 +106,12 @@ function hasClass(elem, className) {
 let index;
 
 document.addEventListener('click', function (e) {
+    if(hasClass(e.target, 'client-att-download')) {
+        const docID = e.target.classList[0];
+        const docName = e.target.innerText;
+        window.location.href =  `/download/${docID}/${docName}`
+    }
+
     if (hasClass(e.target, 'a')) {
         document.querySelector('.a').classList.toggle('active');
         document.querySelector('.ca').classList.toggle('long');
@@ -139,6 +149,7 @@ document.addEventListener('click', function (e) {
     const articleTitle = document.querySelector('article h2.title');
     const nextbtn = document.querySelector('button.next');
     const pervbtn = document.querySelector('button.perview');
+    const imgbox = document.querySelector('.fullsizeImg');
     const img = document.querySelector('img.popupimg');
     
     const oldParagraphs = document.querySelectorAll('article.fullsize p');
@@ -155,7 +166,7 @@ document.addEventListener('click', function (e) {
     articleTitle.innerText = title;
     articleDate.innerText = date;
     img.src = `./public/images/imagesDB/${foto}`;
-
+    foto === null ? imgbox.classList.add('hide') : imgbox.classList.remove('hide');
     description.forEach(p => {
         const parag = document.createElement('p');
         parag.innerText = p;

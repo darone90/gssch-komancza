@@ -117,6 +117,11 @@ app.post('/sendmessage',  async (req, res) => {
         errorHandle(res, err, "message-sending")
     }
 });
+app.get('/download/:docID/:docName', (req, res) => {
+    const path = `../public/attachement/${req.params.docID}`;
+    const name = req.params.docName;
+    res.download(path, name);
+});
 
 app.get('/logout', (req, res) => {
     req.session = null;

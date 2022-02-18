@@ -1,16 +1,8 @@
-dodać nagłówki dla wyszukiwarek
-
-zrobić ładowanie przy logowaniu 
-
-dodać wersję artykułow bez zdjęcia
 
 na pm2 lub serwerze zrobić coś co  będzie restartowało appkę 
 
-ostylować bagietę z większą ilością tekstu
-
 problem z ścieżkami inaczej działa gdy uruchomione bezpośrednio z bin a inaczej z poiomu deploy
 
-dodać licencję
 
 
 

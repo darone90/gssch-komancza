@@ -55,6 +55,7 @@ export default class extends viewModel {
         <h3>Starając się zaspokoić Państwa oczekiwania do produkcji naszego pieczywa oraz wyrobów cistkarskich wykorzystujemy tylko składniki o najwyższej jakości. Zapraszamy do współpracy!</h2>
         
     </main>
+    <div class='btn-descript'>Kontakt</div>
         <div class='shopBanner bakery'></div>
         <div class='moreBtn e'><i class="e fas fa-angle-double-up"></i></div>
         <div class='extends'>

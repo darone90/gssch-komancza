@@ -16,11 +16,13 @@ const hasClass = (elem, className) => {
 };
 
 const addUser = () => {
-    
+
                     const name = document.getElementById('name').value;
                     const password = document.getElementById('password').value;
                     const permissions = document.getElementById('permissions').checked;
                     const info = document.querySelector('.infoBox p');
+                    const loadingBox = document.querySelector('.loading');
+                    loadingBox.classList.remove('hide');
 
                     fetch('/accounts/add', {
                         method: 'POST',
@@ -40,6 +42,7 @@ const addUser = () => {
                     })
                     .then(data => {
                         if(data.ok) {
+                            loadingBox.classList.add('hide');
                             info.innerText = 'Użytkownik został dodany';
                             info.style.color = 'green';
                             setTimeout(()=> {
@@ -53,6 +56,9 @@ const addUser = () => {
 
 const permissionChange = (currentIdentification, actionType) => {
     const id = currentIdentification;
+    const loadingBox = document.querySelector('.loading');
+    loadingBox.classList.remove('hide');
+
     fetch('/accounts/change', {
         method: 'POST',
         headers: {'Content-Type' : 'application/json'},
@@ -70,6 +76,7 @@ const permissionChange = (currentIdentification, actionType) => {
             })
             .then(data => {
                 if(data.ok) {
+                    loadingBox.classList.add('hide');
                     infoBlock = {
                         0: {className: 'permissionChange',
                             info: 'ZMIANY ZOSTAŁY WPROWADZONE',
@@ -150,6 +157,8 @@ document.addEventListener('click', (e) => {
     if(hasClass(e.target, 'sendConfirmation')) {
         e.preventDefault()
         const passwordToConfirm = document.querySelector('#passwordConfirmation').value
+        const loadingBox = document.querySelector('.loading');
+        loadingBox.classList.remove('hide');
 
         fetch('/accounts/confirm', {
             method: 'POST',
@@ -166,6 +175,7 @@ document.addEventListener('click', (e) => {
                 }})
             .then(data => {
                 if(data.confirm) {
+                    loadingBox.classList.add('hide');
                     document.querySelector('.confirmation').classList.add('hide');
 
                     switch(window.location.pathname) {
@@ -189,6 +199,8 @@ document.addEventListener('click', (e) => {
 
     if(hasClass(e.target, 'clearErrorLog')) {
         if(confirm('Wczyścić zapis wszystkich błędów? ')) {
+            const loadingBox = document.querySelector('.loading');
+            loadingBox.classList.remove('hide');
             fetch('/accounts/clear-error', {
                 method: "GET"
             })

@@ -4,11 +4,10 @@ const {readFile, writeFile} = require('fs').promises;
 const errorHandle = async (res, error, data) => {
     const path = `/error/${data}`
     res.redirect(path);
-
     const readeddata = await readFile('../utils/errorLog.json', 'utf-8');
     arr = JSON.parse(readeddata);
     const toSave = {
-        error,
+        error: error.message,
         date: Date.now(),
         info: data
     };

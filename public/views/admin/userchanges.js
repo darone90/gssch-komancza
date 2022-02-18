@@ -9,7 +9,7 @@ export default class extends viewModel {
         return `
         <div class='userdatachange'>
             <div class='userPasswordInfoBox'>
-                <p>Hasło musi składać się conajmniej z 6 znaków i zawierać cyfry</p>
+                <p>Hasło musi składać się conajmniej z 6 znaków</p>
             </div>
             <form>
                 <label for="oldPassword">Wprowadź aktualne hasło</label>
