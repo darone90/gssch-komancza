@@ -27,7 +27,8 @@ router
     .get('/read-users', async (req, res) => {
         try {
             const users = await User.find({});
-            res.json(users);
+            const safeuser = users.filter(user => user.codeOne !== req.cookies['user-name'])
+            res.json(safeuser);
         } catch (err) {
             errorHandle(res, err, "userlist-load-problem")
         }
