@@ -7,7 +7,7 @@ const errorHandle = async (res, error, data) => {
     const readeddata = await readFile('../utils/errorLog.json', 'utf-8');
     arr = JSON.parse(readeddata);
     const toSave = {
-        error: error.message,
+        error: error.message ? error.message : error,
         date: Date.now(),
         info: data
     };
