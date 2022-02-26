@@ -260,6 +260,14 @@ if (errorType === 'user-paswword-change') {
     `;
 };
 
+if (errorType === 'saveing-news') {
+    p.innerText = `
+        Wystąpił problem w trakcie dodawania aktualności... spróbuj za chwilę
+        Jeśli problem będzie się powtarzał skonsultuj się z moderatorem strony
+        
+    `;
+};
+
 
 
 

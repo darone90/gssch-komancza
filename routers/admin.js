@@ -99,7 +99,8 @@ router
                     content: await decoding(message.content.zero, message.content.one),
                     contact: await decoding(message.contact.zero, message.contact.one),
                     readed: message.readed,
-                    date: message.date
+                    date: message.date,
+                    _id: message._id
                 }
                 newData.push(newMessage)
             };
@@ -565,13 +566,12 @@ router
                 foto,
             };
             const toSend = new News(data);
-            toSend.save(err => {
-                if(err) {
-                    throw new Error('Wystąpił błąd przy zapisie', err)
-                } else {
-                    res.json({ok:true});
-                };
-            });
+            try {
+                await toSend.save();
+                res.json({ok:true});
+            } catch (err) {
+                errorHandle(res, err, "saveing-news")
+            }
         } else {
             const path = '../public/images/imagesDB/' + `${req.file.filename}`;
             try {

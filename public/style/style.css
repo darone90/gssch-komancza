@@ -272,7 +272,6 @@ footer {
     font-family: 'roboto', serif;
     color: white;
     z-index: 222;
-    max-width: 1530px;
 }
 
 footer h1 {
@@ -630,7 +629,9 @@ div.infoRight {
     opacity: 0;
     height: 340px;
 }
-
+h1.noArticles {
+    margin: 50px 0 0 10rem;
+}
 div.infoRight {
     background-color: rgba(256, 256, 256, 0.5);
     left: 250px;
@@ -787,6 +788,10 @@ section.trading {
     animation: opac 0.8s ease forwards;
 }
 
+button.link-to-map {
+    display: none;
+}
+
 @keyframes opac {
     0% {
         opacity: 0;
@@ -831,7 +836,7 @@ div.shops.long {
     }
 
     100% {
-        height: 800px;
+        height: 850px;
     }
 }
 
@@ -905,6 +910,7 @@ div.shops h3 {
 div.btn-descript {
     position: absolute;
     left: 6%;
+    top: 475px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     font-size: 1.2rem;
@@ -2022,7 +2028,7 @@ article.fullsize {
     position: relative;
     left: 20%;
     min-height: 60rem;
-    margin-bottom: 1500px;
+    margin-bottom: 100px;
     padding-bottom: 30px;
     background-color: rgba(256, 256, 256, 1);
 }
@@ -2064,9 +2070,9 @@ article.fullsize p {
 }
 div.fullsizeImg {
     position: absolute;
-    height: 15rem;
-    width: 12rem;
-    right: 14rem;
+    height: 30em;
+    width: 35%;
+    left: 60%;
     top: 14rem;
     cursor: pointer;
 }
@@ -2074,9 +2080,8 @@ div.fullsizeImg.hide {
     display: none;
 }
 img.popupimg {
-    position: relative;
-    height: 30em;
-    width: 25em;
+    width: 100%;
+    height: 100%;
 }
 
 article.fullsize p:last-child {
@@ -2163,6 +2168,20 @@ div.att-dwnl-section button:hover {
         top: 300px;
     }
 
+    div.shops.long div.extends {
+        margin-top: 100px;
+    }
+
+
+    div.waysTo {
+        width: 45%;
+
+    }
+
+    div.databaseload.progress {
+        width: 50%;
+    }
+
     div.close {
         right: 300px;
     }
@@ -2170,11 +2189,6 @@ div.att-dwnl-section button:hover {
     div.bannerLogo {
         top: 150px;
     }
-
-    div.fullSizeImg {
-        height: 420px;
-    }
-
     div.timeBlock {
         width: 70%;
     }
@@ -2182,6 +2196,10 @@ div.att-dwnl-section button:hover {
     div.shops {
         width: 1000px;
         left: 40px
+    }
+    div.btn-descript {
+        left: 8%;
+        top: 455px;
     }
 
     div.shops:nth-child(even) {
@@ -2225,8 +2243,8 @@ div.att-dwnl-section button:hover {
         overflow: hidden;
     }
 
-    article.fullsize {
-        height: 850px;
+    article.fullsize p {
+        width: 45%;
     }
 }
 
@@ -2258,25 +2276,23 @@ div.att-dwnl-section button:hover {
     div.map {
         height: 350px;
     }
-    article.fullsize {
-        height: 700px;
+    div.formInfo {
+        left: 55%;
     }
 
     article.fullsize p {
         font-size: 20px;
     }
-
-    div.fullSizeImg {
-        height: 360px;
-        top: -250px
-    }
-
     div.close {
         right: 270px;
     }
 
     aside.menuH li {
         display: none;
+    }
+
+    div.fullsizeImg {
+        height: 25em;
     }
 
     div.menuShort ul {
@@ -2302,10 +2318,41 @@ div.att-dwnl-section button:hover {
     div.shops.cb h1 {
         font-size: 25px;
     }
+    div.fullsizeImg {
+        height: 20em;
+    }
+
+    div.btn-descript {
+        left: 10%;
+        top: 400px;
+    }
+
+    div.ca.shops.long {
+        margin-top: 40px;
+    }
+
+    div.formInfo {
+        left: 65%;
+    }
+
+    div.formInfo h1 {
+        font-size: 20px;
+    }
+
+    article.fullsize {
+
+        min-height: 50rem;
+    }
     section.header {
         height: 180px;
     }
+    div.waysTo {
+        width: 60%;
+    }
 
+    div.waysTo ul {
+        font-size: 18px;
+    }
     div.name {
         padding-top: 40px;
     }
@@ -2341,12 +2388,6 @@ div.att-dwnl-section button:hover {
     article.fullsize p {
         font-size: 15px;
     }
-
-    div.fullSizeImg {
-        height: 300px;
-        top: -170px;
-    }
-
     article.fullsize h2 {
         font-size: 22px;
     }
@@ -2362,11 +2403,6 @@ div.att-dwnl-section button:hover {
         line-height: 30px;
         font-size: 20px;
     }
-
-    article.fullsize {
-        height: 600px;
-    }
-
     nav.main a {
         font-size: 15px;
     }
@@ -2459,6 +2495,21 @@ div.att-dwnl-section button:hover {
             display: none;
         }
 
+        div.assortment article {
+            font-size: 15px;
+        }
+
+        div.assortmentFoto {
+
+            top: 180px;
+            width: 50%;
+            height: 20em;
+        }
+
+        div.fullsizeImg {
+            height: 15em;
+        }
+
         div.name {
             font-size: 12px;
         }
@@ -2473,10 +2524,18 @@ div.att-dwnl-section button:hover {
             height: 170px;
         }
 
+        div.formInfo h1 {
+            font-size: 15px;
+        }
+
         nav.main {
 
             top: -8px;
 
+        }
+
+        form.contactForm {
+            left: 0;
         }
 
         nav.main li {
@@ -2521,12 +2580,6 @@ div.att-dwnl-section button:hover {
         div.close {
             right: 180px;
         }
-
-        div.fullSizeImg {
-            height: 240px;
-            top: -210px;
-        }
-
         div.menuL.active {
             display: none;
         }
@@ -2534,6 +2587,10 @@ div.att-dwnl-section button:hover {
         div.shops {
             width: 700px;
             margin-left: 0px;
+        }
+
+        div.shops.cf main {
+            height: 280px;
         }
 
         section.trading {
@@ -2623,8 +2680,10 @@ div.att-dwnl-section button:hover {
         }
 
         div.map {
-            left: 20px;
-            top: 10px;
+            width: 40%;
+            left: 0;
+            top: 60px;
+            height: 300px;
         }
 
         section.contact {
@@ -2655,12 +2714,77 @@ div.att-dwnl-section button:hover {
         }
 
         @media (max-width: 600px) {
+            button.waytoForm {
+                display: none;
+            }
+
+            div.waysTo {
+                top: 100px;
+            }
+
+            form.contactForm {
+                top: 950px;
+            }
+
+            div.formInfo {
+                top: 1500px;
+                left: 20%;
+            }
+
+            div.btn-descript {
+                left: 15%;
+                top: 405px;
+            }
+
+            button.toassortment.active {
+                top: 88%;
+                width: 100px;
+                height: 33px;
+                font-size: 12px;
+            }
+
+            div.shops.long div.shopmap {
+                display: none;
+            }
+
+            div.shops.long div.double div.adreses {
+                margin: 50px 5px 10px 10px;
+            }
+
+            div.shops.long button.link-to-map {
+                display: block;
+                position: relative;
+                left: 75%;
+                bottom: 50%;
+                background-color: white;
+                border: 1px solid black;
+            }
+
+            div.shops.long div.adreses {
+                width: 70%;
+            }
+
+            div.shops.long button.link-to-map a {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                text-decoration: none;
+                color: black;
+                font-weight: bold;
+            }
+
+            div.ca.shops.long {
+                margin-top: 220px;
+            }
+
             nav.main {
                 top: 0px;
                 left: 0;
                 width: calc(100%/6);
                 margin: 0 0;
                 z-index: 20;
+            }
+
+            nav.main.active {
+                display: none;
             }
 
             nav.main.active {
@@ -3003,4 +3127,198 @@ div.att-dwnl-section button:hover {
                 animation: none;
             }
 
+            footer {
+                display: none;
+            }
+
+            button.login {
+                display: none;
+            }
+
+            div.annocontent {
+                margin-top: 120px;
+                left: 50%;
+                width: 60%;
+            }
+
+            div.annocontent h1 {
+                margin-left: 0;
+                font-size: 20px;
+            }
+
+            div.annocontent div {
+                font-size: 20px;
+            }
+            }
+
+            @media (max-width: 400px) {
+                div.banner {
+                    display: none;
+                }
+
+                div.name {
+                    top: 0;
+                    width: 100%;
+
+                }
+
+                div.logo {
+                    width: 100%;
+                    background-image: none;
+                }
+
+                nav.main {
+                    width: calc(100%/4);
+                }
+
+                div.infoLeft h3,
+                div.infoRight h3 {
+                    display: none;
+                }
+
+                div.databaseload.progress {
+                    width: 90%;
+                }
+
+                div.fullsizeImg {
+                    height: 10em;
+                }
+
+                article.fullsize p {
+                    font-size: 10px;
+                }
+
+                article.fullsize h2 {
+                    font-size: 18px;
+                }
+
+                article.fullsize h1 {
+                    font-size: 7px;
+                }
+
+                div.shops {
+                    width: 95%;
+                    margin-left: 0;
+                }
+
+                div.btn-descript {
+                    left: 20%;
+                }
+
+                div.shops.long div.adreses {
+                    margin-top: 30px;
+                    width: 80%;
+                }
+
+                div.ca.shops.long div.adreses {
+                    width: 70%;
+
+                }
+
+                div.shops.cf {
+                    width: 70%;
+                    left: 28%;
+                    height: 520px;
+                }
+
+                div.shops.cf h1 {
+                    font-size: 20px;
+                }
+
+                div.shops.cf main {
+                    width: 85%;
+                    height: 350px;
+                    font-size: 10px;
+                    margin-top: 10px;
+                }
+
+                div.shops.cf main h2,
+                div.shops.cf main h3 {
+                    font-size: 10px;
+                }
+
+                div.btn-descript {
+                    left: 25%;
+                    top: 450px;
+                }
+
+                button.toassortment.active {
+                    top: 100%;
+
+                }
+
+                div.assortmentFoto {
+
+                    top: 100px;
+                    width: 50%;
+                    height: 15em;
+                }
+
+                div.assortment h1 {
+                    width: 90%;
+                }
+
+                div.begin,
+                div.past,
+                div.past2,
+                div.past3,
+                div.today {
+                    margin-left: 0;
+                }
+
+                div.activity {
+                    left: 62%;
+                    width: 70%;
+                    font-size: 12px;
+                }
+
+                div.annocontent {
+                    width: 50%;
+                    margin-top: 0;
+                    left: 60%;
+                }
+
+                div.annocontent h1,
+                div.annocontent h2 {
+
+                    font-size: 15px;
+                }
+
+                div.annocontent div {
+                    font-size: 10px;
+                }
+
+                div.annocontent p {
+                    font-size: 10px;
+                }
+
+                div.att-dwnl-section {
+                    bottom: -80px;
+                }
+
+                div.att-dwnl-section button {
+                    font-size: 5px;
+                }
+
+                div.map {
+                    margin-left: 0;
+
+                }
+
+                div.waysTo {
+                    left: 310px;
+                }
+
+                form.contactForm {
+                    top: 1050px;
+                    width: 350px;
+                }
+
+                div.formInfo {
+                    top: 1620px;
+                }
+
+                section.contact {
+                    border-bottom: none;
+                }
 }

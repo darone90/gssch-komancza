@@ -120,7 +120,7 @@ document.addEventListener('click', (e) => {
                 loading.classList.add('onload');
 
                 const foto = document.querySelector('#fileInput');
-                const data = foto.files[0];
+                const dataFile = foto.files[0];
                 const formData = new FormData();
                 
                 let i = paragrafs.length
@@ -138,7 +138,7 @@ document.addEventListener('click', (e) => {
                 formData.append("title" , title.value);
                 formData.append('date', document.querySelector('#dateArt').value);
                 formData.append('description', arr);
-                formData.append("foto", data);
+                formData.append("foto", dataFile);
 
                 fetch('/admin/news-add', {
                     method: 'POST',
@@ -146,9 +146,9 @@ document.addEventListener('click', (e) => {
                 })
                     .then(res => {
                         if(res.redirected) {
-                            return data = res.url
+                            return data = res.url;
                         } else {
-                            return data = res.json()
+                            return data = res.json();
                         } 
                     })
                     .then(data => {

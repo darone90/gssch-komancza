@@ -559,6 +559,10 @@ button.accountChanges a {
         top: 10px;
         }
 
+        div.annoucement h1 {
+            margin-top: 2em;
+        }
+
         div.annoucement p {
             margin: 2.5rem 0 1rem 20px;
         }

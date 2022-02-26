@@ -31,7 +31,6 @@ export default class extends viewModel {
         };
 
         unreaded.forEach(message => {
-
             const messageBox = document.createElement('div');
             messageBox.classList.add('unreadedBox');
             messageBox.setAttribute('id',`${message._id}`)
