@@ -1,7 +1,7 @@
+Mała aktualizacja
 
-na pm2 lub serwerze zrobić coś co  będzie restartowało appkę 
+przewijanie do gróry przy dodawaniu artykułu żeby było widać ładowanie
 
-problem z ścieżkami inaczej działa gdy uruchomione bezpośrednio z bin a inaczej z poiomu deploy
 
 
 

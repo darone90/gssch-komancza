@@ -11,7 +11,8 @@ const hasClass = (elem, className) => {
 const loadName= () => {
 
     const name = (cookies.filter(cookie => cookie.includes('user-name')))[0].split('=');
-    nameBox.innerText = name[1];
+    const show = name[1].replace('%20', ' ');
+    nameBox.innerText = show;
     
 }
 

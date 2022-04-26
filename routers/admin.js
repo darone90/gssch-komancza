@@ -540,7 +540,7 @@ router
             };
         })
 
-    .post('/news-add',upload.single('foto'), async (req, res) => {
+    .post('/news-add', upload.single('foto'), async (req, res) => {
         
         const {title, date, description} = req.body;
         const parag = description.split(/(<,)/);

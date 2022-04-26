@@ -9,23 +9,32 @@ export default class extends viewModel {
     getUsers(data) {
         const loadingBox = document.querySelector('.loading');
         const userList = document.querySelector('.usersList');
-        data.forEach(user => {
-            const {codeOne : name, codeThree : permission, _id} = user;
+        console.log(data);
+        if(data.length < 1) {
             const userBox = document.createElement('div');
             userBox.classList.add('userBox');
-            userBox.classList.add(`${_id}`);
+            userBox.innerText = "Jesteś jedynym użytkownikiem !";
+            userList.appendChild(userBox);
 
-            userBox.innerHTML = `
-                <h2>Nazwa użytkownika: ${name}</h2>
-                <h3>Poziom uprawnień: ${permission ? "Master" : "Normal"}</h3>
-                <button class='${_id} permissionChange all'>${permission ? 'Usuń uprawnienia' : "Dodaj upranienia"}</button>
-                <button class='${_id} removeUser all'>Usuń użytkownika</button>
-            `
-
-            userList.appendChild(userBox)
-            loadingBox.classList.add('hide');
-        })
-    }
+        } else {
+            data.forEach(user => {
+                const {codeOne : name, codeThree : permission, _id} = user;
+                const userBox = document.createElement('div');
+                userBox.classList.add('userBox');
+                userBox.classList.add(`${_id}`);
+    
+                userBox.innerHTML = `
+                    <h2>Nazwa użytkownika: ${name}</h2>
+                    <h3>Poziom uprawnień: ${permission ? "Master" : "Normal"}</h3>
+                    <button class='${_id} permissionChange all'>${permission ? 'Usuń uprawnienia' : "Dodaj upranienia"}</button>
+                    <button class='${_id} removeUser all'>Usuń użytkownika</button>
+                `;
+                userList.appendChild(userBox)     
+            });
+            
+        };
+        loadingBox.classList.add('hide');
+    };
 
     async getHtml() {
         const loadingBox = document.querySelector('.loading');
