@@ -13,7 +13,7 @@ export default class extends viewModel {
         <h1>Zarząd "GSSCH" w Komańczy</h1>
         <ul>
             <li>Prezes Zarządu: <strong>Grażyna Stach</strong></li>
-            <li>Zastępca Prezesa: <strong>Maria Milasz</strong></li>
+            <li>Zastępca Prezesa: <strong>Macko Bogumiła</strong></li>
             <li>Członek Zarządu: <strong>Irena Pilecka</strong></li>
         </ul>
         </div>

@@ -1,4 +1,4 @@
-   
+
    const buttonsHandler = (target, className) => {
         const mainButtons = [document.querySelector('.showAnno'), document.querySelector('.archivedAnno'), document.querySelector('.addAnno')];
         mainButtons.forEach( btn => btn.classList.remove('active'));
@@ -65,6 +65,7 @@ document.addEventListener('click', (e) => {
 
             if(window.confirm('Ogłoszenie przygotowane do wysłania. Opublikować?')){
                 const loading = document.querySelector('.loadingBox');
+                scrollContent(0);
                 loading.classList.add('onload');
 
                 const attachements = [...document.querySelectorAll('.attachementInput')];

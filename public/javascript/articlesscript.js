@@ -1,3 +1,5 @@
+
+
 const removeParagraph = (e) => {
 
     e.preventDefault();
@@ -117,6 +119,7 @@ document.addEventListener('click', (e) => {
             if(window.confirm('Artykuł gotowy do publikacji, kontynuować ?')) {
 
                 const loading = document.querySelector('.loadingBox');
+                scrollContent(0);
                 loading.classList.add('onload');
 
                 const foto = document.querySelector('#fileInput');

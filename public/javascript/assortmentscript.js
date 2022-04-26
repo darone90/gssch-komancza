@@ -54,6 +54,7 @@ document.addEventListener('click', (e) => {
 
         if(window.confirm('Produkt gotowy do publikacji, kontynuować?')){
             const loading = document.querySelector('.loadingBox');
+            scrollContent(0);
             loading.classList.add('onload');
             const fotodata = document.querySelector('#fileInput');
             const foto = fotodata.files[0];

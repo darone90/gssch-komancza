@@ -36,7 +36,14 @@ const loadSpaceBars = () => {
     barD.style.width = `${percentD}%`;
 
     
-}
+};
+
+const scrollContent = (e)=> {
+    window.scrollTo({
+        top:e,
+        behavior: 'smooth'
+    });
+};
 
 
 document.addEventListener('click', (e) => {
