@@ -113,6 +113,8 @@ document.addEventListener('click', (e) => {
                         } else {
                             window.location.href = data;
                         };
+                    }).catch(err => {
+                        errorFunction();
                     });
             } else { return };
         };
@@ -175,6 +177,8 @@ document.addEventListener('click', (e) => {
                 } else {
                     window.location.href = data
                 }
+            }).catch(err => {
+                errorFunction();
             });
         } else {
             return;
@@ -226,6 +230,8 @@ document.addEventListener('click', (e) => {
             }
             popup.appendChild(attBox);
 
+            }).catch(err => {
+                errorFunction();
             });
     };
 
@@ -358,6 +364,8 @@ document.addEventListener('click', (e) => {
                         } else {
                             window.location.href = data;
                         }
+                    }).catch(err => {
+                        errorFunction();
                     });
         } else {
             return;
@@ -395,6 +403,8 @@ document.addEventListener('click', (e) => {
                 } else {
                     window.location.href = data;
                 }
+            }).catch(err => {
+                errorFunction();
             })
     };
 
@@ -431,6 +441,8 @@ document.addEventListener('click', (e) => {
                 } else {
                     window.location.href = data;
                 }
+            }).catch(err => {
+                errorFunction();
             })
     };
 
@@ -464,6 +476,8 @@ document.addEventListener('click', (e) => {
                     } else {
                         window.location.href = data;
                     }
+                }).catch(err => {
+                    errorFunction();
                 })
         }
     };

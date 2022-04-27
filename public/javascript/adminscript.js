@@ -4,6 +4,13 @@ const cookies = document.cookie.split(';')
 
 let currentObjectId;
 
+const errorFunction = () => {
+    const page = document.querySelector('.loadingBox');
+    page.classList.add('onload');
+    page.innerText = "Wystąpił błąd w trakcie ładowania zasobów... sprawdź połączenie z internetem następnie odśwież stronę..."
+    page.style.color ='red';
+}
+
 const hasClass = (elem, className) => {
     return elem.classList.contains(className);
 };

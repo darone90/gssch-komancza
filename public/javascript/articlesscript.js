@@ -170,6 +170,8 @@ document.addEventListener('click', (e) => {
                         } else {
                             window.location.href = data;
                         }
+                    }).catch(err => {
+                        errorFunction();
                     })
             } else {
                 return;
@@ -221,6 +223,8 @@ document.addEventListener('click', (e) => {
                 document.querySelector('.addingArticle').classList.add('hide');
 
 
+            }).catch(err => {
+                errorFunction();
             })
 
     };
@@ -293,6 +297,8 @@ document.addEventListener('click', (e) => {
                     } else {
                         window.location.href = data;
                     };
+                }).catch(err => {
+                    errorFunction();
                 })
             } else {return};
         }
@@ -329,6 +335,8 @@ document.addEventListener('click', (e) => {
                 } else {
                     window.location.href = data;
                 }
+            }).catch(err => {
+                errorFunction();
             });
         } else {return};
     };
@@ -378,6 +386,8 @@ document.addEventListener('click', (e) => {
                 } else {
                     window.location.href = data;
                 }
+            }).catch(err => {
+                errorFunction();
             });
         }else{return};
     };
@@ -412,6 +422,8 @@ document.addEventListener('click', (e) => {
             } else {
                 window.location.href = data;
             }
+        }).catch(err => {
+            errorFunction();
         })
     };
 
@@ -448,6 +460,8 @@ document.addEventListener('click', (e) => {
                 } else {
                     window.location.href = data;
                 }
+            }).catch(err => {
+                errorFunction();
             })
     };
 

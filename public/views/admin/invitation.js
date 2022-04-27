@@ -13,7 +13,7 @@ export default class extends viewModel {
         <p>Aby zarządzać treścią strony skorzystaj z menu po lewej stronie. Aby zmienić swoje dane do logowania 
         należy skożystać z przycisku "Zmiana danych konta". Przycisk wylogowujący powodujący opuszczenie 
         panelu administratorskiego znajduje się w lewym dolnym rogu ekranu. Dodawanie użytkowników uprawnionych 
-        do zarządzania tręścia strony odbywa się w poprzez stronę zarządzania użytkownikami ( przzycisk "Zarządzanie użytkownikami"
+        do zarządzania tręścia strony odbywa się w poprzez stronę zarządzania użytkownikami ( przycisk "Zarządzanie użytkownikami"
         "). Skorzystanie z tego przycisku wymaga uprawnień wyższego stopnia (Master)</p>
         `
     }

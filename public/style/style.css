@@ -826,7 +826,7 @@ div.shops.long {
     }
 
     100% {
-        height: 920px;
+        height: 1020px;
     }
 }
 
@@ -860,13 +860,12 @@ div.shops.long {
 }
 
 div.shopBanner {
-    position: relative;
+    position: absolute;
     display: block;
     width: 410px;
-    height: 370px;
     margin: 10px;
     left: 61%;
-    top: -390px;
+    top: 70px;
 }
 div.shops h1 {
     width: 50%;
@@ -916,11 +915,11 @@ div.btn-descript {
     font-size: 1.2rem;
 }
 div.moreBtn {
-    position: relative;
+    position: absolute;
     width: 50px;
     height: 50px;
     background-color: orangered;
-    top: -390px;
+    bottom: 10px;
     left: 10px;
     font-size: 40px;
     line-height: 50px;
@@ -979,14 +978,14 @@ div.shops div.extends p {
     animation: opac 2s ease forwards;
 }
 div.shops.long div.extends {
-    position: relative;
+    position: absolute;
     display: block;
     width: 88%;
     animation-delay: 0.5s;
     animation: ext 0.5s ease forwards;
     z-index: 5;
     left: 80px;
-    top: -390px
+    bottom: 250px;
 }
 div.shops div.adreses a {
     display: none;
@@ -998,7 +997,6 @@ div.shops div.shopmap {
 
 div.shops.long div.adreses {
     width: 50%;
-    height: 100%;
     border-right: 2px solid black;
     border-bottom: 2px solid black;
     box-shadow: 2px 5px 5px black;
@@ -1008,11 +1006,10 @@ div.shops.long div.adreses {
 div.shops.long div.shopmap {
     border: 2px solid black;
     display: block;
-    position: relative;
-    height: 200%;
+    position: absolute;
     width: 45%;
-    float: right;
-    top: -102%;
+    bottom: -160px;
+    right: 10px;
     margin-left: 5px;
     opacity: 0;
     animation: opac 2s ease forwards;
@@ -1055,10 +1052,31 @@ div.ca.shops div.extends div.shopmap {
     left: -10%;
     overflow: hidden;
 }
+
+div.work-hours {
+    position: absolute;
+    width: 40%;
+    left: 9%;
+    border: 2px solid black;
+    box-shadow: 0 5px 5px black;
+    bottom: 90px;
+    font-family: arial;
+    font-weight: bold;
+    padding: 10px;
+    display: none;
+}
+
+div.shops.long div.work-hours {
+    display: block;
+}
+
+div.work-hours h3{
+    margin-bottom: 10px;
+}
 /*/////////////////////////////////bakrey////////////////////////////////*/
 
-div.shopBanner.bakery {
-    background-image: url(../images/fullsize/bagiet.jpg);
+div.shopBanner.bakery img{
+    width: 100%;
 }
 
 div.assortment {

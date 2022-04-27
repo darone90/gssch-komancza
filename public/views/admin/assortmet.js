@@ -59,11 +59,12 @@ export default class extends viewModel {
             .then(data => this.assortmentLoad(data.reverse()));
 
         return `
-        <button class='addProduct active'>Dodaj produkt</button>
+        <button class='addProduct'>Dodaj produkt</button>
         <button class='showProducts'>Opublikowane produkty</button>
+        <button class='bakery-info active'>informacje</button>
         <button class='mainPage'><a href="/bakery">Podgląd strony głównej</a></button>
         <button class='refresh'><a href="/admin/assortment"><i class="fas fa-sync-alt"></i>Odśwież</a></button>
-        <div class='addingArticle'>
+        <div class='addingArticle hide'>
             <form>
                 <label for="prodName" id='prodNameLab'>Nazwa produktu</label>
                 <input type="text" id='prodName' placeholder='Nazwa produkt'>
@@ -96,6 +97,37 @@ export default class extends viewModel {
                 <img class='img' src='./public/images/noFoto'>
                 <button class='removeProductFoto'>Usuń zdjęcie</button>
                 <h1 class='idBox'></h1>
+            </div>
+            <div class='editing-informations'>
+                <h1>Aktualne informacje o Piekarni: </h1>
+                <div class='saving-info hide'>Zmiany zostały zapiasne poprawnie!</div>
+                <div class='editing-informations__wrap'>
+                    <h2>Opis: </h2>
+                    <textarea class='bakery-information-input'></textarea>
+                    <div class='editing-informations__fotowrap'>
+                        <h3>Zdjęcie: </h3>
+                        <img src='' alt='zdjęcie piekarnia'>
+                        <label>Zmień zdjęcie:
+                        <input type="file" id="bakery-information-foto" accept=".jpg,.png">
+                        </label>
+                    </div>
+                </div>
+                <h2>Godziny otwarcia: </h2>
+                <textarea class='bakery-informations-hours'></textarea>
+                <label>
+                    Telefon:
+                    <input type='text' id='bakery-inform-tel'>
+                </label>
+                <label>
+                    Email:
+                    <input type='text' id='bakery-inform-mail'>
+                </label>
+                <label>
+                    Adres:
+                    <input type='text' id='bakery-inform-addres'>
+                </label>
+                
+                <button class='bakery-info-edit'>Zapisz zmiany</button> 
             </div>
     `;
     }

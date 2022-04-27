@@ -120,6 +120,11 @@ button.accountChanges a {
         font-size: 1rem;
     }
 
+    ul li:nth-child(6) a {
+        font-size: 1rem;
+        margin-bottom: 50px;
+    }
+
     div#app {
         position: absolute;
         left: 17rem;
@@ -324,6 +329,7 @@ button.accountChanges a {
         margin-bottom: 40px;
     }
 
+    button.blue,
     button.showReaded,
     button.refresh,
     button.showUnreaded,
@@ -334,6 +340,7 @@ button.accountChanges a {
     button.showArticles,
     button.clearArt,
     button.addProduct,
+    button.bakery-info,
     button.showProducts,
     button.closeEditProduct,
     button.showArchivedArticles,
@@ -349,6 +356,7 @@ button.accountChanges a {
         transition: 0.4s;
     }
 
+    button.blue.active
     button.showReaded.active,
     button.showUnreaded.active,
     button.addAnno.active,
@@ -358,11 +366,14 @@ button.accountChanges a {
     button.showArticles.active,
     button.addProduct.active,
     button.showProducts.active,
+    button.bakery-info.active,
     button.closeEditProduct.active,
     button.showArchivedArticles.active,
     button.refresh:hover,
+    button.blue:hover,
     button.showReaded:hover,
     button.showUnreaded:hover,
+    button.bakery-info:hover,
     button.addAnno:hover,
     button.showAnno:hover,
     button.archivedAnno:hover,
@@ -409,7 +420,8 @@ button.accountChanges a {
     button.removeParagraphEdit.hide,
     button.mainPage.hide,
     button.refreshArticle.hide,
-    div.editArticle.hide {
+    div.editArticle.hide,
+    div.editing-informations.hide {
         display: none;
     }
 
@@ -550,6 +562,78 @@ button.accountChanges a {
         width: 70%;
         margin: 10px 0 20px 10px;
         box-shadow: 4px 4px 5px black;
+    }
+
+    div.editing-informations {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 60px;
+    }
+
+    div.editing-informations h1 {
+        margin: 20px 0 50px;
+    }
+
+    div.editing-informations h2 {
+        margin: 10px
+    }
+
+    div.editing-informations label {
+        margin: 10px 20px;
+    }
+
+    div.editing-informations label input{
+        margin-left: 30px;
+    }
+
+    div.saving-info {
+        color: green;
+        font-weight: bold;
+        font-size: 20px;
+        border: 2px solid black;
+        margin-bottom: 30px;
+        padding: 10px;
+    }
+
+    div.saving-info.hide {
+        display: none;
+    }
+
+    div.editing-informations textarea.bakery-information-input {
+        width: 60%;
+        min-height: 300px;
+
+    }
+
+    div.editing-informations__wrap {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    div.editing-informations__fotowrap {
+        margin-left: 20px;
+        width: 350px;
+        height: 300px;
+    }
+
+    div.editing-informations__fotowrap h3 {
+        margin-bottom: 20px;
+    }
+
+    div.editing-informations__fotowrap img{
+        display: block;
+        width: 100%;
+    }
+
+    textarea.bakery-informations-hours {
+        width: 40%;
+        min-height: 20%;
+        margin-left: 10%;
+        margin-bottom: 20px;
     }
 
     div.annoucement h2 {

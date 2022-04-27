@@ -41,6 +41,8 @@ document.addEventListener('click', (e) => {
                 } else {
                     window.location.href = data;
                 };
+            }).catch(err => {
+                errorFunction();
             })
 
     }; 
@@ -68,6 +70,8 @@ document.addEventListener('click', (e) => {
                     } else {
                         window.location.href = data;
                     }
+                }).catch(err => {
+                    errorFunction();
                 })
         }
     };

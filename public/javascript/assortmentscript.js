@@ -1,3 +1,5 @@
+
+
 document.addEventListener('click', (e) => {
 
     if(hasClass(e.target, 'addProduct')) {
@@ -6,7 +8,9 @@ document.addEventListener('click', (e) => {
         e.target.classList.add('active');
 
         document.querySelector('.showProducts').classList.remove('active');
+        document.querySelector('.bakery-info').classList.remove('active');
         document.querySelector('.addingArticle').classList.remove('hide');
+        document.querySelector('.editing-informations').classList.add('hide');
         document.querySelector('.actualProducts').classList.add('hide');
         document.querySelector('.editArticle').classList.add('hide');
     };
@@ -17,9 +21,25 @@ document.addEventListener('click', (e) => {
         e.target.classList.add('active');
 
         document.querySelector('.addProduct').classList.remove('active');
+        document.querySelector('.bakery-info').classList.remove('active');
         document.querySelector('.addingArticle').classList.add('hide');
         document.querySelector('.actualProducts').classList.remove('hide');
         document.querySelector('.editArticle').classList.add('hide');
+        document.querySelector('.editing-informations').classList.add('hide');
+
+    };
+
+    if(hasClass(e.target, 'bakery-info')) {
+
+        e.preventDefault();
+        e.target.classList.add('active');
+
+        document.querySelector('.addProduct').classList.remove('active');
+        document.querySelector('.showProducts').classList.remove('active');
+        document.querySelector('.addingArticle').classList.add('hide');
+        document.querySelector('.actualProducts').classList.add('hide');
+        document.querySelector('.editArticle').classList.add('hide');
+        document.querySelector('.editing-informations').classList.remove('hide');
 
     };
 
@@ -91,6 +111,9 @@ document.addEventListener('click', (e) => {
                     } else {
                         window.location.href = data;
                     };
+                })
+                .catch(err => {
+                    errorFunction();
                 });
             };
     };
@@ -124,6 +147,8 @@ document.addEventListener('click', (e) => {
                     } else {
                         window.location.href = data;
                     };
+                }).catch(err => {
+                    errorFunction();
                 })
         } else {return};
         
@@ -163,6 +188,8 @@ document.addEventListener('click', (e) => {
                         btn.disabled = true;
                     };
                     document.querySelector('.idBox').innerText = `idnetyfikator: ${data._id}`
+        }).catch(err => {
+            errorFunction();
         });
 
     };
@@ -202,6 +229,8 @@ document.addEventListener('click', (e) => {
                     } else {
                         window.location.href = data;
                     };
+                }).catch(err => {
+                    errorFunction();
                 });
             }else{return};
     };
@@ -261,10 +290,102 @@ document.addEventListener('click', (e) => {
                     } else {
                         window.location.href = data;
                     };
+                }).catch(err => {
+                    errorFunction();
                 })
             } else {return};
         }
+    };
 
+    if(hasClass(e.target, 'bakery-info-edit')) {
+        e.preventDefault();
+        if(window.confirm('Opublikować zmiany?')){
+            const text = document.querySelector('.bakery-information-input').value;
+            const hours = document.querySelector('.bakery-informations-hours').value;
+            const tel = document.querySelector('#bakery-inform-tel').value;
+            const mail = document.querySelector('#bakery-inform-mail').value;
+            const addres = document.querySelector('#bakery-inform-addres').value;
+            const foto = document.querySelector('#bakery-information-foto').files[0];
 
+            console.log(text, hours, tel, mail, addres, foto);
+
+            if(!foto){
+                const loading = document.querySelector('.loadingBox');
+                loading.classList.add('onload');
+
+                fetch('/admin/bakery/change', {
+                    method: 'PATCH',
+                    headers: {'Content-Type' : 'application/json'},
+                    body: JSON.stringify({
+                        text,
+                        hours,
+                        tel,
+                        mail,
+                        addres,
+                        foto
+                    }),
+                })
+                .then(res => {
+                    if(res.redirected) {
+                        return data = res.url
+                    } else {
+                        return data = res.json()
+                    } 
+                })
+                .then(data => {
+                    if(data.ok) {
+                        loading.classList.remove('onload');
+                        document.querySelector('.saving-info').classList.remove('hide');
+                        setTimeout(()=> {
+                            window.location.pathname = '/admin/assortment';
+                        },1800);
+                    } else {
+                        window.location.href = data;
+                    };
+                }).catch(err => {
+                    errorFunction();
+                });
+                    
+
+            } else {
+
+                const loading = document.querySelector('.loadingBox');
+                loading.classList.add('onload');
+
+                const formData = new FormData()
+                formData.append('text' , text);
+                formData.append('hours' , hours);
+                formData.append('tel', tel);
+                formData.append('mail', mail);
+                formData.append('addres', addres);
+                formData.append('foto', data);
+
+                fetch('/admin/bakery/changewithfoto', {
+                    method: 'PATCH',
+                    body: formData
+                })
+                .then(res => {
+                    if(res.redirected) {
+                        return data = res.url
+                    } else {
+                        return data = res.json()
+                    } 
+                })
+                .then(data => {
+                    if(data.ok) {
+                        loading.classList.remove('onload');
+                        document.querySelector('.saving-info').classList.remove('hide');
+                        setTimeout(()=> {
+                            window.location.pathname = '/admin/assortment';
+                        },1800);
+                    } else {
+                        window.location.href = data;
+                    };
+                }).catch(err => {
+                    errorFunction();
+                });
+            }
+        }
+        return;
     };
 });
