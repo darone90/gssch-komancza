@@ -313,7 +313,7 @@ document.addEventListener('click', (e) => {
                 const loading = document.querySelector('.loadingBox');
                 loading.classList.add('onload');
 
-                fetch('/admin/bakery/change', {
+                fetch('/admin/shop/change', {
                     method: 'PATCH',
                     headers: {'Content-Type' : 'application/json'},
                     body: JSON.stringify({
@@ -322,7 +322,7 @@ document.addEventListener('click', (e) => {
                         tel,
                         mail,
                         addres,
-                        foto
+                        title: 'bakery',
                     }),
                 })
                 .then(res => {
@@ -353,6 +353,7 @@ document.addEventListener('click', (e) => {
                 loading.classList.add('onload');
 
                 const formData = new FormData()
+                formData.append('title', 'bakery');
                 formData.append('text' , text);
                 formData.append('hours' , hours);
                 formData.append('tel', tel);
@@ -360,7 +361,7 @@ document.addEventListener('click', (e) => {
                 formData.append('addres', addres);
                 formData.append('foto', data);
 
-                fetch('/admin/bakery/changewithfoto', {
+                fetch('/admin/shop/changewithfoto', {
                     method: 'PATCH',
                     body: formData
                 })

@@ -5,7 +5,8 @@ import Articles from "../views/admin/articles.js";
 import Assortment from "../views/admin/assortmet.js";
 import UserDataChange from "../views/admin/userchanges.js";
 import Base from "../views/admin/base.js";
-
+import Tradings from '../views/admin/tradings.js';
+ 
 
 const router = async () => {
     const routes = [
@@ -15,6 +16,7 @@ const router = async () => {
         {path: '/admin/articles', view: Articles},
         {path: '/admin/assortment', view: Assortment},
         {path: '/admin/userdatachange', view: UserDataChange},
+        {path: '/admin/shops', view: Tradings},
         {path: '/admin/base', view: Base},
     ];
 

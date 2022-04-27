@@ -59,12 +59,12 @@ export default class extends viewModel {
             .then(data => this.assortmentLoad(data.reverse()));
 
         return `
-        <button class='addProduct'>Dodaj produkt</button>
+        <button class='addProduct active' >Dodaj produkt</button>
         <button class='showProducts'>Opublikowane produkty</button>
-        <button class='bakery-info active'>informacje</button>
+        <button class='bakery-info '>Informacje</button>
         <button class='mainPage'><a href="/bakery">Podgląd strony głównej</a></button>
         <button class='refresh'><a href="/admin/assortment"><i class="fas fa-sync-alt"></i>Odśwież</a></button>
-        <div class='addingArticle hide'>
+        <div class='addingArticle '>
             <form>
                 <label for="prodName" id='prodNameLab'>Nazwa produktu</label>
                 <input type="text" id='prodName' placeholder='Nazwa produkt'>
@@ -98,7 +98,7 @@ export default class extends viewModel {
                 <button class='removeProductFoto'>Usuń zdjęcie</button>
                 <h1 class='idBox'></h1>
             </div>
-            <div class='editing-informations'>
+            <div class='editing-informations hide'>
                 <h1>Aktualne informacje o Piekarni: </h1>
                 <div class='saving-info hide'>Zmiany zostały zapiasne poprawnie!</div>
                 <div class='editing-informations__wrap'>

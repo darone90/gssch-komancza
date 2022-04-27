@@ -268,6 +268,14 @@ if (errorType === 'saveing-news') {
     `;
 };
 
+if (errorType === 'databaseproblem-updating-shop') {
+    p.innerText = `
+        Wystąpił problem w trakcie zmiany informacji o sklepie, 
+        dane najprawdopodbniej nie zostały zapisane... ,
+        sprubuj za chwilę.
+    `;
+};
+
 
 
 

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const {unlink, stat} = require('fs').promises;
+const Shop = require('../public/models/bakeryDB.js');
 const Message = require('../public/models/messageDB.js');
 const Anno = require('../public/models/annoucementsDB.js');
 const News = require('../public/models/newsDB.js');
@@ -328,6 +329,37 @@ router
                 errorHandle(res, err, 'databaseproblem-unreadtoread');
             }
         })
+    
+    .patch('/shop/change', async (req, res) => {
+
+        const {text, hours, tel, mail, addres, title} = req.body;
+        const filter = {title,};
+        const update = {text, hours, tel, mail, addres};
+        try {
+            await Shop.findOneAndUpdate(filter, update);
+            res.json({ok: true});
+        } catch (err) {
+            errorHandle(res, err, 'databaseproblem-updating-shop')
+        }
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     .put('/anno-edit', uploadAttachement.array('attachements',8), async (req, res) => {
 

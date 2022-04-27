@@ -46,5 +46,5 @@ export default class extends viewModel {
         <button class='bakery-info-edit'>Zapisz zmiany</button> 
     </div>
         `
-    }
+    };
 };

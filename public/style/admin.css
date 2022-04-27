@@ -356,7 +356,7 @@ button.accountChanges a {
         transition: 0.4s;
     }
 
-    button.blue.active
+    button.blue.active,
     button.showReaded.active,
     button.showUnreaded.active,
     button.addAnno.active,
