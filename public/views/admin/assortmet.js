@@ -127,7 +127,7 @@ export default class extends viewModel {
                     <input type='text' id='bakery-inform-addres'>
                 </label>
                 
-                <button class='bakery-info-edit'>Zapisz zmiany</button> 
+                <button class='bakery-info-edit blue'>Zapisz zmiany</button> 
             </div>
     `;
     }

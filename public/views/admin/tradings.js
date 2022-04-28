@@ -8,14 +8,14 @@ export default class extends viewModel {
 
     async getHtml() {
         return `
-        <button class='blue delikatesy active'>Delikatesy centrum</button>
+        <button class='blue delikatesy'>Delikatesy centrum</button>
         <button class='blue sklep'>Sklep spożywczy</button>
         <button class='blue przemyslowy'>Sklep przemysłowy</button>
         <button class='blue budowlany'>Sklep budowlany</button>
         <button class='blue obwozny'>Handel obwoźny</button>
 
-        <div class='editing-informations'>
-        <h1>Aktualne informacje o Piekarni: </h1>
+        <div class='editing-informations hide'>
+        <h1></h1>
         <div class='saving-info hide'>Zmiany zostały zapiasne poprawnie!</div>
         <div class='editing-informations__wrap'>
             <h2>Opis: </h2>
@@ -43,7 +43,7 @@ export default class extends viewModel {
             <input type='text' id='bakery-inform-addres'>
         </label>
         
-        <button class='bakery-info-edit'>Zapisz zmiany</button> 
+        <button class='shops-info-edit blue'>Zapisz zmiany</button> 
     </div>
         `
     };

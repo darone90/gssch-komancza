@@ -153,8 +153,10 @@ router
             } catch (err) {
                 errorHandle(res, err, 'databaseproblem-readasso-one')
             };
+
         })
-        
+
+
     .delete('/anno-delete/:id', async (req, res) => {
             const filter = {_id : req.params.id};
             try {
@@ -343,23 +345,27 @@ router
         }
     })
 
+    .patch('/shop/changewithfoto',upload.single('foto'), async (req, res) => {
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        const {text, hours, tel, mail, addres, title} = req.body;
+        const foto = req.file.filename;
+        const filter = {title,};
+        try {
+            const data = await Shop.findOne(filter);
+            const path = '../public/images/imagesDB/' + `${data.foto}`;
+            await unlink(path);
+        } catch (err){
+            errorHandle(res, err, 'databaseproblem-updating-shop');
+        }
+        const update = {text, hours, tel, mail, addres, foto};
+        try {
+            await Shop.findOneAndUpdate(filter, update);
+            res.json({ok: true});
+        } catch (err) {
+            errorHandle(res, err, 'databaseproblem-updating-shop')
+        }
+    })
 
     .put('/anno-edit', uploadAttachement.array('attachements',8), async (req, res) => {
 
@@ -399,6 +405,7 @@ router
                 errorHandle(res, err, 'databaseproblem-editing');
             };         
         })
+
 
     .put('/news-edit', upload.single('foto'), async (req, res) => {
 

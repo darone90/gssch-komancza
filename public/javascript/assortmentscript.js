@@ -41,6 +41,30 @@ document.addEventListener('click', (e) => {
         document.querySelector('.editArticle').classList.add('hide');
         document.querySelector('.editing-informations').classList.remove('hide');
 
+        const loading = document.querySelector('.loadingBox');
+        loading.classList.add('onload');
+
+        fetch('/shop/change/bakery', {
+            method : "GET"
+        })
+            .then(res => res.json())
+            .then(data => {
+                document.querySelector('.bakery-information-input').textContent = data.text;
+                document.querySelector('.bakery-informations-hours').textContent = data.hours;
+                document.querySelector('#bakery-inform-tel').value = data.tel;
+                document.querySelector('#bakery-inform-mail').value = data.mail;
+                document.querySelector('#bakery-inform-addres').value = data.addres;
+
+                if(data.foto) {
+                    document.querySelector('.editing-informations__fotowrap img').src = `../public/images/imagesDB/${data.foto}`
+                } else {
+                    document.querySelector('.editing-informations__fotowrap img').src = `../public/images/noFoto.jpg`
+                }
+                loading.classList.remove('onload');
+            })
+            .catch(err => {
+                errorFunction();
+            });
     };
 
     if(hasClass(e.target, 'sendProduct')) {
@@ -307,8 +331,6 @@ document.addEventListener('click', (e) => {
             const addres = document.querySelector('#bakery-inform-addres').value;
             const foto = document.querySelector('#bakery-information-foto').files[0];
 
-            console.log(text, hours, tel, mail, addres, foto);
-
             if(!foto){
                 const loading = document.querySelector('.loadingBox');
                 loading.classList.add('onload');
@@ -359,7 +381,7 @@ document.addEventListener('click', (e) => {
                 formData.append('tel', tel);
                 formData.append('mail', mail);
                 formData.append('addres', addres);
-                formData.append('foto', data);
+                formData.append('foto', foto);
 
                 fetch('/admin/shop/changewithfoto', {
                     method: 'PATCH',

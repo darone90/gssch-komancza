@@ -10,6 +10,7 @@ const News = require('./public/models/newsDB.js');
 const Anno = require('./public/models/annoucementsDB.js');
 const Message = require('./public/models/messageDB.js');
 const Asso = require('./public/models/assortmentDB');
+const Shop = require('./public/models/bakeryDB');
 const loginRouter = require('./routers/login.js');
 const adminRouter = require('./routers/admin.js');
 const accountRouter = require('./routers/account.js');
@@ -87,6 +88,16 @@ app.get('/readanno', async (req,res) => {
         res.json(data)
     } catch(err) {
         errorHandle(res, err, "annoucement-reading")
+    }
+});
+
+app.get('/shop/change/:filter', async (req, res) => {
+    const filter = {title: req.params.filter};
+    try {
+        const data = await Shop.findOne(filter);
+        res.json(data);
+    } catch (err) {
+        errorHandle(res, err, 'databaseproblem-read-shop')
     }
 });
 

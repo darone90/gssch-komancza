@@ -7,7 +7,7 @@ let currentObjectId;
 const errorFunction = () => {
     const page = document.querySelector('.loadingBox');
     page.classList.add('onload');
-    page.innerText = "Wystąpił błąd w trakcie ładowania zasobów... sprawdź połączenie z internetem następnie odśwież stronę..."
+    page.innerText = "Wystąpił błąd w trakcie ładowania..."
     page.style.color ='red';
 }
 
