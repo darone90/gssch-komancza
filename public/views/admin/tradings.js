@@ -42,6 +42,23 @@ export default class extends viewModel {
             Adres:
             <input type='text' id='bakery-inform-addres'>
         </label>
+
+        <div class='second-shop hide'>
+            <h2>Godziny otwarcia Rzepedź: </h2>
+            <textarea class='bakery-informations-hours-sec'></textarea>
+            <label>
+                Telefon:
+                <input type='text' id='bakery-inform-tel-sec'>
+            </label>
+            <label>
+                Email:
+                <input type='text' id='bakery-inform-mail-sec'>
+            </label>
+            <label>
+                Adres:
+                <input type='text' id='bakery-inform-addres-sec'>
+            </label>
+        </div>
         
         <button class='shops-info-edit blue'>Zapisz zmiany</button> 
     </div>

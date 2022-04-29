@@ -6,82 +6,193 @@ export default class extends viewModel {
         this.setTitle('GS SCH Komańcza Placówki handlowe');
     }
 
+    dataloader(data) {
+
+        const loading = document.querySelector('div.databaseload');
+        const mainInfos = [...document.querySelectorAll('.shops')];
+    
+        mainInfos.forEach(main => {
+            const informations = data.find(text => text.title === main.classList[0]);
+            const text = main.querySelector('main');
+            const img = main.querySelector('.shopBanner img');
+            const hours = main.querySelector('.extends .work-hours p');
+            const tel = main.querySelector('.shop-tel');
+            const mail = main.querySelector('.shop-mail');
+
+            
+
+            text.textContent = informations.text;
+            img.src = `./public/images/imagesDB/${informations.foto}`;
+            hours.textContent = informations.hours;
+            tel.innerHTML = `<i class="fas fa-phone-square-alt"></i> ${informations.tel}`;
+            mail.innerHTML = `<i class="fas fa-envelope"></i> ${informations.mail}`;
+
+            if(informations.addres) {
+                const addres = main.querySelector('.shop-addres');
+                addres.innerHTML =`<i class="fa fa-home"></i> ${informations.addres}`
+            };
+
+            if(informations.secondAddres) {
+                const sTel = main.querySelector('.shop-tel-second');
+                const sMail = main.querySelector('.shop-mail-second');
+                const sAddres = main.querySelector('.shop-addres-second');
+                const sHours = main.querySelector('.second p')
+
+                sTel.innerHTML = `<i class="fas fa-phone-square-alt"></i> ${informations.secondAddres.tel}`;
+                sMail.innerHTML = `<i class="fas fa-envelope"></i> ${informations.secondAddres.mail}`;
+                sAddres.innerHTML = `<i class="fa fa-home"></i> ${informations.secondAddres.addres}`;
+                sHours.textContent = informations.secondAddres.hours;
+            }
+        })
+        loading.classList.remove('progress');
+    }
+
     async getHtml() {
+
+        const loading = document.querySelector('div.databaseload');
+        loading.classList.add('progress');
+
+        fetch('/shop/all', {
+            method: "GET"
+        })
+            .then(res => res.json())
+            .then(data => this.dataloader(data))
+
         return `
         <Section class='trading'>
         
-        <div class="ca shops">
+        <div class="center ca shops twins">
             <h1> Delikatesy Centrum </h1>
-            <main> Zakładka w budowie</main>
-            <div class='btn-descript'>Kontakt</div>
-            <div class='shopBanner'></div>
+            <main></main>
+            <div class='btn-descript'>Informacje i godziny otwarcia:</div>
+            <div class='shopBanner'>
+                <img src="" alt="zdjęcie delikatesy">
+            </div>
             <div class='moreBtn a'><i class="a fas fa-angle-double-up"></i></div>
             <div class='extends double'>
-                <div class='adreses'>
-                <p>Delikatesy Centrum Komańcza</p>
-                <a><i class="fas fa-phone-square-alt"></i> Telefon: 13 46 77 008</a>
-                <a><i class="fas fa-envelope"></i> E-mail: dckomancza@poczta.onet.pl</a>
+                <div class='addres-wrap'>
+                    <div class='adreses'>
+                        <p>Delikatesy Centrum Komańcza</p>
+                        <a class='shop-tel'></a>
+                        <a class='shop-mail'></a>
+                        <a class='shop-addres'></a>
+                    </div>
+                    <div class='adreses'>
+                        <p>Delikatesy Centrum Rzepedź</p>
+                        <a class='shop-tel-second'></a>
+                        <a class='shop-mail-second'></a>
+                        <a class='shop-addres-second'></a>
+                    </div>
+                        
                 </div>
-                <div class='shopmap'><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2599.6462362214456!2d22.072057215850297!3d49.339916074634445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473c05d0dd0fde93%3A0x9f6e0755ef4586a2!2sDelikatesy%20Centrum!5e0!3m2!1spl!2spl!4v1628844214619!5m2!1spl!2spl" width="320" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
-                <button class='link-to-map'><a href="https://www.google.com/maps?ll=49.339455,22.073628&z=15&t=m&hl=pl&gl=PL&mapclient=embed&cid=11488127765136639650">Lokalizacja</a></button>
-                <div class='adreses'>
-                <p>Delikatesy Centrum Rzepedź</p>
-                <a><i class="fas fa-phone-square-alt"></i> Telefon: 13 46 77 047</a>
-                <a><i class="fas fa-envelope"></i> E-mail: dcrzepedz@poczta.onet.pl</a>
+                <div class='work-hours'>
+                            <h3>Godziny otwarcia :</h3>
+                            <p>
+
+                            </p>
+                        </div>
+                <div class='work-hours second'>
+                        <h3>Godziny otwarcia :</h3>
+                        <p>
+
+                        </p>
                 </div>
-                <button class='link-to-map'><a href="https://www.google.com/maps?ll=49.363423,22.109619&z=15&t=m&hl=pl&gl=PL&mapclient=embed&cid=5592104541910277520">Lokalizacja</a></button>
-                <div class='shopmap'><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2598.4041097334302!2d22.107430515850854!3d49.363426072966895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473c05cdf1409017%3A0x4d9b2573df691d90!2sDelikatesy%20Centrum%20Rzeped%C5%BA%20Osiedle%20C%202!5e0!3m2!1spl!2spl!4v1628844352944!5m2!1spl!2spl" width="320" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
-            </div>
         </div>
-        <div class="cb shops">
+        </div>
+
+        <div class="food cb shops">
             <h1> Sklep spożywczo-przemysłowe </h1>
-            <main>Zakładka w budowie</main>
-            <div class='btn-descript'>Kontakt</div>
-            <div class='shopBanner'></div>
+            <main></main>
+            <div class='btn-descript'>Informacje i godziny otwarcia:</div>
+            <div class='shopBanner'>
+                <img src="" alt="zdjęcie Sklep spożywczy">
+            </div>
             <div class='moreBtn b'><i class="b fas fa-angle-double-up"></i></div>
             <div class='extends'>
                 <div class='adreses'>
-                <p>Kontakt</p>
-                <a><i class="fas fa-phone-square-alt"></i> Telefon: 13 46 77 513</a></div>
-                <button class='link-to-map'><a href="">Lokalizacja</a></button>
-                <div class='shopmap'></div>
+                    <p>Kontakt</p>
+                    <a class='shop-tel'></a>
+                    <a class='shop-mail'></a>
+                    <a class='shop-addres'></a>
+                </div>
+                <div class='work-hours'>
+                            <h3>Godziny otwarcia :</h3>
+                            <p>
+
+                            </p>
+                        </div>
             </div>
         </div>
-        <div class="cc shops">
+
+        <div class=" chemistry cc shops">
             <h1> Sklep przemysłowy </h1>
-            <main>Zakładka w budowie</main>
-            <div class='btn-descript'>Kontakt</div>
-            <div class='shopBanner'></div>
+            <main></main>
+            <div class='btn-descript'>Informacje i godziny otwarcia:</div>
+            <div class='shopBanner'>
+                <img src="" alt="zdjęcie Sklep spożywczy">
+            </div>
             <div class='moreBtn c'><i class="c fas fa-angle-double-up"></i></div>
             <div class='extends'>
                 <div class='adreses'>
                 <p>Kontakt</p>
-                <a><i class="fas fa-phone-square-alt"></i> Telefon: 13 46 78 019</a>
-                <a><i class="fas fa-envelope"></i> E-mail: dorota_sklep6@wp.pl</a>
+                <a class='shop-tel'></a>
+                <a class='shop-mail'></a>
+                <a class='shop-addres'></a>
                 </div>
-                <button class='link-to-map'><a href="">Lokalizacja</a></button>
-                <div class='shopmap'></div>
+                <div class='work-hours'>
+                            <h3>Godziny otwarcia :</h3>
+                            <p>
+
+                            </p>
+                        </div>
             </div>
         </div>
-        <div class="cd shops">
+        <div class=" build cd shops">
             <h1> Sklep budowlany </h1>
-            <main>Zakładka w budowie</main>
-            <div class='btn-descript'>Kontakt</div>
-            <div class='shopBanner'></div>
+            <main></main>
+            <div class='btn-descript'>Informacje i godziny otwarcia:</div>
+            <div class='shopBanner'>
+                <img src="" alt="zdjęcie Sklep spożywczy">
+            </div>
             <div class='moreBtn d'><i class="d fas fa-angle-double-up"></i></div>
+
+            <div class='extends'>
+                <div class='adreses'>
+                    <p>Kontakt</p>
+                    <a class='shop-tel'></a>
+                    <a class='shop-mail'></a>
+                    <a class='shop-addres'></a>
+                </div>
+                <div class='work-hours'>
+                            <h3>Godziny otwarcia :</h3>
+                            <p>
+
+                            </p>
+                        </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="moving ce shops">
+            <h1> Handel obwoźny</h1>
+            <main></main>
+            <div class='btn-descript'>Informacje:</div>
+            <div class='shopBanner'>
+                <img src="" alt="zdjęcie Sklep spożywczy">
+            </div>
+            <div class='moreBtn f'><i class="f fas fa-angle-double-up"></i></div>
             <div class='extends'>
                 <div class='adreses'>
                 <p>Kontakt</p>
-                <a><i class="fas fa-phone-square-alt"></i> Telefon: 13 46 78 507</a>
-                <a><i class="fas fa-envelope"></i> E-mail: sklep.nr2.komancza@gmail.com</a></div>
-                <button class='link-to-map'><a href="">Lokalizacja</a></button>
-                <div class='shopmap'></div>
+                <a class='shop-tel'></a>
+                <a class='shop-mail'></a>
+                <div class='work-hours'>
+                            <h3>Kiedy i gdzie pracujemy:</h3>
+                            <p>
+
+                            </p>
+                        </div>
             </div>
-        </div>
-        <div class=" ce shops">
-            <h1> Handel obwoźny</h1>
-            <main>Zakładka w budowie</main>
-            <div class='shopBanner'></div>
         </div>
         
     </Section>

@@ -132,6 +132,11 @@ document.addEventListener('click', function (e) {
         document.querySelector('.e').classList.toggle('active');
         document.querySelector('.cf').classList.toggle('long');
     }
+
+    else if (hasClass(e.target, 'f')) {
+        document.querySelector('.f').classList.toggle('active');
+        document.querySelector('.ce').classList.toggle('long');
+    }
     else if (hasClass(e.target, 'next')) {
         
         next(index+1, database.length);
@@ -504,7 +509,11 @@ aboutBtns.forEach((btn, index)=> {
 shopsBtns.forEach( (btn, index) => {
         btn.addEventListener('click', ()=> {
             activeShopsClean();
-            const shopHigh = document.querySelector('div.shops').clientHeight+125;
+            const shopsWindow = document.querySelectorAll('.shops');
+            shopsWindow.forEach(shop => shop.classList.remove('long'));
+            const btnsToDisactive = document.querySelectorAll('.moreBtn');
+            btnsToDisactive.forEach(btn => btn.classList.remove('active'));
+            const shopHigh = document.querySelector('div.shops').clientHeight+145;
             scrollContent(shopHigh*(index)+ 280);
         });
 } );

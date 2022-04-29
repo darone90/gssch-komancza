@@ -778,18 +778,14 @@ div.infoRight button:hover {
 /*/////////////////shops///////////////////////////////*/
 
 section.trading {
-    position: absolute;
+    margin-top: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     width: 90%;
     height: auto;
-    top: 400px;
-    transform: translateX(-50%);
-    left: 50%;
     opacity: 0;
     animation: opac 0.8s ease forwards;
-}
-
-button.link-to-map {
-    display: none;
 }
 
 @keyframes opac {
@@ -809,7 +805,7 @@ div.shops {
     animation: longRevers 0.4s ease forwards;
     border: 2px solid darkgrey;
     margin: 30px 30px 120px 30px;
-    left: 100px;
+    left: 0px;
 }
 
 div.shops:nth-child(even) {
@@ -818,6 +814,30 @@ div.shops:nth-child(even) {
 
 div.shops.long {
     animation: long 0.4s ease forwards;
+}
+
+div.shops.long.twins {
+    animation: longTwice 0.4s ease forwards;
+}
+
+@keyframes longTwice {
+    0% {
+        height: 520px;
+    }
+
+    100% {
+        height: 1200px;
+    }
+}
+
+@keyframes longTwiceReverse {
+    0% {
+        height: 1100px;
+    }
+
+    100% {
+        height: 520px;
+    }
 }
 
 @keyframes long {
@@ -879,7 +899,7 @@ div.shops h1 {
 }
 
 div.shops main {
-    position: relative;
+    position: absolute;
     width: 57%;
     height: 350px;
     margin: 30px 30px 20px 10px;
@@ -892,18 +912,6 @@ div.shops main {
     text-align: justify;
     letter-spacing: 1px;
     line-height: 24px;
-}
-
-div.shops ul {
-    margin: 5px 0 5px 30px;
-    list-style: circle;
-}
-
-div.shops h2,
-div.shops h3 {
-    font-size: 18px;
-    font-weight: normal;
-    margin: 5px 0;
 }
 
 div.btn-descript {
@@ -991,28 +999,23 @@ div.shops div.adreses a {
     display: none;
 }
 
-div.shops div.shopmap {
-    display: none;
-}
 
 div.shops.long div.adreses {
     width: 50%;
     border-right: 2px solid black;
     border-bottom: 2px solid black;
     box-shadow: 2px 5px 5px black;
-
+    margin: 30px;
 }
 
-div.shops.long div.shopmap {
-    border: 2px solid black;
-    display: block;
+div.shops.ca.long div.adreses{
+    width: 100%;
+}
+
+div.addres-wrap {
     position: absolute;
-    width: 45%;
-    bottom: -160px;
-    right: 10px;
-    margin-left: 5px;
-    opacity: 0;
-    animation: opac 2s ease forwards;
+    bottom: -150px;
+    width: 50%;
 }
 
 div.shops.long div.adreses a {
@@ -1040,23 +1043,11 @@ div.shops.long div.extends p {
     margin-left: 10px;
 }
 
-div.ca.shops div.extends div.adreses {
-    height: 90%;
-    margin: 10px;
-}
-
-div.ca.shops div.extends div.shopmap {
-    height: 90%;
-    width: 30%;
-    top: -98%;
-    left: -10%;
-    overflow: hidden;
-}
 
 div.work-hours {
     position: absolute;
     width: 40%;
-    left: 9%;
+    right: 0;
     border: 2px solid black;
     box-shadow: 0 5px 5px black;
     bottom: 90px;
@@ -1064,6 +1055,14 @@ div.work-hours {
     font-weight: bold;
     padding: 10px;
     display: none;
+    
+}
+div.center div.extends div.work-hours {
+    bottom: 300px;
+}
+
+div.center div.extends div.work-hours.second {
+    bottom: 50px;
 }
 
 div.shops.long div.work-hours {
@@ -1073,11 +1072,11 @@ div.shops.long div.work-hours {
 div.work-hours h3{
     margin-bottom: 10px;
 }
-/*/////////////////////////////////bakrey////////////////////////////////*/
 
-div.shopBanner.bakery img{
+div.shopBanner img{
     width: 100%;
 }
+/*/////////////////////////////////bakrey////////////////////////////////*/
 
 div.assortment {
 
@@ -2257,9 +2256,6 @@ div.att-dwnl-section button:hover {
 
     }
 
-    div.shops.long div.shopmap {
-        overflow: hidden;
-    }
 
     article.fullsize p {
         width: 45%;
@@ -2343,10 +2339,6 @@ div.att-dwnl-section button:hover {
     div.btn-descript {
         left: 10%;
         top: 400px;
-    }
-
-    div.ca.shops.long {
-        margin-top: 40px;
     }
 
     div.formInfo {
@@ -2468,35 +2460,12 @@ div.att-dwnl-section button:hover {
         animation: long2 0.4s ease forwards;
     }
 
-    div.shops.long div.shopmap {
-        height: 170%;
-    }
     div.menuL.active li {
         animation: menuLActiveSmall 0.5s ease forwards;
     }
 
     div.menuL {
         top: 290px;
-    }
-
-    div.shops.long div.double div.adreses {
-        margin-top: 50px;
-        height: 80%;
-    }
-
-    div.shops.long div.double div.adreses p {
-        font-size: 20px;
-
-    }
-
-    div.shops.long div.double div.adreses a {
-        font-size: 15px;
-
-    }
-
-    div.ca.shops.long div.double div.shopmap {
-        height: 80%;
-        top: -86%;
     }
 
     aside.timeLaps {
@@ -2615,23 +2584,11 @@ div.att-dwnl-section button:hover {
             top: 270px;
         }
 
-        div.shops.long div.double div.adreses a i {
-            height: 30px;
-            width: 30px;
-            line-height: 30px;
-            margin: 20px 5px 10px 10px;
-        }
-
         div.shops.long div.adreses {
             margin-top: 120px;
             width: 55%;
         }
 
-        div.shops.long div.shopmap {
-            height: 130%;
-            margin-right: 10px;
-            left: 50px
-        }
 
         div.shops.long div.adreses a {
             font-size: 15px;
@@ -2647,9 +2604,7 @@ div.att-dwnl-section button:hover {
         div.shops.long div.extends {
             left: 20px;
         }
-        div.shops.long div.extends.double {
-            left: 60px;
-        }
+
 
         div.shops.ce main {
             height: 280px;
@@ -2721,13 +2676,7 @@ div.att-dwnl-section button:hover {
         div.waysTo li {
             animation: waysToSmall2 1.2s ease forwards;
         }
-        div.shops.long div.double div.adreses {
-            margin: 50px 5px 10px 60px;
-        }
 
-        div.ca.shops.long div.double div.shopmap {
-            left: 30px;
-        }
 
         }
 
@@ -2761,14 +2710,6 @@ div.att-dwnl-section button:hover {
                 font-size: 12px;
             }
 
-            div.shops.long div.shopmap {
-                display: none;
-            }
-
-            div.shops.long div.double div.adreses {
-                margin: 50px 5px 10px 10px;
-            }
-
             div.shops.long button.link-to-map {
                 display: block;
                 position: relative;
@@ -2789,9 +2730,6 @@ div.att-dwnl-section button:hover {
                 font-weight: bold;
             }
 
-            div.ca.shops.long {
-                margin-top: 220px;
-            }
 
             nav.main {
                 top: 0px;
@@ -2956,10 +2894,6 @@ div.att-dwnl-section button:hover {
                 left: 18%;
             }
 
-            div.ca.shops {
-                margin-top: 220px;
-            }
-
             div.shops {
                 margin-left: 100px;
                 margin-bottom: 60px;
@@ -2982,48 +2916,6 @@ div.att-dwnl-section button:hover {
                 top: 0;
             }
 
-            div.ca.shops.long div.extends {
-                top: -40px;
-            }
-
-            div.shops.long div.extends.double {
-                left: 0;
-            }
-
-            div.shops.long div.double div.adreses a i {
-                height: 20px;
-                width: 20px;
-                line-height: 20px;
-                margin: 5px 2px 6px 6px;
-            }
-
-            div.shops.long div.double div.adreses a {
-                font-size: 10px;
-            }
-
-            div.shops.long div.double div.adreses p {
-                font-size: 16px;
-            }
-
-            div.shops.long div.double div.adreses {
-                height: 60%;
-                margin-bottom: 30px;
-                margin-left: 10px;
-            }
-
-            div.ca.shops.long div.adreses {
-                width: 62%;
-                height: 60%;
-            }
-
-            div.ca.shops div.extends div.shopmap {
-                width: 40%;
-            }
-
-            div.ca.shops.long div.double div.shopmap {
-                left: 40px
-            }
-
             div.shops.long div.adreses {
                 margin-top: 50px;
                 height: 60%;
@@ -3041,18 +2933,6 @@ div.att-dwnl-section button:hover {
                 height: 28px;
                 width: 28px;
                 line-height: 28px;
-            }
-
-            div.cb.shops.long div.shopmap,
-            div.cc.shops.long div.shopmap,
-            div.cd.shops.long div.shopmap,
-            div.ce.shops.long div.shopmap,
-            div.cf.shops.long div.shopmap {
-                float: none;
-                top: 20px;
-                width: 80%;
-                height: 90%;
-                left: 40px;
             }
 
             div.shops.long div.extends {
@@ -3226,11 +3106,6 @@ div.att-dwnl-section button:hover {
                 div.shops.long div.adreses {
                     margin-top: 30px;
                     width: 80%;
-                }
-
-                div.ca.shops.long div.adreses {
-                    width: 70%;
-
                 }
 
                 div.shops.cf {

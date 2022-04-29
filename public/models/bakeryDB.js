@@ -7,7 +7,8 @@ const shopSchema = new Schema({
     hours : {type : String, required : [true, 'wymagana jest podanie godzin otwarcia']},
     tel : {type : String, required : [true, 'wymagana jest podanie numeru telefonu']},
     mail : {type : String, required : [true, 'wymagana jest podanie adresu mail']},
-    addres : {type : String, required : [true, 'wymagana jest podanie adresu']},
+    addres : {type : String, required : false},
+    secondAddres : {type: Object},
     foto: {type : String}, 
 });
 

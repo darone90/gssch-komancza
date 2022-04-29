@@ -1,5 +1,5 @@
-node_modules
-public/attachement
-public/documents
-public/images
+/node_modules
+/public/attachement
+/public/documents
+/public/images
 /none

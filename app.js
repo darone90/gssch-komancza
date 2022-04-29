@@ -101,6 +101,15 @@ app.get('/shop/change/:filter', async (req, res) => {
     }
 });
 
+app.get('/shop/all', async (req, res) => {
+    try {
+        const data = await Shop.find();
+        res.json(data);
+    } catch (err){
+        errorHandle(res, err, 'databaseproblem-read-shop')
+    }
+});
+
 app.get('/admingo', (req, res) => {
     res.redirect('/admin');
 })

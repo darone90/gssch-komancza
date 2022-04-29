@@ -425,6 +425,14 @@ button.accountChanges a {
         display: none;
     }
 
+    div.second-shop {
+        display: flex;
+        flex-direction: column;
+    }
+    div.second-shop.hide {
+        display: none;
+    }
+
     div.archivedArticles h1 {
         margin: 10px 0 30px 10px;
     }

@@ -334,9 +334,9 @@ router
     
     .patch('/shop/change', async (req, res) => {
 
-        const {text, hours, tel, mail, addres, title} = req.body;
+        const {text, hours, tel, mail, addres, title, secondAddres} = req.body;
         const filter = {title,};
-        const update = {text, hours, tel, mail, addres};
+        const update = {text, hours, tel, mail, addres, secondAddres};
         try {
             await Shop.findOneAndUpdate(filter, update);
             res.json({ok: true});
@@ -348,7 +348,7 @@ router
     .patch('/shop/changewithfoto',upload.single('foto'), async (req, res) => {
 
 
-        const {text, hours, tel, mail, addres, title} = req.body;
+        const {text, hours, tel, mail, addres, title, secondAddres} = req.body;
         const foto = req.file.filename;
         const filter = {title,};
         try {
@@ -358,7 +358,7 @@ router
         } catch (err){
             errorHandle(res, err, 'databaseproblem-updating-shop');
         }
-        const update = {text, hours, tel, mail, addres, foto};
+        const update = {text, hours, tel, mail, addres, foto, secondAddres};
         try {
             await Shop.findOneAndUpdate(filter, update);
             res.json({ok: true});

@@ -93,9 +93,6 @@ export default class extends viewModel {
             <a class='bakery-mail'></a>
             <a class='bakery-addres'></a>
             </div>
-            <div class='shopmap'><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10399.237963662685!2d22.06144804429441!3d49.336825501490445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473c05221f792c09%3A0xb207fd5ce927d0a7!2s38-543%20Koma%C5%84cza!5e0!3m2!1spl!2spl!4v1628840006315!5m2!1spl!2spl" width="480" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
-            <button class='link-to-map'><a href="https://www.google.com/maps?ll=49.336812,22.070203&z=14&t=m&hl=pl&gl=PL&mapclient=embed&q=Koma%C5%84cza+38-543">Lokalizacja</a></button>
-        </div>
         <div class='work-hours'>
             <h3>Godziny otwarcia :</h3>
             <p>

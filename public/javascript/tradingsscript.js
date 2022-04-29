@@ -5,6 +5,21 @@ const uploader = (key) => {
     const tel = document.querySelector('#bakery-inform-tel').value;
     const mail = document.querySelector('#bakery-inform-mail').value;
     const addres = document.querySelector('#bakery-inform-addres').value;
+    let secondAddresData = {};
+
+    if(key === 'center') {
+        const sTel = document.querySelector('#bakery-inform-tel-sec').value;
+        const sMail = document.querySelector('#bakery-inform-mail-sec').value;
+        const sAddres = document.querySelector('#bakery-inform-addres-sec').value;
+        const sHours = document.querySelector('.bakery-informations-hours-sec').value
+
+        secondAddresData = {
+            tel: sTel, 
+            mail: sMail,
+            addres: sAddres,
+            hours: sHours
+        }
+    }
 
     if(!foto) {
         loader(true)
@@ -17,6 +32,7 @@ const uploader = (key) => {
                 tel,
                 mail,
                 addres,
+                secondAddres: secondAddresData,
                 title: key,
             }),
         })
@@ -51,6 +67,7 @@ const uploader = (key) => {
                 formData.append('tel', tel);
                 formData.append('mail', mail);
                 formData.append('addres', addres);
+                formData.append('secondAddres', secondAddresData);
                 formData.append('foto', foto);
 
                 fetch('/admin/shop/changewithfoto', {
@@ -101,6 +118,10 @@ const dataloader = (key, name) => {
     const tel = document.querySelector('#bakery-inform-tel');
     const mail = document.querySelector('#bakery-inform-mail');
     const addres = document.querySelector('#bakery-inform-addres');
+    const stel = document.querySelector('#bakery-inform-tel-sec');
+    const smail = document.querySelector('#bakery-inform-mail-sec');
+    const saddres = document.querySelector('#bakery-inform-addres-sec');
+    const shours = document.querySelector('.bakery-informations-hours-sec');
     
     const savingBtn = document.querySelector('.shops-info-edit');
     savingBtn.id = key;
@@ -108,6 +129,13 @@ const dataloader = (key, name) => {
     title.innerText = `Aktualne informacje o ${name}`;
 
     loader(true);
+
+    const secondAddresLoader = (data) => {
+        stel.value = data.tel;
+        smail.value = data.mail;
+        saddres.value = data.addres;
+        shours.textContent = data.hours;
+    }
 
     fetch(`/shop/change/${key}`, {
         method: "GET"
@@ -119,6 +147,9 @@ const dataloader = (key, name) => {
             foto.src = `../public/images/imagesDB/${data.foto}`;
             tel.value = data.tel
             mail.value = data.mail
+            if(data.secondAddres) {
+                secondAddresLoader(data.secondAddres)    
+            }
             if(key === 'moving') {
                 addres.style.display = 'none';
             } else {
@@ -136,6 +167,7 @@ const dataloader = (key, name) => {
 const btnActivator = (className) => {
     const classArray = ['.delikatesy','.sklep','.przemyslowy','.budowlany', '.obwozny'];
     const activated = '.'+ className;
+    const secondAdress = document.querySelector('.second-shop');
     document.querySelector(activated).classList.add('active');
     classArray.forEach(el => {
         if(el !== activated) {
@@ -143,6 +175,12 @@ const btnActivator = (className) => {
         };
     });
     document.querySelector('.editing-informations').classList.remove('hide');
+
+    if(className === 'delikatesy') {
+        secondAdress.classList.remove('hide');
+    } else {
+        secondAdress.classList.add('hide');
+    }
 };
 
 document.addEventListener('click', (e) => {
