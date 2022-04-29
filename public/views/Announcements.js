@@ -55,7 +55,12 @@ export default class extends viewModel {
 
         fetch('/readanno', {
             method: "GET",
-        }).then(res => res.json()).then(data => this.getAnno(data));
+        })
+        .then(res => res.json())
+        .then(data => this.getAnno(data))
+        .catch(err => {
+            document.querySelector('.errorinfo').classList.remove('hide');
+        })
 
         return `<section class='anno'></section>`
     };

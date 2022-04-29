@@ -23,6 +23,7 @@ const uploader = (key) => {
 
     if(!foto) {
         loader(true)
+        getTop();
         fetch('/admin/shop/change', {
             method: 'PATCH',
             headers: {'Content-Type' : 'application/json'},
@@ -60,6 +61,7 @@ const uploader = (key) => {
 
     } else {
         loader(true)
+        getTop();
         const formData = new FormData()
                 formData.append('title', key);
                 formData.append('text' , text);

@@ -1,0 +1,34 @@
+section.management {
+    position: absolute;
+    font-family: 'roboto',
+    sans-serif;
+    padding-bottom: 40px;
+    }
+
+    div.bosses h1,
+    div.directors h1 {
+        position: relative;
+        left: 50vw;
+        transform: translateX(-50%);
+        padding: 20px 5px 20px 40px;
+        font-size: 28px;
+        width: 100%;
+        margin-top: 40px;
+        border-bottom: 5px solid black;
+        box-shadow: 15px 5px 15px black;
+    }
+
+    div.bosses ul,
+    div.directors ul {
+        position: relative;
+        left: 50vw;
+        transform: translateX(-50%);
+        list-style: none;
+        font-size: 25px;
+        margin-top: 30px;
+    }
+
+    div.bosses ul li,
+    div.directors ul li {
+        margin: 5px;
+    }

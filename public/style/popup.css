@@ -1,0 +1,142 @@
+div.popup {
+    position: absolute;
+    left: 0;
+    top: 260px;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    width: 100vw;
+    border: 5px solid black;
+    box-shadow: 5px 10px 10px black;
+    z-index: 20;
+    }
+
+    div.popup.active {
+        display: block;
+}
+
+div.close {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: orangered;
+    position: absolute;
+    top: 20px;
+    right: 390px;
+    border: 1px solid black;
+    transition: 0.4s;
+    text-align: center;
+    line-height: 50px;
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+    font-family: 'roboto',
+    sans-serif;
+    z-index: 10;
+
+}
+div.close:hover {
+    transform: rotate(360deg) scale(1.1);
+    cursor: pointer;
+}
+
+button.next,
+button.perview {
+    width: 150px;
+    height: 50px;
+    background-color: orangered;
+    color: white;
+    font-family: sans-serif;
+    position: fixed;
+    top: 40%;
+    line-height: 50px;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 5%;
+    transition: 0.4s;
+}
+
+button.next {
+    right: 50px;
+}
+
+button.perview {
+    left: 50px;
+}
+
+button.next:hover,
+button.perview:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+button.next.disable,
+button.perview.disable {
+    background-color: grey;
+}
+article.fullsize {
+    border-left: 3px solid black;
+    border-bottom: 3px solid black;
+    box-shadow: 5px 15px 25px black;
+    width: 60%;
+    position: relative;
+    left: 20%;
+    min-height: 60rem;
+    margin-bottom: 100px;
+    padding-bottom: 30px;
+    background-color: rgba(256, 256, 256, 1);
+}
+
+article.fullsize:nth-child(2) {
+    left: 120%;
+}
+
+article.fullsize h1 {
+    font-family: 'roboto', sans-serif;
+    position: relative;
+    top: 40px;
+    left: 5%;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+article.fullsize h2 {
+    font-family: 'roboto', sans-serif;
+    position: relative;
+    font-weight: bold;
+    font-size: 30px;
+    top: 80px;
+    left: 5%;
+}
+
+article.fullsize p {
+    text-indent: 60px;
+    position: relative;
+    display: block;
+    width: 50%;
+    height: auto;
+    left: 5%;
+    top: 7rem;
+    font-family: 'roboto', sans-serif;
+    font-size: 25px;
+    text-align: justify;
+    margin: 40px 0;
+}
+div.fullsizeImg {
+    position: absolute;
+    height: 30em;
+    width: 35%;
+    left: 60%;
+    top: 14rem;
+    cursor: pointer;
+}
+div.fullsizeImg.hide {
+    display: none;
+}
+img.popupimg {
+    width: 100%;
+    height: 100%;
+}
+
+article.fullsize p:last-child {
+    margin-bottom: 100px;
+}

@@ -7,8 +7,13 @@ let currentObjectId;
 const errorFunction = () => {
     const page = document.querySelector('.loadingBox');
     page.classList.add('onload');
-    page.innerText = "Wystąpił błąd w trakcie ładowania..."
+    page.style.fontSize = '25px';
+    page.innerText = "Wystąpił błąd w trakcie ładowania... sprawdź połaczenie z internetem. Jeśli sieć jest dostępna odśwież stronę"
     page.style.color ='red';
+}
+
+const getTop = () => {
+    scrollTo(0,0);
 }
 
 const hasClass = (elem, className) => {

@@ -65,13 +65,23 @@ export default class extends viewModel {
 
         fetch('/assortmentdata', {
             method: 'GET',
-        }). then(res => res.json()).then(data => this.getAssoData(data));
+        })
+        .then(res => res.json())
+        .then(data => this.getAssoData(data))
+        .catch(err => {
+            document.querySelector('.errorinfo').classList.remove('hide');
+        })
 
 
 
         fetch('/shop/change/bakery', {
             method: 'GET',
-        }). then(res => res.json()).then(data => this.getInformation(data));
+        })
+        .then(res => res.json())
+        .then(data => this.getInformation(data))
+        .catch(err => {
+            document.querySelector('.errorinfo').classList.remove('hide');
+        })
 
 
         return `

@@ -11,7 +11,6 @@ document.addEventListener('click', (e) => {
             window.alert('Nie został dodany żaden plik do przesłania!');
             return;
         };
-
         const formData = new FormData();
         formData.append('user', userName);
         formData.append('doc', file);

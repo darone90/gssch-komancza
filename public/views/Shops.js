@@ -57,6 +57,9 @@ export default class extends viewModel {
         })
             .then(res => res.json())
             .then(data => this.dataloader(data))
+            .catch(err => {
+                document.querySelector('.errorinfo').classList.remove('hide');
+            })
 
         return `
         <Section class='trading'>

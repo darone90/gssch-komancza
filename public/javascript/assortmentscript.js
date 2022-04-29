@@ -275,6 +275,7 @@ document.addEventListener('click', (e) => {
             if(window.confirm("Wprowadzić zmiany dla produktu ? ")) {
                 const loading = document.querySelector('.loadingBox');
                 loading.classList.add('onload');
+                getTop();
                 const _id = document.querySelector('.idBox').innerText.split(' ')[1];
                 const newTitle = title.value;
                 const description = paragraph.value;
@@ -334,7 +335,7 @@ document.addEventListener('click', (e) => {
             if(!foto){
                 const loading = document.querySelector('.loadingBox');
                 loading.classList.add('onload');
-
+                getTop();
                 fetch('/admin/shop/change', {
                     method: 'PATCH',
                     headers: {'Content-Type' : 'application/json'},
@@ -373,7 +374,7 @@ document.addEventListener('click', (e) => {
 
                 const loading = document.querySelector('.loadingBox');
                 loading.classList.add('onload');
-
+                getTop();
                 const formData = new FormData()
                 formData.append('title', 'bakery');
                 formData.append('text' , text);

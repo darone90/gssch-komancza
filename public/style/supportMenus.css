@@ -1,0 +1,268 @@
+aside.menuH {
+    position: absolute;
+    display: none;
+    width: calc(100% / 8);
+    max-width: calc(1530px / 8);
+    left: calc(100% / 8);
+    top: 293px;
+    margin: 30px 0px;
+    z-index: 5;
+}
+
+@media (min-width: 1560px) {
+    aside.menuH {
+        left: calc((100vw - 1530px) / 2 + 1530px / 8);
+        transform: translateX(-4%);
+
+    }
+}
+aside.menuH ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+@keyframes menuSize {
+    0% {
+        height: 0;
+    }
+
+    50% {
+        height: 0;
+    }
+
+    100% {
+        height: 400px;
+    }
+}
+
+
+aside.menuH.active {
+    display: block;
+}
+
+aside.menuH.active1 {
+    display: block;
+}
+
+aside.menuH.active ul {
+
+    animation: menuSize 0.8s ease forwards;
+}
+
+aside.menuH.active1 ul {
+
+    animation: menuSize 0.8s ease forwards;
+}
+
+aside.menuH.scrolling {
+    position: fixed;
+    top: 35px;
+    z-index: 7;
+}
+
+aside.menuH ul {
+    list-style: none;
+    font-family: 'roboto', serif;
+    font-size: 15px;
+    line-height: 50px;
+    overflow: hidden;
+    height: 0;
+}
+
+
+aside.menuH li {
+    border: 2px solid black;
+    transition: 0.5s;
+    background-color: white;
+}
+
+aside.menuH li a {
+    display: block;
+    padding: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+aside.menuH li:nth-child(2) {
+    font-size: 11px;
+}
+
+aside.menuH li:hover {
+    background-color: cadetblue;
+    color: white;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 5px 3px black;
+}
+
+aside.menuH li:nth-child(2):hover {
+    font-size: 12px;
+}
+
+div.menuL {
+    position: absolute;
+    display: none;
+    width: 100%;
+    max-width: 1530px;
+    background-color: white;
+    top: 330px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-bottom: 2px solid black;
+}
+
+div.menuL.active {
+    display: block;
+}
+
+div.menuL.active.scrolling {
+    position: fixed;
+    z-index: 6;
+    top: 70px
+}
+
+div.menuL ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+
+div.menuL li {
+    flex-basis: calc(100% / 5);
+    text-align: center;
+    font-family: 'roboto', serif;
+    line-height: 0;
+    font-size: 0;
+    opacity: 0;
+    cursor: pointer;
+    border-right: 2px solid grey;
+    transition: 0.4s;
+}
+
+@keyframes menuLActive {
+    0% {
+        font-size: 0;
+        line-height: 0;
+        opacity: 0;
+    }
+
+    100% {
+        font-size: 15px;
+        line-height: 28px;
+        opacity: 1;
+    }
+}
+
+@keyframes menuLActiveSmall {
+    0% {
+        font-size: 0;
+        line-height: 0;
+        opacity: 0;
+    }
+
+    100% {
+        font-size: 12px;
+        line-height: 24px;
+        opacity: 1;
+    }
+}
+
+div.menuL.active li {
+    animation: menuLActive 0.5s ease forwards;
+}
+
+div.menuL li:nth-child(6) {
+    border-right: none;
+}
+
+div.menuL li:hover,
+div.menuL li.active {
+    background-color: lightskyblue;
+    color: white;
+    box-shadow: 0 3px 3px black;
+}
+
+div.menuShort {
+    position: absolute;
+    display: none;
+    width: calc(100% / 8);
+    max-width: calc(1530px / 8);
+    left: calc((100% / 8) * 3);
+    top: 323px;
+    z-index: 11;
+}
+
+@media (min-width: 1560px) {
+    div.menuShort {
+        left: calc((100vw - 1530px) / 2 + 1530px / 8 * 3);
+        transform: translateX(-4%);
+
+    }
+}
+
+@keyframes menuSizeShort {
+    0% {
+        height: 0;
+    }
+
+    50% {
+        height: 0;
+    }
+
+    100% {
+        height: 400px;
+    }
+}
+
+div.menuShort.active,
+div.menuShort.active1 {
+    display: block;
+}
+
+div.menuShort ul {
+    list-style: none;
+    font-family: 'roboto', serif;
+    font-size: 15px;
+    line-height: 50px;
+    overflow: hidden;
+    height: 0;
+}
+
+div.menuShort.active ul,
+div.menuShort.active1 ul {
+    z-index: 8;
+    animation: menuSizeShort 0.8s ease forwards
+}
+
+div.menuShort li {
+    border: 2px solid black;
+    transition: 0.4s;
+    background-color: white;
+}
+
+div.menuShort li a {
+    display: block;
+    padding: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+div.menuShort li a {
+    text-decoration: none;
+    color: black;
+}
+
+div.menuShort li:hover {
+    background-color: cadetblue;
+    color: white;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 19px;
+    box-shadow: 0 5px 3px black;
+}
+
+div.menuShort.scrolling {
+    position: fixed;
+    top: 65px
+}

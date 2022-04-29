@@ -58,11 +58,17 @@ export default class extends viewModel {
     async getHtml () {
         const loading = document.querySelector('div.databaseload');
         loading.classList.add('progress');
+
         fetch('/newsdata', {
             method: 'GET',
-        }).then(res => res.json()).then(data => {
+        })
+        .then(res => res.json())
+        .then(data => {
             this.dataFromDatabase(data)
-        });
+        })
+        .catch(err => {
+            document.querySelector('.errorinfo').classList.remove('hide');
+        })
 
         return `
             <section class='content'>

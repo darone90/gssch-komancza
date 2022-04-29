@@ -9,6 +9,7 @@ const News = require('../public/models/newsDB.js');
 const Asso = require('../public/models/assortmentDB.js');
 const Doc = require('../public/models/documentDB.js');
 const User = require('../public/models/userDB.js');
+const Gov = require('../public/models/govDB.js');
 const {readCounter, checkCounter, changeCounter} = require('../utils/dataCounter.js');
 const {contentLimit, databaseLimit} = require('../utils/limitconfig.js')
 const {errorHandle} = require('../utils/handlers.js');
@@ -365,6 +366,23 @@ router
         } catch (err) {
             errorHandle(res, err, 'databaseproblem-updating-shop')
         }
+    })
+
+    .patch('/gov', async (req, res) => {
+        const {president, vicePresident, partPresident, director, viceDirector, partDirector, supervisorOne, supervisorTwo} = req.body;
+        const filter = {title: 'gov'};
+        const update = {
+            president,
+            vicePresident,
+            partPresident,
+            director,
+            viceDirector,
+            partDirector,
+            supervisorOne,
+            supervisorTwo
+        }
+        await Gov.findOneAndUpdate(filter, update);
+        res.json({ok: true});
     })
 
     .put('/anno-edit', uploadAttachement.array('attachements',8), async (req, res) => {

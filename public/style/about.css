@@ -1,0 +1,207 @@
+section.about {
+    width: 100%;
+    max-width: 1530px;
+    position: absolute;
+    height: 3800px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 50px;
+}
+
+div.timeBlock {
+    position: relative;
+    width: 80%;
+    height: auto;
+
+}
+
+aside.timeLaps {
+    position: absolute;
+    display: none;
+    width: 20%;
+    height: 600px;
+    left: 80%;
+    top: 360px;
+    z-index: 3;
+    display: none;
+}
+
+aside.timeLaps.active {
+    display: block;
+    z-index: 1;
+}
+
+aside.timeLaps.scroll {
+    position: fixed;
+    top: 100px;
+}
+
+div.begin,
+div.past,
+div.past2,
+div.past3,
+div.today {
+    margin: 0 0 50px 50px;
+    padding: 40px;
+    position: relative;
+    width: 90%;
+    height: auto;
+    box-shadow: 0 5px 5px grey;
+}
+
+div.begin h1,
+div.past h1,
+div.past2 h1,
+div.past3 h1,
+div.today h1 {
+    display: block;
+    float: left;
+    font-size: 40px;
+    font-family: 'New Tegomin', serif;
+    width: 500px;
+}
+
+div.begin main,
+div.past main,
+div.past2 main,
+div.past3 main,
+div.today main {
+    font-size: 20px;
+    font-family: 'roboto', serif;
+    text-align: justify;
+}
+
+div.begin main p:nth-child(4),
+div.begin main p:nth-child(5),
+div.past main p:nth-child(4),
+div.past main p:nth-child(6),
+div.past2 main p:nth-child(3),
+div.past3 main p:nth-child(4),
+div.past3 main p:nth-child(5),
+div.today main p:nth-child(3),
+div.today main p:nth-child(4),
+div.today main p:nth-child(5),
+div.today main p:nth-child(8) {
+    text-indent: 10%;
+    margin-top: 15px;
+}
+
+div.today main p:nth-child(6),
+div.today main p:nth-child(7) {
+    margin: 20px 0;
+}
+
+
+div.beginFoto,
+div.beginFoto2,
+div.pastFoto,
+div.past3Foto {
+    border: 1px solid black;
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+}
+
+div.beginFoto i,
+div.beginFoto2 i,
+div.pastFoto i {
+    font-size: 12px;
+    color: white;
+    display: block;
+    padding-top: 180px;
+}
+
+div.beginFoto2 i {
+    padding-left: 10px;
+}
+
+div.beginFoto {
+    background-image: url("../images/fullsize/ks S porebski.jpg");
+    background-size: cover;
+}
+
+div.beginFoto2 {
+    background-image: url(../images/fullsize/wagonik.jpg);
+    background-size: cover;
+}
+
+div.pastFoto {
+    background-image: url(../images/fullsize/podKominkiem.jpg);
+    background-size: cover;
+}
+
+div.beginFoto {
+    float: right;
+}
+
+div.beginFoto2,
+div.pastFoto {
+    float: left;
+}
+
+div.past main p:nth-child(3) {
+    margin: 20px 0;
+}
+
+ul.managementList {
+    margin: 20px 0;
+}
+
+div.circleBig {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-sizing: content-box;
+    border: 1px solid black;
+    left: 30px;
+    background-color: grey;
+}
+
+main.timeLine p i {
+    margin-top: 100px;
+    position: relative;
+    display: block;
+    left: 110px;
+    bottom: 625px;
+    font-family: 'New Tegomin', serif;
+    text-decoration: none;
+}
+
+div.column {
+    position: relative;
+    width: 10px;
+    box-sizing: content-box;
+    height: 70px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    background-color: grey;
+    left: 50px;
+}
+
+div.circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid black;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.4s;
+    background-color: white;
+
+}
+
+div.circle.active {
+    background-color: orangered;
+}
+
+div.circleBig:hover {
+    cursor: pointer;
+}
+
+div.circleBig:hover div.circle {
+    width: 25px;
+    height: 25px;
+}

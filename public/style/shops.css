@@ -1,0 +1,299 @@
+section.trading {
+    margin-top: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 90%;
+    height: auto;
+    opacity: 0;
+    animation: opac 0.8s ease forwards;
+}
+
+@keyframes opac {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+div.shops {
+    position: relative;
+    width: 1210px;
+    animation: longRevers 0.4s ease forwards;
+    border: 2px solid darkgrey;
+    margin: 30px 30px 120px 30px;
+    left: 0px;
+}
+
+div.shops:nth-child(even) {
+    left: 220px;
+}
+
+div.shops.long {
+    animation: long 0.4s ease forwards;
+}
+
+div.shops.long.twins {
+    animation: longTwice 0.4s ease forwards;
+}
+
+@keyframes longTwice {
+    0% {
+        height: 520px;
+    }
+
+    100% {
+        height: 1200px;
+    }
+}
+
+@keyframes longTwiceReverse {
+    0% {
+        height: 1100px;
+    }
+
+    100% {
+        height: 520px;
+    }
+}
+
+@keyframes long {
+    0% {
+        height: 520px;
+    }
+
+    100% {
+        height: 1020px;
+    }
+}
+
+@keyframes long2 {
+    0% {
+        height: 450px;
+    }
+
+    100% {
+        height: 850px;
+    }
+}
+
+@keyframes longRevers {
+    0% {
+        height: 920px;
+    }
+
+    100% {
+        height: 520px;
+    }
+}
+@keyframes longRevers2 {
+    0% {
+        height: 800px;
+    }
+
+    100% {
+        height: 450px;
+    }
+}
+
+div.shopBanner {
+    position: absolute;
+    display: block;
+    width: 410px;
+    margin: 10px;
+    left: 61%;
+    top: 70px;
+}
+div.shops h1 {
+    width: 50%;
+    height: 50px;
+    background-color: darkgrey;
+    font-family: 'roboto', serif;
+    font-size: 30px;
+    line-height: 50px;
+    padding-left: 20px;
+    color: white;
+}
+
+div.shops main {
+    position: absolute;
+    width: 57%;
+    height: 350px;
+    margin: 30px 30px 20px 10px;
+    border-bottom: 3px solid black;
+    border-left: 1px solid black;
+    box-shadow: 0 3px 16px black;
+    font-family: 'roboto', serif;
+    padding: 10px;
+    font-size: 18px;
+    text-align: justify;
+    letter-spacing: 1px;
+    line-height: 24px;
+}
+
+div.btn-descript {
+    position: absolute;
+    left: 6%;
+    top: 475px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+div.moreBtn {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: orangered;
+    bottom: 10px;
+    left: 10px;
+    font-size: 40px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 50%;
+    color: white;
+    animation: btnRotateBack 0.5s ease forwards;
+    transition: 0.4s;
+}
+
+div.moreBtn:hover {
+    font-size: 45px;
+    cursor: pointer;
+}
+
+div.moreBtn.active {
+    animation: btnRotate 0.5s ease forwards;
+}
+
+@keyframes btnRotate {
+    0% {
+        transform: rotate(180deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes btnRotateBack {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes ext {
+    0% {
+        height: 0;
+    }
+
+    100% {
+        height: 200px;
+    }
+}
+
+div.shops div.extends p {
+    display: none;
+    font-family: 'roboto', sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    opacity: 0;
+    animation: opac 2s ease forwards;
+}
+div.shops.long div.extends {
+    position: absolute;
+    display: block;
+    width: 88%;
+    animation-delay: 0.5s;
+    animation: ext 0.5s ease forwards;
+    z-index: 5;
+    left: 80px;
+    bottom: 250px;
+}
+div.shops div.adreses a {
+    display: none;
+}
+
+
+div.shops.long div.adreses {
+    width: 50%;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    box-shadow: 2px 5px 5px black;
+    margin: 30px;
+}
+
+div.shops.ca.long div.adreses{
+    width: 100%;
+}
+
+div.addres-wrap {
+    position: absolute;
+    bottom: -150px;
+    width: 50%;
+}
+
+div.shops.long div.adreses a {
+    display: block;
+    font-family: 'roboto', sans-serif;
+    font-size: 20px;
+    opacity: 0;
+    animation: opac 2s ease forwards;
+}
+
+div.shops.long div.adreses a i {
+    background-color: darkblue;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    line-height: 50px;
+    text-align: center;
+    color: white;
+    margin: 10px 20px 10px 10px;
+}
+
+
+div.shops.long div.extends p {
+    display: block;
+    margin-left: 10px;
+}
+
+
+div.work-hours {
+    position: absolute;
+    width: 40%;
+    right: 0;
+    border: 2px solid black;
+    box-shadow: 0 5px 5px black;
+    bottom: 90px;
+    font-family: arial;
+    font-weight: bold;
+    padding: 10px;
+    display: none;
+    
+}
+div.center div.extends div.work-hours {
+    bottom: 300px;
+}
+
+div.center div.extends div.work-hours.second {
+    bottom: 50px;
+}
+
+div.shops.long div.work-hours {
+    display: block;
+}
+
+div.work-hours h3{
+    margin-bottom: 10px;
+}
+
+div.shopBanner img{
+    width: 100%;
+}

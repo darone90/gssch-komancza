@@ -1,0 +1,169 @@
+div.news {
+    width: 75vw;
+    max-width: 1530px;
+    height: auto;
+    position: flex;
+    flex-direction: column;
+    display: block;
+}
+
+div.infoLeft,
+div.infoRight {
+    display: block;
+    width: 65%;
+    min-width: 850px;
+    background-color: rgba(256, 256, 256, 0.5);
+    z-index: 0;
+    margin: 80px auto;
+    position: relative;
+    padding: 10px;
+    border-bottom: 4px solid black;
+    opacity: 0;
+    height: 340px;
+}
+h1.noArticles {
+    margin: 50px 0 0 10rem;
+}
+div.infoRight {
+    background-color: rgba(256, 256, 256, 0.5);
+    left: 250px;
+}
+
+section.content div div.infoLeft {
+    animation: news1 1.5s linear forwards;
+}
+
+section.content div div.infoRight {
+    animation-delay: 0.4s;
+    animation: news2 1.5s linear forwards;
+}
+@keyframes news1 {
+    0% {
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes news2 {
+    0% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0;
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+div.infoLeft div.description,
+div.infoRight div.description {
+    height: 257px;
+    width: 60%;
+    overflow: hidden;
+    border-bottom: 2px solid black;
+
+}
+
+div.infoRight div.description {
+    position: absolute;
+    right: 70px;
+    top: 10px;
+    border-left: 2px solid black;
+    box-shadow: -5px 5px 5px black;
+}
+
+div.infoLeft div.description {
+    margin-left: 70px;
+    box-shadow: 5px 5px 5px black;
+}
+
+div.infoLeft h1,
+div.infoRight h1 {
+    display: block;
+    position: relative;
+    font-family: 'roboto', serif;
+    font-size: 26px;
+    margin: 5px 5px 30px 5px;
+}
+
+div.infoLeft h2,
+div.infoRight h2 {
+    display: block;
+    position: relative;
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    text-decoration: bold;
+    margin: 0 0 20px 5px;
+}
+
+div.infoLeft h3,
+div.infoRight h3 {
+    display: block;
+    width: 90%;
+    font-family: 'roboto', serif;
+    margin: 0 5px 10px 5px;
+    text-align: justify;
+}
+
+div.infoLeft div.imageInfo,
+div.infoRight div.imageInfo {
+    width: 250px;
+    height: 257px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 10px 10px;
+}
+
+.infoLeft img,
+.infoRight img {
+    height: 100%;
+    max-width: 100%;
+}
+
+div.infoRight div.imageInfo {
+    left: 0;
+}
+
+div.infoLeft button,
+div.infoRight button {
+    display: block;
+    height: 30px;
+    width: 140px;
+    margin: 10px 0 10px 70px;
+    font-size: 15px;
+    font-family: 'roboto', serif;
+    background-color: white;
+    border: 1px solid black;
+    transition: 0.3s;
+}
+
+div.infoRight button {
+    position: absolute;
+    right: 70px;
+    bottom: 20px;
+}
+
+div.infoLeft button:hover,
+div.infoRight button:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}

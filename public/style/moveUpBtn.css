@@ -1,0 +1,25 @@
+button.moveUp {
+    font-size: 70px;
+    color: white;
+    background-color: orangered;
+    height: 0;
+    width: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    position: fixed;
+    top: 80vh;
+    right: 5vw;
+    opacity: 0;
+    transition: 0.7s;
+}
+
+button.moveUp.active {
+    height: 100px;
+    width: 100px;
+    opacity: 0.3;
+    z-index: 3;
+}
+
+button.moveUp.active:hover {
+    opacity: 1;
+}

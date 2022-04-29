@@ -11,6 +11,7 @@ const Anno = require('./public/models/annoucementsDB.js');
 const Message = require('./public/models/messageDB.js');
 const Asso = require('./public/models/assortmentDB');
 const Shop = require('./public/models/bakeryDB');
+const Gov = require('./public/models/govDB');
 const loginRouter = require('./routers/login.js');
 const adminRouter = require('./routers/admin.js');
 const accountRouter = require('./routers/account.js');
@@ -110,9 +111,18 @@ app.get('/shop/all', async (req, res) => {
     }
 });
 
+app.get('/gov/all', async (req, res) => {
+    try {
+        const data = await Gov.find({title: 'gov'});
+        res.json(data);
+    } catch (err) {
+        errorHandle(res, err, 'databaseproblem-read-shop')
+    }
+});
+
 app.get('/admingo', (req, res) => {
     res.redirect('/admin');
-})
+});
 
 app.post('/sendmessage',  async (req, res) => {
     const {name, subject, content, contact} = req.body;

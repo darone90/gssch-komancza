@@ -119,7 +119,7 @@ document.addEventListener('click', (e) => {
             if(window.confirm('Artykuł gotowy do publikacji, kontynuować ?')) {
 
                 const loading = document.querySelector('.loadingBox');
-                scrollContent(0);
+                getTop();
                 loading.classList.add('onload');
 
                 const foto = document.querySelector('#fileInput');
@@ -246,7 +246,7 @@ document.addEventListener('click', (e) => {
             if(window.confirm("Wprowadzić zmiany w artykule? ")) {
                 const loading = document.querySelector('.loadingBox');
                 loading.classList.add('onload');
-
+                getTop();
                 const _id = document.querySelector('.articleId').innerText.split(' ')[1];
                 const newTitle = title.value;
                 const newDate = document.querySelector('#dateArtEdit').value;

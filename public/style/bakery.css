@@ -1,0 +1,92 @@
+div.assortment {
+
+    position: relative;
+    left: 8%;
+    width: 80%;
+    border: 2px solid grey;
+    margin-bottom: 40px;
+}
+
+div.assortment h1 {
+    width: 40%;
+    background-color: grey;
+    color: white;
+    font-family: 'Explora', sans-serif;
+    font-size: 50px;
+    padding-left: 10px;
+}
+
+div.assortment article {
+
+    margin: 60px 0 0 20px;
+    font-size: 20px;
+    font-family: 'roboto', sans-serif;
+    max-width: 40%;
+    min-height: 25rem;
+}
+
+div.assortmentFoto {
+    position: absolute;
+    margin: 10px;
+    left: 45%;
+    top: 55px;
+    width: 50%;
+    height: 25em;
+    background-color: red;
+    }
+
+    div.assortmentFoto img {
+        width: 100%;
+        height: 100%;
+}
+
+div.nofoto {
+    display: none;
+}
+
+div.wall {
+    display: none;
+}
+
+div.wall.active {
+    display: block;
+    position: relative;
+    left: 8%;
+    width: 80%;
+    height: 50px;
+    background-color: grey;
+    color: white;
+    margin-bottom: 25px;
+}
+
+div.wall h1 {
+    font-family: 'roboto', sans-serif;
+    width: 100%;
+    text-align: center;
+    line-height: 50px;
+}
+
+button.toassortment {
+    display: none;
+}
+
+button.toassortment.active {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px 10px 0 0;
+    width: 150px;
+    height: 50px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 17px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button.toassortment.active:hover {
+    background-color: cadetblue;
+    color: white;
+}

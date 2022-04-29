@@ -6,6 +6,7 @@ import Assortment from "../views/admin/assortmet.js";
 import UserDataChange from "../views/admin/userchanges.js";
 import Base from "../views/admin/base.js";
 import Tradings from '../views/admin/tradings.js';
+import Gov from '../views/admin/gov.js';
  
 
 const router = async () => {
@@ -18,6 +19,7 @@ const router = async () => {
         {path: '/admin/userdatachange', view: UserDataChange},
         {path: '/admin/shops', view: Tradings},
         {path: '/admin/base', view: Base},
+        {path: '/admin/gov', view: Gov},
     ];
 
     const isMatch = routes.map( route => {
