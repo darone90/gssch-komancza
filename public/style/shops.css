@@ -297,3 +297,101 @@ div.work-hours h3{
 div.shopBanner img{
     width: 100%;
 }
+
+div.for-small {
+    display: none;
+    margin: 20px 0 ;
+    padding: 10px;
+}
+
+@media(max-width: 1200px) {
+    div.shops {
+        width: 100%;
+        margin-left: 0;
+        left: 0;
+        right: 0;
+    }
+
+    div.shops:nth-child(even) {
+        left: 0;
+    }
+
+    div.shopBanner {
+        width: 310px;
+    }
+
+    div.btn-descript {
+        margin-left: 20px;
+    }
+}
+
+@media(max-width: 1024px) {
+    div.shopBanner{
+        display: none;
+    }
+
+    div.btn-descript {
+        display: none;
+    }
+
+    div.shops {
+        width: 100%;
+        margin-left: 0;
+        left: 0;
+        right: 0;
+    }
+
+    div.shops:nth-child(even) {
+        left: 0;
+    }
+
+    div.shops main {
+        width: 90%;
+    }
+}
+
+@media(max-width: 768px) {
+
+    div.for-small {
+        display: block;
+    }
+
+    div.shops {
+
+        width: 100%;
+        margin-left: 0;
+        left: 0;
+        right: 0;
+        animation: none;
+        height: 500px;
+    }
+    div.shopBanner{
+        display: none;
+    }
+    div.shops:nth-child(even) {
+        left: 0;
+    }
+
+    div.shops h1 {
+    width: 80%;
+    height: 20px;
+    font-size: 17px;
+    line-height: 20px;
+    }
+
+    div.shops main {
+        width: 80%;
+        height: auto;
+        font-size: 9px;
+        line-height: 12px;
+    }
+
+    div.btn-descript {
+        display: none;
+    }
+
+    div.moreBtn {
+        display: none;
+    }
+}
+

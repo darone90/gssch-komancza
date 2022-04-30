@@ -8,6 +8,8 @@ export default class extends viewModel {
 
     getInformation(data) {
 
+        const forsmall = document.createElement('div');
+        forsmall.classList.add('for-small');
         const loading = document.querySelector('div.databaseload');
         const mainInfo = document.querySelector('.cf main');
         const hours = document.querySelector('.work-hours p');
@@ -23,6 +25,22 @@ export default class extends viewModel {
         mail.innerHTML = `<i class="fas fa-envelope"></i> ${data.mail}`;
         addres.innerHTML = `<i class="fa fa-home"></i> ${data.addres}`;
 
+        const tel2 = document.createElement('p');
+        tel2.innerHTML = tel.innerHTML;
+        const mail2 = document.createElement('p');
+        mail2.innerHTML = mail.innerHTML;
+        const hours2 = document.createElement('p');
+        hours2.innerHTML = hours.innerHTML;
+        const addres2 = document.createElement('p');
+        addres2.innerHTML = addres.innerHTML;
+
+        forsmall.appendChild(tel2);
+        forsmall.appendChild(mail2);
+        forsmall.appendChild(hours2);
+        forsmall.appendChild(addres2);
+
+        mainInfo.appendChild(forsmall);
+
         loading.classList.remove('progress');
     }
 
@@ -33,9 +51,7 @@ export default class extends viewModel {
 
         if(length > 0) {
             const btn = document.querySelector('.toassortment');
-            const wall =  document.querySelector('.wall');
             btn.classList.add('active');
-            wall.classList.add('active');
         };
 
         const dataArr = Object.values(data);
@@ -109,8 +125,7 @@ export default class extends viewModel {
 
             </p>
         </div>
-    </div>
-        <div class='wall'><h1>Nasz asortyment</h1></div>`
+    </div>`
 
     }
 };

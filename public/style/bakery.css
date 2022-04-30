@@ -29,10 +29,8 @@ div.assortmentFoto {
     position: absolute;
     margin: 10px;
     left: 45%;
-    top: 55px;
     width: 50%;
-    height: 25em;
-    background-color: red;
+    height: auto;
     }
 
     div.assortmentFoto img {
@@ -42,28 +40,6 @@ div.assortmentFoto {
 
 div.nofoto {
     display: none;
-}
-
-div.wall {
-    display: none;
-}
-
-div.wall.active {
-    display: block;
-    position: relative;
-    left: 8%;
-    width: 80%;
-    height: 50px;
-    background-color: grey;
-    color: white;
-    margin-bottom: 25px;
-}
-
-div.wall h1 {
-    font-family: 'roboto', sans-serif;
-    width: 100%;
-    text-align: center;
-    line-height: 50px;
 }
 
 button.toassortment {
@@ -86,7 +62,48 @@ button.toassortment.active {
     transition: 0.3s;
 }
 
-button.toassortment.active:hover {
+ button.toassortment.active:hover {
     background-color: cadetblue;
     color: white;
+}
+
+@media(max-width: 768px) {
+    div.shops.cf button.toassortment {
+        display: none;
+    }
+    div.assortment h1 {
+        font-size: 10px;
+        width: 80%;
+    }
+    div.assortmentFoto {
+        width: 50%;
+        height: auto;
+        left: 0;
+    }
+    div.assortment article {
+        font-size: 10px;
+        margin-left: 60%;
+
+    }
+
+}
+
+@media(max-width: 480px) {
+    div.shops.cf button.toassortment {
+        display: none;
+    }
+    div.assortment h1 {
+        font-size: 10px;
+        width: 80%;
+    }
+    div.assortmentFoto {
+        width: 90%;
+        bottom: 10px;
+    }
+    div.assortment article {
+        display: block;
+        max-width: 100%;
+        width: 100%;
+    }
+
 }

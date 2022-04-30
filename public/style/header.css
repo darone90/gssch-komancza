@@ -177,3 +177,59 @@ div.bannerLogo {
     background-repeat: no-repeat;
     animation: bannerLogoAnimation 20000ms linear forwards;
 }
+
+@media(max-width: 1200px) {
+    div.bannerLogo {
+        display: none;
+    }
+}
+
+@media(max-width: 1024px) {
+    div.logo {
+        display: none;
+    }
+
+    div.banner {
+        right: 0;
+        width: 70%;
+    }
+
+    div.bannerLogo {
+        display: none;
+    }
+}
+
+@media(max-width: 768px) {
+    div.banner {
+        display: none;
+    }
+    div.name {
+        width: 50%;
+    }
+    div.logo {
+        width: 50%;
+    }
+}
+
+
+@media(max-width: 480px) {
+    div.banner {
+        display: none;
+    }
+    div.logo {
+        display: none;
+    }
+    div.name {
+        width: 100%;
+    }
+    section.header {
+    height: 150px;
+    margin-bottom: 50px;
+    border-bottom: 2px solid black;
+    }
+}
+
+
+
+
+

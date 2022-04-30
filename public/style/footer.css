@@ -42,3 +42,22 @@ button.login a {
     width: 100%;
     height: 100%;
 }
+
+
+@media(max-width: 1024px) {
+    button.login {
+        display: none;
+    }
+}
+
+@media(max-width: 768px) {
+    footer h1 {
+        display: none;
+    }
+    footer h2 {
+        margin-right: 10px;
+    }
+    button.login {
+        display: none;
+    }
+}

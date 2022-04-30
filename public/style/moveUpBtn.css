@@ -23,3 +23,26 @@ button.moveUp.active {
 button.moveUp.active:hover {
     opacity: 1;
 }
+@media(max-width: 1024px) {
+    button.moveUp {
+        font-size: 40px;
+    }
+
+    button.moveUp.active {
+        height: 70px;
+        width: 70px;
+    }
+}
+
+@media(max-width: 768px) {
+button.moveUp {
+    font-size: 20px;
+}
+
+    button.moveUp.active {
+        height: 50px;
+        width: 50px;
+    }
+    
+}
+
