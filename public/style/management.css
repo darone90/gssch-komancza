@@ -32,3 +32,17 @@ section.management {
     div.directors ul li {
         margin: 5px;
     }
+
+    @media(max-width: 768px) {
+        div.bosses h1,
+        div.directors h1 {
+            font-size: 15px;
+            margin-top: 20px;
+            padding: 10px 5px 10px 10px;
+        }
+        div.bosses ul,
+        div.directors ul {
+            font-size: 10px;
+            margin-top: 20px;
+    }
+    }

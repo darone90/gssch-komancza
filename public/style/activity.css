@@ -109,3 +109,18 @@ section.activityWindow {
     width: 100%;
     height: 1100px;
 }
+
+@media(max-width: 768px) {
+    div.activity main {
+        font-size: 10px;
+    }
+    div.activity {
+
+        width: 90%;
+    }
+
+    div.activity ul.aList {
+    font-size: 10px;
+    line-height: 20px;
+}
+}

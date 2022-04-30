@@ -205,3 +205,40 @@ div.circleBig:hover div.circle {
     width: 25px;
     height: 25px;
 }
+
+@media(max-width: 1024px) {
+    aside.timeLaps.active {
+        display: none;
+    }
+}
+
+@media(max-width: 768px) {
+    aside.timeLaps.active {
+        display: none;
+    }
+
+    div.begin,
+    div.past,
+    div.past2,
+    div.past3,
+    div.today {
+        margin: 0 auto;
+        padding: 5px;
+    }
+    div.begin main,
+    div.past main,
+    div.past2 main,
+    div.past3 main,
+    div.today main {
+        font-size: 10px;
+
+    }
+    div.begin h1,
+    div.past h1,
+    div.past2 h1,
+    div.past3 h1,
+    div.today h1 {
+        font-size: 15px;
+        width: 100%;
+    }
+}

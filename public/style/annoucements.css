@@ -39,11 +39,12 @@ div.annocontent div {
 }
 div.att-dwnl-section {
     width: 90%;
-    position: absolute;
+    position: relative;
     bottom: -20px;
     display: flex;
     flex-direction: row;
     margin-top: 40px;
+    flex-wrap: wrap;
 }
 
 div.att-dwnl-section p {
@@ -66,4 +67,46 @@ div.att-dwnl-section button {
 div.att-dwnl-section button:hover {
     background-color: blue;
     color: burlywood;
+}
+
+@media(max-width: 1200px) {
+    div.att-dwnl-section {
+        width: 100%;
+    }
+}
+
+@media(max-width: 1024px) {
+    div.annocontent {
+        width: 90%;
+        }
+
+        section.anno h1 {
+            font-size: 15px;
+            margin-top: 5px;
+        }
+
+        section.anno h2 {
+            font-size: 15px;
+        }
+
+        div.annocontent div {
+            font-size: 12px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        div.att-dwnl-section p {
+            font-size: 10px;
+            margin-right: 10px;
+        }
+
+        div.att-dwnl-section button {
+            font-size: 8px;
+            width: 25%
+        }
+
+        div.att-dwnl-section {
+            width: 100%;
+            position: relative;
+        }
 }
