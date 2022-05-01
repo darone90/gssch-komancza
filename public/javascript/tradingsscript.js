@@ -63,13 +63,17 @@ const uploader = (key) => {
         loader(true)
         getTop();
         const formData = new FormData()
+        console.log(secondAddresData)
                 formData.append('title', key);
                 formData.append('text' , text);
                 formData.append('hours' , hours);
                 formData.append('tel', tel);
                 formData.append('mail', mail);
                 formData.append('addres', addres);
-                formData.append('secondAddres', secondAddresData);
+                formData.append('secondAddresTel', secondAddresData.tel);
+                formData.append('secondAddresMail', secondAddresData.mail);
+                formData.append('secondAddresAddres', secondAddresData.addres);
+                formData.append('secondAddresHours', secondAddresData.hours);
                 formData.append('foto', foto);
 
                 fetch('/admin/shop/changewithfoto', {

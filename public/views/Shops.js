@@ -47,8 +47,9 @@ export default class extends viewModel {
                 addres2.innerHTML = addres.innerHTML;
                 forsmall.appendChild(addres2);
             };
-
+            
             if(informations.secondAddres) {
+
                 const sTel = main.querySelector('.shop-tel-second');
                 const sMail = main.querySelector('.shop-mail-second');
                 const sAddres = main.querySelector('.shop-addres-second');
