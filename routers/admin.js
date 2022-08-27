@@ -335,13 +335,13 @@ router
     
     .patch('/shop/change', async (req, res) => {
 
-        const {text, hours, tel, mail, addres, title, secondAddres} = req.body;
+        const {text, hours, tel, mail, addres, title} = req.body;
         let validAddres = '';
         if(title !== 'moving') {
             validAddres = addres;
         };
         const filter = {title,};
-        const update = {text, hours, tel, mail, addres: validAddres, secondAddres};
+        const update = {text, hours, tel, mail, addres: validAddres};
         try {
             await Shop.findOneAndUpdate(filter, update);
             res.json({ok: true});
@@ -353,30 +353,24 @@ router
     .patch('/shop/changewithfoto', upload.single('foto'), async (req, res) => {
 
 
-        const {text, hours, tel, mail, addres, title, secondAddresTel, secondAddresMail, secondAddresAddres, secondAddresHours} = req.body;
+        const {text, hours, tel, mail, addres, title,} = req.body;
         const foto = req.file.filename;
         let validAddres = '';
 
         if(title !== 'moving') {
             validAddres = addres;
         };
-        let secondAddres = {};
-        if(secondAddresTel !== 'undefined') {
-            secondAddres = {
-                tel: secondAddresTel,
-                mail: secondAddresMail,
-                addres: secondAddresAddres,
-                hours: secondAddresHours
-            }
-        }
+    
 
         const filter = {title,};
-        const update = {text, hours, tel, mail, addres: validAddres, foto, secondAddres};
+        const update = {text, hours, tel, mail, addres: validAddres, foto};
 
         try {
             const data = await Shop.findOne(filter);
-            const path = '../public/images/imagesDB/' + `${data.foto}`;
-            await unlink(path);
+            if(data.foto) {
+                const path = '../public/images/imagesDB/' + `${data.foto}`;
+                await unlink(path);
+            } 
             await Shop.findOneAndUpdate(filter, update);
             res.json({ok: true});
         } catch (err) {

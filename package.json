@@ -13,7 +13,7 @@
     "Spółdzielnia"
   ],
   "author": "Dariusz Pilecki",
-  "license": "SEE LICENSE IN public/license.txt",
+  "license": "",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.5",

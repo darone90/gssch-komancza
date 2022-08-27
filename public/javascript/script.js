@@ -116,9 +116,17 @@ document.addEventListener('click', function (e) {
         document.querySelector('.a').classList.toggle('active');
         document.querySelector('.ca').classList.toggle('long');
     }
+    else if (hasClass(e.target, 'a2')) {
+        document.querySelector('.a2').classList.toggle('active');
+        document.querySelector('.ca2').classList.toggle('long');
+    }
     else if (hasClass(e.target, 'b')) {
         document.querySelector('.b').classList.toggle('active');
         document.querySelector('.cb').classList.toggle('long');
+    }
+    else if (hasClass(e.target, 'b2')) {
+        document.querySelector('.b2').classList.toggle('active');
+        document.querySelector('.cb2').classList.toggle('long');
     }
     else if (hasClass(e.target, 'c')) {
         document.querySelector('.c').classList.toggle('active');

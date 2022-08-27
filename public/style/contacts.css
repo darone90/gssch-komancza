@@ -1,6 +1,5 @@
 section.contact {
     width: 0;
-    height: 0;
     position: absolute;
     top: 400px;
     transform: translateX(-50%);
@@ -167,12 +166,13 @@ button.waytoForm:hover {
 
 form.contactForm {
     position: absolute;
-    top: 650px;
+    top: 640px;
     left: 10%;
     width: 400px;
-    height: 450px;
+    height: 750px;
     display: flex;
     flex-direction: column;
+    
 }
 
 div.formInfo {

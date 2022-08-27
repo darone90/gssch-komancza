@@ -8,8 +8,10 @@ export default class extends viewModel {
 
     async getHtml() {
         return `
-        <button class='blue delikatesy'>Delikatesy centrum</button>
-        <button class='blue sklep'>Sklep spożywczy</button>
+        <button class='blue delikatesy'>Delikatesy Komańcza</button>
+        <button class='blue delikatesy2'>Delikatesy Rzepedź</button>
+        <button class='blue sklep'>Spożywczy Komańcza</button>
+        <button class='blue sklep2'>Spożywczy Szczawne</button>
         <button class='blue przemyslowy'>Sklep przemysłowy</button>
         <button class='blue budowlany'>Sklep budowlany</button>
         <button class='blue obwozny'>Handel obwoźny</button>
@@ -43,22 +45,6 @@ export default class extends viewModel {
             <input type='text' id='bakery-inform-addres'>
         </label>
 
-        <div class='second-shop hide'>
-            <h2>Godziny otwarcia Rzepedź: </h2>
-            <textarea class='bakery-informations-hours-sec'></textarea>
-            <label>
-                Telefon:
-                <input type='text' id='bakery-inform-tel-sec'>
-            </label>
-            <label>
-                Email:
-                <input type='text' id='bakery-inform-mail-sec'>
-            </label>
-            <label>
-                Adres:
-                <input type='text' id='bakery-inform-addres-sec'>
-            </label>
-        </div>
         
         <button class='shops-info-edit blue'>Zapisz zmiany</button> 
     </div>

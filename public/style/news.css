@@ -19,7 +19,7 @@ div.infoRight {
     padding: 10px;
     border-bottom: 4px solid black;
     opacity: 0;
-    height: 340px;
+    height: 440px;
 }
 h1.noArticles {
     margin: 50px 0 0 10rem;
@@ -125,7 +125,7 @@ div.infoRight h3 {
 div.infoLeft div.imageInfo,
 div.infoRight div.imageInfo {
     width: 250px;
-    height: 257px;
+    height: 357px;
     position: absolute;
     right: 0;
     top: 0;
@@ -134,8 +134,8 @@ div.infoRight div.imageInfo {
 
 .infoLeft img,
 .infoRight img {
-    height: 100%;
-    max-width: 100%;
+    width: 100%;
+    max-height: 100%;
 }
 
 div.infoRight div.imageInfo {

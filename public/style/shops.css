@@ -37,30 +37,6 @@ div.shops.long {
     animation: long 0.4s ease forwards;
 }
 
-div.shops.long.twins {
-    animation: longTwice 0.4s ease forwards;
-}
-
-@keyframes longTwice {
-    0% {
-        height: 520px;
-    }
-
-    100% {
-        height: 1200px;
-    }
-}
-
-@keyframes longTwiceReverse {
-    0% {
-        height: 1100px;
-    }
-
-    100% {
-        height: 520px;
-    }
-}
-
 @keyframes long {
     0% {
         height: 520px;
@@ -229,9 +205,6 @@ div.shops.long div.adreses {
     margin: 30px;
 }
 
-div.shops.ca.long div.adreses{
-    width: 100%;
-}
 
 div.addres-wrap {
     position: absolute;
@@ -277,13 +250,6 @@ div.work-hours {
     padding: 10px;
     display: none;
     
-}
-div.center div.extends div.work-hours {
-    bottom: 300px;
-}
-
-div.center div.extends div.work-hours.second {
-    bottom: 50px;
 }
 
 div.shops.long div.work-hours {
